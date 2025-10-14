@@ -69,12 +69,12 @@ div[data-testid="stHorizontalBlock"] > div {margin-bottom: -8px;}
 st.markdown("""
 <div class="dashboard-header">
   <div class="header-left">
-    <h1>Dashboard Setembro 2025</h1>
+    <h1>Dashboard Semanal Outubro 2025</h1>
     <p>Relatório de Contratação de Temporários - Mendes RH</p>
   </div>
   <div class="header-right">
     <p class="periodo-label">Período</p>
-    <p class="periodo-value">Setembro/2025</p>
+    <p class="periodo-value">Semana 01/10 a 12/10</p>
   </div>
 </div>
 """, unsafe_allow_html=True)
@@ -119,7 +119,7 @@ if st.session_state.current_tab == "Visão Geral":
     col_pie, col_bar = st.columns(2, gap="medium")
     with col_pie:
         st.markdown('<div class="graph-container">', unsafe_allow_html=True)
-        st.markdown('<div class="graph-title">Desempenho SLA - Setembro</div>', unsafe_allow_html=True)
+        st.markdown('<div class="graph-title">Desempenho SLA - 01/10 a 12/10</div>', unsafe_allow_html=True)
         st.markdown('<div class="graph-content">', unsafe_allow_html=True)
 
         no_prazo = sla["No_prazo"].iloc[0]
@@ -162,7 +162,7 @@ if st.session_state.current_tab == "Visão Geral":
 
     with col_bar:
         st.markdown('<div class="graph-container">', unsafe_allow_html=True)
-        st.markdown('<div class="graph-title">Diárias - Setembro</div>', unsafe_allow_html=True)
+        st.markdown('<div class="graph-title">Diárias - 01/10 a 12/10</div>', unsafe_allow_html=True)
         st.markdown('<div class="graph-content">', unsafe_allow_html=True)
         solicitadas = pedidos.Solicitado.iloc[0]
         entregues = pedidos.Entregue.iloc[0]
@@ -206,7 +206,7 @@ if st.session_state.current_tab == "Visão Geral":
 
     st.markdown("""
     <div class="obs-box">
-    <b>Observações Importantes - Setembro</b>
+    <b>Observações Importantes - 01/10 a 12/10</b>
     <ul>
       <li><b>SLA:</b> A redução na diária de eventos (de R$ 80,00 para R$ 57,37) impactou diretamente a performance, gerando dificuldades nas entregas do VO. O restabelecimento da diária para R$ 80,00 foi a chave para a recuperação imediata, elevando a performance de entrega para acima de 97%, comprovando a eficácia do incentivo financeiro.).</li>
     </ul>
@@ -312,7 +312,7 @@ elif st.session_state.current_tab == "Diárias":
     # Gráfico de barras
     fig_barras = go.Figure()
     fig_barras.add_trace(go.Bar(
-        x=["Setembro"],
+        x=["01/10 a 12/10"],
         y=[solicitadas],
         name="Solicitadas",
         marker=dict(color="#FFA500"),
@@ -320,7 +320,7 @@ elif st.session_state.current_tab == "Diárias":
         textposition="outside"
     ))
     fig_barras.add_trace(go.Bar(
-        x=["Setembro"],
+        x=["01/10 a 12/10"],
         y=[entregues],
         name="Entregues",
         marker=dict(color="#23B26D"),
