@@ -66,7 +66,22 @@ div[data-testid="stHorizontalBlock"] > div {margin-bottom: -8px;}
 """, unsafe_allow_html=True)
 
 # ------------ Cabeçalho do Dashboard --------------
-st.markdown("""
+import base64
+
+def get_base64_image(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode()
+
+try:
+    logo_base64 = get_base64_image("images/Logo_Parceria.png")
+    logo_html = f'<img src="data:image/png;base64,{logo_base64}" style="max-width:300px;margin-bottom:10px;">'
+except:
+    logo_html = ""
+
+st.markdown(f"""
+<div style="text-align:center;margin-top:-60px;margin-bottom:5px;">
+    {logo_html}
+</div>
 <div class="dashboard-header">
   <div class="header-left">
     <h1>Dashboard Semanal Outubro 2025</h1>
