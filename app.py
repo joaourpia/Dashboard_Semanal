@@ -294,8 +294,8 @@ elif st.session_state.current_tab == "Análise SLA":
     st.markdown("""
     <div class="obs-box" style="background:#e8f1fd;border-left:5px solid #5aa7db;color:#164976;font-size:1.04em;margin-top:10px;font-weight:500;">
     <b>Contexto SLA</b><br>
-    <li><b>STHS Complicadas:</b> Demanda de 10 camareiras aos sabados e domingos com baixissima aderência, representando 13 entregas do total de 17 faltantes.</li> <br>
-    <li><b>Valor diária:</b> Estão ocorrendo diversas desistência onde a maioria dos motivos alegados é o valor da diária e em muitos casos evidente falta de compromisso.</li> <br>
+    <li><b>STHS Complicadas:</b> Demanda de 10 camareiras aos sabados e domingos com baixissima aderência, representando 27 entregas do total de 68 faltantes.</li> <br>
+    <li><b>Valor diária:</b> Ocorreram diversas desistência onde a maioria dos motivos alegados é o valor da diária e em muitos casos evidente falta de compromisso. Fizemos uma pesquisa com uma amostra dos desistentes, onde os principais motivos alegados foram: "Tempo longo de espera para efetivação e não acreditar na promessa (69,2%) e não queria ser efetivado (30,8%)</li> <br>
     <li><b>Baixa Conversão:</b> Absenteísmo de 70% nas entrevistas/treinamentos (convocação de 35/dia para 30% de presença). Baixa efetividade do SINE e indisponibilidade da base de temporários de Julho.</li> <br>
     <li><b>Perfil:</b> Resistência do mercado local a contratos formais/efetivação em detrimento de modelos informais.</li> <br>
  
