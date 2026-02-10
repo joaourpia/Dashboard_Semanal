@@ -84,12 +84,12 @@ st.markdown(f"""
 </div>
 <div class="dashboard-header">
   <div class="header-left">
-    <h1>Dashboard Semanal janeiro 2026</h1>
+    <h1>Dashboard Semanal fevereiro 2026</h1>
     <p>Relatório de Contratação de Temporários - Mendes RH</p>
   </div>
   <div class="header-right">
     <p class="periodo-label">Período</p>
-    <p class="periodo-value">Semana 13 a 26/01/2026
+    <p class="periodo-value">Semana 01 a 09/02/2026
   </div>
 </div>
 """, unsafe_allow_html=True)
@@ -134,7 +134,7 @@ if st.session_state.current_tab == "Visão Geral":
     col_pie, col_bar = st.columns(2, gap="medium")
     with col_pie:
         st.markdown('<div class="graph-container">', unsafe_allow_html=True)
-        st.markdown('<div class="graph-title">Desempenho SLA - 13 a 26/01/2026</div>', unsafe_allow_html=True)
+        st.markdown('<div class="graph-title">Desempenho SLA - 01 a 09/02/2026</div>', unsafe_allow_html=True)
         st.markdown('<div class="graph-content">', unsafe_allow_html=True)
 
         no_prazo = sla["No_prazo"].iloc[0]
@@ -177,7 +177,7 @@ if st.session_state.current_tab == "Visão Geral":
 
     with col_bar:
         st.markdown('<div class="graph-container">', unsafe_allow_html=True)
-        st.markdown('<div class="graph-title">Diárias - 13 a 26/01/2026</div>', unsafe_allow_html=True)
+        st.markdown('<div class="graph-title">Diárias - 01 a 09/02/2026</div>', unsafe_allow_html=True)
         st.markdown('<div class="graph-content">', unsafe_allow_html=True)
         solicitadas = pedidos.Solicitado.iloc[0]
         entregues = pedidos.Entregue.iloc[0]
@@ -213,7 +213,7 @@ if st.session_state.current_tab == "Visão Geral":
         st.plotly_chart(fig_bar, use_container_width=True, config={"displayModeBar":False})
 
         st.markdown(
-            f"""<div class='goal-box'>✅ Não superamos a meta! Entregamos {saldo} diárias a menos que o solicitado ({diaria_percent:.2f}%)</div>""",
+            f"""<div class='goal-box'>✅ Superamos a meta! Entregamos {saldo} diárias a maior que o solicitado ({diaria_percent:.2f}%)</div>""",
             unsafe_allow_html=True
         )
         st.markdown('</div>', unsafe_allow_html=True)
@@ -221,10 +221,10 @@ if st.session_state.current_tab == "Visão Geral":
 
     st.markdown("""
     <div class="obs-box">
-    <b>Observações Importantes - 13 a 26/01/2026</b>
+    <b>Observações Importantes - 01 a 09/02/2026</b>
     <ul>
-      <li></b> SLA: 81,1% no período (13 a 26/01/2026), com queda vs. semanas anteriores (detalhes na aba SLA).
-Volume: diárias entregues 24,55% abaixo do solicitado (detalhes na aba Diárias).</li>
+      <li></b> SLA: 97,9% no período (01 a 09/02/2026), com relevante melhoria em relação a janeiro/2026 (detalhes na aba SLA).
+Volume: diárias entregues 38,92% acima do solicitado (detalhes na aba Diárias).</li>
     </ul>
     </div>
     """, unsafe_allow_html=True)
@@ -294,11 +294,8 @@ elif st.session_state.current_tab == "Análise SLA":
     st.markdown("""
     <div class="obs-box" style="background:#e8f1fd;border-left:5px solid #5aa7db;color:#164976;font-size:1.04em;margin-top:10px;font-weight:500;">
     <b>Contexto SLA</b><br>
-    <li><b>STHS Complicadas:</b> Demanda de 10 camareiras aos sabados e domingos com baixissima aderência, representando 27 entregas do total de 68 faltantes.</li> <br>
-    <li><b>Valor diária:</b> Ocorreram diversas desistência onde a maioria dos motivos alegados é o valor da diária e em muitos casos evidente falta de compromisso. Fizemos uma pesquisa com uma amostra dos desistentes, onde os principais motivos alegados foram: "Tempo longo de espera para efetivação e não acreditar na promessa (69,2%) e não queria ser efetivado (30,8%)</li> <br>
-    <li><b>Baixa Conversão:</b> Absenteísmo de 70% nas entrevistas/treinamentos (convocação de 35/dia para 30% de presença). Baixa efetividade do SINE e indisponibilidade da base de temporários de Julho.</li> <br>
-    <li><b>Perfil:</b> Resistência do mercado local a contratos formais/efetivação em detrimento de modelos informais.</li> <br>
- 
+    <li><b>Entregas:</b> Deixamos de entregar apenas um diária no evento semanal do VO.</li> <br>
+    
                     
     """, unsafe_allow_html=True)
 
@@ -331,7 +328,7 @@ elif st.session_state.current_tab == "Diárias":
     # Gráfico de barras
     fig_barras = go.Figure()
     fig_barras.add_trace(go.Bar(
-        x=["13 a 26/01/2026"],
+        x=["01 a 09/02/2026"],
         y=[solicitadas],
         name="Solicitadas",
         marker=dict(color="#FFA500"),
@@ -339,7 +336,7 @@ elif st.session_state.current_tab == "Diárias":
         textposition="outside"
     ))
     fig_barras.add_trace(go.Bar(
-        x=["13 a 26/01/2026"],
+        x=["01 a 09/02/2026"],
         y=[entregues],
         name="Entregues",
         marker=dict(color="#23B26D"),
@@ -361,8 +358,8 @@ elif st.session_state.current_tab == "Diárias":
     # Bloco verde sucesso
     st.markdown(f"""
     <div class="diarias-card-sucesso">
-      <b>Desempenho abaixo</b><br>
-      No periodo de  22 a 28/12/2025, não superamos as expectativas ao entregar <b>{entregues} diárias</b>, quando foram solicitadas <b>{solicitadas}</b>, resultando em uma diferença negativa de <b style="color:#12bb26;">{saldo} diárias</b>.<br>
+      <b>Desempenho acima</b><br>
+      No periodo de  01 a 09/02/2025, superamos as expectativas ao entregar <b>{entregues} diárias</b>, quando foram solicitadas <b>{solicitadas}</b>, resultando em uma diferença positiva de <b style="color:#12bb26;">{saldo} diárias</b>.<br>
       Taxa de atendimento: <b>{taxa:.2f}%</b>.
     </div>
     """, unsafe_allow_html=True)
@@ -370,10 +367,9 @@ elif st.session_state.current_tab == "Diárias":
     # Bloco laranja motivos
     st.markdown("""
     <div class="diarias-motivos">
-      <div class="diarias-motivos-title">Motivos para Diárias abaixo do Solicitado</div>
+      <div class="diarias-motivos-title">Motivos para Diárias acima do Solicitado</div>
       <ol style="margin-top:0.1em;margin-bottom:0.1em;">
-        <li>A partir da segunda metade de dezembro, tivemos diversos problemas, como: baixa procura de trabalho, desistencias de contratações com menos de 5 dias em área e faltas ao trabalho, impactando diretamente na quantidade de diarias entregues.</li>
-<li>Em relação as faltas, tivemos nesse periodo um absenteismo de 24% (590 faltas).</li>
+        <li>diversas STHS da temporada encerrariam dia 31/01/2026, porém foram desligadas no periodo de 02 a 07/02/2026.</li>
     """, unsafe_allow_html=True)
 
 # =========== HISTÓRICO ============
@@ -388,7 +384,7 @@ if st.session_state.current_tab == "Histórico":
 
     st.markdown("""
 <div style="background:#fff;border-radius:16px;padding:28px 35px 26px 35px;margin-bottom:28px;box-shadow:0 1px 8px #0001;">
-    <div style="font-weight:800;font-size:1.20em;margin-bottom:12px;">Histórico de Prazos de Entregas (13 a 26/01/2026)</div>
+    <div style="font-weight:800;font-size:1.20em;margin-bottom:12px;">Histórico de Prazos de Entregas (01 a 09/02/2026)</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -436,7 +432,7 @@ if st.session_state.current_tab == "Histórico":
 
     st.markdown("""
 <div style="background:#fff;border-radius:16px;padding:28px 35px 26px 35px;margin-bottom:28px;box-shadow:0 1px 8px #0001;">
-    <div style="font-weight:800;font-size:1.20em;margin-bottom:12px;">Histórico de Diárias Entregues (13 a 26/01/2026)</div>
+    <div style="font-weight:800;font-size:1.20em;margin-bottom:12px;">Histórico de Diárias Entregues (01 a 09/02/2026)</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -506,8 +502,8 @@ if st.session_state.current_tab == "Histórico":
                 <span style="font-size:1.08em;">&#9888; Pontos de Atenção</span>
             </div>
             <ul style="font-size:1em;margin-left:6px;margin-bottom:0;">
-                <li>Há aumento de desistências e negativas. O principal ponto informado por candidatos é a não aceitação de registro em carteira (mesmo em contrato temporário). Também observamos desistências na etapa de efetivação. Motivos associados: diária de R$ 80,00 em eventos menores, distância, transporte e preocupação com benefícios governamentais.</li>
-                <li>Infelizmente o perfil contratado nessa temporada vem demosntrando falta de compromisso, com elevado indice de absenteísmo</li>
+                <li>Solicitação de 89 temporários para o periodo do carnaval (13 a 17/02/2026)</li>
+                
 
 
    """, unsafe_allow_html=True)
