@@ -89,7 +89,7 @@ st.markdown(f"""
   </div>
   <div class="header-right">
     <p class="periodo-label">Período</p>
-    <p class="periodo-value">Semana 01 a 09/02/2026
+    <p class="periodo-value">Semana 16 a 23/02/2026
   </div>
 </div>
 """, unsafe_allow_html=True)
@@ -134,7 +134,7 @@ if st.session_state.current_tab == "Visão Geral":
     col_pie, col_bar = st.columns(2, gap="medium")
     with col_pie:
         st.markdown('<div class="graph-container">', unsafe_allow_html=True)
-        st.markdown('<div class="graph-title">Desempenho SLA - 01 a 09/02/2026</div>', unsafe_allow_html=True)
+        st.markdown('<div class="graph-title">Desempenho SLA - 16 a 23/02/2026</div>', unsafe_allow_html=True)
         st.markdown('<div class="graph-content">', unsafe_allow_html=True)
 
         no_prazo = sla["No_prazo"].iloc[0]
@@ -177,7 +177,7 @@ if st.session_state.current_tab == "Visão Geral":
 
     with col_bar:
         st.markdown('<div class="graph-container">', unsafe_allow_html=True)
-        st.markdown('<div class="graph-title">Diárias - 01 a 09/02/2026</div>', unsafe_allow_html=True)
+        st.markdown('<div class="graph-title">Diárias - 16 a 23/02/2026</div>', unsafe_allow_html=True)
         st.markdown('<div class="graph-content">', unsafe_allow_html=True)
         solicitadas = pedidos.Solicitado.iloc[0]
         entregues = pedidos.Entregue.iloc[0]
@@ -221,10 +221,10 @@ if st.session_state.current_tab == "Visão Geral":
 
     st.markdown("""
     <div class="obs-box">
-    <b>Observações Importantes - 01 a 09/02/2026</b>
+    <b>Observações Importantes - 16 a 23/02/2026</b>
     <ul>
-      <li></b> SLA: 97,9% no período (01 a 09/02/2026), com relevante melhoria em relação a janeiro/2026 (detalhes na aba SLA).
-Volume: diárias entregues 38,92% acima do solicitado (detalhes na aba Diárias).</li>
+      <li></b> SLA: 93% no período (16 a 23/02/2026), com relevante melhora em relação semana passada. (detalhes na aba SLA).
+Volume: diárias entregues 9,38% acim do solicitado (detalhes na aba Diárias).</li>
     </ul>
     </div>
     """, unsafe_allow_html=True)
@@ -294,7 +294,7 @@ elif st.session_state.current_tab == "Análise SLA":
     st.markdown("""
     <div class="obs-box" style="background:#e8f1fd;border-left:5px solid #5aa7db;color:#164976;font-size:1.04em;margin-top:10px;font-weight:500;">
     <b>Contexto SLA</b><br>
-    <li><b>Entregas:</b> Deixamos de entregar apenas um diária no evento semanal do VO.</li> <br>
+    <li><b>Entregas:</b> Tivemos um baixo volume de solicitações nesse periodo, sendo a principal delas o evento semanal do VO</li> <br>
     
                     
     """, unsafe_allow_html=True)
@@ -328,7 +328,7 @@ elif st.session_state.current_tab == "Diárias":
     # Gráfico de barras
     fig_barras = go.Figure()
     fig_barras.add_trace(go.Bar(
-        x=["01 a 09/02/2026"],
+        x=["16 a 23/02/2026"],
         y=[solicitadas],
         name="Solicitadas",
         marker=dict(color="#FFA500"),
@@ -336,7 +336,7 @@ elif st.session_state.current_tab == "Diárias":
         textposition="outside"
     ))
     fig_barras.add_trace(go.Bar(
-        x=["01 a 09/02/2026"],
+        x=["16 a 23/02/2026"],
         y=[entregues],
         name="Entregues",
         marker=dict(color="#23B26D"),
@@ -367,9 +367,9 @@ elif st.session_state.current_tab == "Diárias":
     # Bloco laranja motivos
     st.markdown("""
     <div class="diarias-motivos">
-      <div class="diarias-motivos-title">Motivos para Diárias acima do Solicitado</div>
+      <div class="diarias-motivos-title">
       <ol style="margin-top:0.1em;margin-bottom:0.1em;">
-        <li>diversas STHS da temporada encerrariam dia 31/01/2026, porém foram desligadas no periodo de 02 a 07/02/2026.</li>
+        <li></li>
     """, unsafe_allow_html=True)
 
 # =========== HISTÓRICO ============
@@ -384,7 +384,7 @@ if st.session_state.current_tab == "Histórico":
 
     st.markdown("""
 <div style="background:#fff;border-radius:16px;padding:28px 35px 26px 35px;margin-bottom:28px;box-shadow:0 1px 8px #0001;">
-    <div style="font-weight:800;font-size:1.20em;margin-bottom:12px;">Histórico de Prazos de Entregas (01 a 09/02/2026)</div>
+    <div style="font-weight:800;font-size:1.20em;margin-bottom:12px;">Histórico de Prazos de Entregas (16 a 23/02/2026)</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -432,7 +432,7 @@ if st.session_state.current_tab == "Histórico":
 
     st.markdown("""
 <div style="background:#fff;border-radius:16px;padding:28px 35px 26px 35px;margin-bottom:28px;box-shadow:0 1px 8px #0001;">
-    <div style="font-weight:800;font-size:1.20em;margin-bottom:12px;">Histórico de Diárias Entregues (01 a 09/02/2026)</div>
+    <div style="font-weight:800;font-size:1.20em;margin-bottom:12px;">Histórico de Diárias Entregues (16 a 23/02/2026)</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -502,7 +502,7 @@ if st.session_state.current_tab == "Histórico":
                 <span style="font-size:1.08em;">&#9888; Pontos de Atenção</span>
             </div>
             <ul style="font-size:1em;margin-left:6px;margin-bottom:0;">
-                <li>Solicitação de 89 temporários para o periodo do carnaval (13 a 17/02/2026)</li>
+                
                 
 
 
