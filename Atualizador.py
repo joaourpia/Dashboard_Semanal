@@ -4,7 +4,7 @@ from datetime import datetime
 import sys
 
 # --- CONFIGURAÇÕES ---
-CAMINHO_PROJETO = r"C:\Users\joaou\OneDrive\Documentos\python\Projetos\Dashboard_Sauipe"
+CAMINHO_PROJETO = r"C:\Projetos_Python\Dashboard_Semanal"
 # Nota: O script agora pega TUDO, não precisa especificar o CSV
 
 def atualizar_projeto():
