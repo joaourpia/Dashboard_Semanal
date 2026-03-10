@@ -179,12 +179,11 @@ def render_visao_geral(alvos):
         st.markdown(f"""<div class='diarias-card-sucesso' style='margin-top:8px;'>{msg}</div></div></div>""", unsafe_allow_html=True)
 
     info_saldo = f"superando o volume global em {int(saldo)} posições" if saldo >= 0 else f"deixando um déficit de {int(abs(saldo))} posições frente à demanda global"
-    
     texto_resumo = f"""<div class="obs-box"><b>Resumo Executivo - Período Selecionado</b><br>
-<ul style="padding-left:20px; margin-top:8px; margin-bottom:0;">
-<li><b>Eficiência de Entrega (SLA):</b> A operação atingiu <b>{sla_percent:.1f}%</b> de assertividade no prazo. Foram fechadas {int(sla['No_prazo'].iloc[0])} vagas rigorosamente no tempo acordado, enquanto {int(sla['Fora_prazo'].iloc[0])} vagas estouraram o limite contratual de SLA.</li>
-<li><b>Volume de Diárias:</b> A equipe apresentou uma taxa de entrega de <b>{diaria_percent:.1f}%</b>, {info_saldo}.</li>
-</ul></div>"""
+    <ul>
+        <li><b>Eficiência de Entrega (SLA):</b> A operação atingiu <b>{sla_percent:.1f}%</b> de assertividade no prazo. Foram fechadas {int(sla['No_prazo'].iloc[0])} vagas rigorosamente no tempo acordado, enquanto {int(sla['Fora_prazo'].iloc[0])} vagas estouraram o limite contratual de SLA.</li>
+        <li><b>Volume de Diárias:</b> A equipe apresentou uma taxa de entrega de <b>{diaria_percent:.1f}%</b>, {info_saldo}.</li>
+    </ul></div>"""
     st.markdown(texto_resumo, unsafe_allow_html=True)
 
 def render_analise_sla(alvos):
@@ -205,13 +204,12 @@ def render_analise_sla(alvos):
     st.markdown('</div>', unsafe_allow_html=True)
 
     alerta_fora = f"Atenção: A equipe acumulou {fora} vagas fora da meta de entrega no período." if fora > 0 else "Nenhuma vaga estourou o prazo limite neste período."
-    
     texto_sla = f"""<div class="obs-box" style="background:#e8f1fd;border-left:5px solid #5aa7db;color:#164976;font-size:1.04em;margin-top:10px;font-weight:500;">
-<b>Performance de Entrega ({periodo_selecionado})</b><br>
-<ul style="padding-left:20px; margin-top:8px; margin-bottom:0;">
-<li><b>Assertividade:</b> {perc_dentro:.1f}% das posições solicitadas foram supridas respeitando o SLA de planejamento ideal.</li>
-<li><b>Impacto de Atrasos:</b> {alerta_fora}</li>
-</ul></div>"""
+    <b>Performance de Entrega ({periodo_selecionado})</b><br>
+    <ul>
+        <li><b>Assertividade:</b> {perc_dentro:.1f}% das posições solicitadas foram supridas respeitando o SLA de planejamento ideal.</li>
+        <li><b>Impacto de Atrasos:</b> {alerta_fora}</li>
+    </ul></div>"""
     st.markdown(texto_sla, unsafe_allow_html=True)
 
 def render_diarias(alvos):
@@ -282,71 +280,36 @@ def render_historico(alvos):
         fig2.update_layout(barmode='group', height=400, margin=dict(l=20,r=20,t=40,b=38), legend=dict(orientation='h', y=-0.22, x=0.5, xanchor='center'), plot_bgcolor='#fff', yaxis=dict(range=[0, max_vol * 1.3]), yaxis2=dict(range=[0, max(110, ent_hist['Taxa_%'].max()*1.2)], overlaying='y', side='right', showgrid=False, visible=False))
         st.plotly_chart(fig2, use_container_width=True, config={'displayModeBar':False})
 
-        # --- NOVA INTELIGÊNCIA DINÂMICA DO HISTÓRICO ---
-        qtd_periodos = len(ent_hist)
-        
+        # --- INTELIGÊNCIA DINÂMICA DO HISTÓRICO ---
         tot_solicitado = ent_hist['Solicitadas'].sum()
         tot_entregue = ent_hist['Entregues'].sum()
         tx_global = (tot_entregue / tot_solicitado * 100) if tot_solicitado > 0 else 0
         
-        atual_ent = ent_hist.iloc[-1]
-        atual_sla = sla_hist.iloc[-1]
-
-        if qtd_periodos == 1:
-            if tot_solicitado > tot_entregue: gap_txt = f"restam {int(tot_solicitado - tot_entregue)} posições pendentes para atingir a meta"
-            elif tot_solicitado == tot_entregue: gap_txt = f"todas as posições solicitadas foram preenchidas"
-            else: gap_txt = f"superamos a meta com {int(tot_entregue - tot_solicitado)} posições excedentes"
-
-            texto_fortes = f"""<ul style="color:#1a1a1a; font-size:0.95em; line-height:1.6; padding-left:20px; margin:0;">
-<li><b>Cenário de Largada:</b> Neste primeiro período avaliado ({atual_ent['Mês']}), a operação obteve uma taxa de retenção de <b>{atual_ent['Taxa_%']:.1f}%</b>, suprindo {int(tot_entregue)} das {int(tot_solicitado)} posições solicitadas.</li>
-<li><b>Engajamento de Prazo:</b> A aderência ao SLA registrou o fechamento de <b>{atual_sla['No Prazo (%)']:.1f}%</b> das vagas dentro do prazo estrutural planejado.</li>
-</ul>"""
-            
-            atraso_atual = atual_sla['Fora do Prazo (%)']
-            if atraso_atual > 0:
-                texto_gargalos = f"""<ul style="color:#1a1a1a; font-size:0.95em; line-height:1.6; padding-left:20px; margin:0;">
-<li><b>Balanço de Vagas:</b> No fechamento deste ciclo inicial, {gap_txt}.</li>
-<li><b>Alerta de Atraso:</b> Constatamos que <b>{atraso_atual:.1f}%</b> das vagas entregues estouraram o SLA de tempo. Este é o foco gerencial para correção imediata na próxima rodada.</li>
-</ul>"""
-            else:
-                texto_gargalos = f"""<ul style="color:#1a1a1a; font-size:0.95em; line-height:1.6; padding-left:20px; margin:0;">
-<li><b>Controle de Prazo Absoluto:</b> Excelente início! Nenhuma vaga extrapolou o limite de SLA neste primeiro período. O controle logístico de prazos foi impecável.</li>
-<li><b>Oportunidade Atual:</b> Quanto ao volume geral, {gap_txt}. Nossa força-tarefa agora é direcionada para manter esse padrão de entrega.</li>
-</ul>"""
-        else:
-            melhor_semana_ent = ent_hist.loc[ent_hist['Taxa_%'].idxmax()]
-            pior_semana_ent = ent_hist.loc[ent_hist['Taxa_%'].idxmin()]
-            melhor_semana_sla = sla_hist.loc[sla_hist['No Prazo (%)'].idxmax()]
-            pior_semana_sla = sla_hist.loc[sla_hist['Fora do Prazo (%)'].idxmax()] 
-            
-            texto_fortes = f"""<ul style="color:#1a1a1a; font-size:0.95em; line-height:1.6; padding-left:20px; margin:0;">
-<li><b>Pico de Retenção:</b> O período mais produtivo de entregas foi <b>{melhor_semana_ent['Mês']}</b>, registrando <b>{melhor_semana_ent['Taxa_%']:.1f}%</b> de fechamento das vagas solicitadas.</li>
-<li><b>Máxima Eficiência:</b> O pico de assertividade no SLA ocorreu em <b>{melhor_semana_sla['Mes']}</b>, com <b>{melhor_semana_sla['No Prazo (%)']:.1f}%</b> das vagas fechadas de forma perfeita e sem nenhum atraso.</li>
-<li><b>Volume Acumulado:</b> Ao longo de todo este projeto, a equipe já entregou <b>{int(tot_entregue)}</b> de <b>{int(tot_solicitado)}</b> demandas (Eficiência Global de {tx_global:.1f}%).</li>
-</ul>"""
-            
-            pior_atraso = pior_semana_sla['Fora do Prazo (%)']
-            if pior_atraso > 0:
-                obs_atraso = f"Em <b>{pior_semana_sla['Mes']}</b>, enfrentamos o nosso maior gargalo de tempo, com a fatia de entregas atrasadas (fora do SLA) atingindo a máxima de <b>{pior_atraso:.1f}%</b>."
-            else:
-                obs_atraso = f"Um marco de gestão: ao longo de todas as avaliações deste projeto, a equipe manteve o volume de atrasos rigidamente zerado, garantindo 100% do tempo contratual."
-
-            texto_gargalos = f"""<ul style="color:#1a1a1a; font-size:0.95em; line-height:1.6; padding-left:20px; margin:0;">
-<li><b>Baixa Retenção:</b> O momento mais crítico de volume captado foi <b>{pior_semana_ent['Mês']}</b>, fechando apenas <b>{pior_semana_ent['Taxa_%']:.1f}%</b> da solicitação do cliente.</li>
-<li><b>Estrangulamento de Prazo:</b> {obs_atraso}</li>
-<li><b>Fechamento Atual:</b> A medição mais recente ({atual_ent['Mês']}) aponta a entrega de <b>{atual_ent['Taxa_%']:.1f}%</b> do volume, operando com um SLA de precisão de <b>{atual_sla['No Prazo (%)']:.1f}%</b>.</li>
-</ul>"""
-
-        html_inteligencia = f"""<div style="display:flex; gap:20px; margin-top:20px;">
-<div style="flex:1; background:#eafff1; border-left:6px solid #23b26d; border-radius:8px; padding:20px;">
-<h4 style="color:#117b46; margin-top:0; margin-bottom:15px;">🚀 Desempenho & Retenção</h4>
-{texto_fortes}
-</div>
-<div style="flex:1; background:#fff2f2; border-left:6px solid #f65054; border-radius:8px; padding:20px;">
-<h4 style="color:#b32629; margin-top:0; margin-bottom:15px;">⚠️ Oportunidades & Gargalos</h4>
-{texto_gargalos}
-</div>
-</div>"""
+        melhor_semana_ent = ent_hist.loc[ent_hist['Taxa_%'].idxmax()]
+        pior_semana_ent = ent_hist.loc[ent_hist['Taxa_%'].idxmin()]
+        melhor_semana_sla = sla_hist.loc[sla_hist['No Prazo (%)'].idxmax()]
+        pior_semana_sla = sla_hist.loc[sla_hist['No Prazo (%)'].idxmin()]
+        
+        html_inteligencia = f"""
+        <div style="display:flex; gap:20px; margin-top:20px;">
+            <div style="flex:1; background:#eafff1; border-left:6px solid #23b26d; border-radius:8px; padding:20px;">
+                <h4 style="color:#117b46; margin-top:0; margin-bottom:15px;">🚀 Retenção & Fechamento Ideal</h4>
+                <ul style="color:#1a1a1a; font-size:0.95em; line-height:1.6;">
+                    <li><b>Pico de Atendimento:</b> O maior volume de vagas fechadas ocorreu na medição de <b>{melhor_semana_ent['Mês']}</b>, registrando uma taxa de <b>{melhor_semana_ent['Taxa_%']:.1f}%</b>.</li>
+                    <li><b>Pico de Eficiência (SLA):</b> O período de <b>{melhor_semana_sla['Mes']}</b> registrou a melhor performance da equipe, com <b>{melhor_semana_sla['No Prazo (%)']:.1f}%</b> das vagas entregues rigorosamente no prazo estipulado.</li>
+                    <li><b>Volume Acumulado:</b> Considerando todo este histórico, entregamos <b>{int(tot_entregue)}</b> de <b>{int(tot_solicitado)}</b> posições (Média Global de {tx_global:.1f}%).</li>
+                </ul>
+            </div>
+            <div style="flex:1; background:#fff2f2; border-left:6px solid #f65054; border-radius:8px; padding:20px;">
+                <h4 style="color:#b32629; margin-top:0; margin-bottom:15px;">⚠️ Atrasos & Gargalos Operacionais</h4>
+                <ul style="color:#1a1a1a; font-size:0.95em; line-height:1.6;">
+                    <li><b>Queda de Fechamento:</b> O menor percentual de vagas preenchidas mapeado foi em <b>{pior_semana_ent['Mês']}</b>, atingindo <b>{pior_semana_ent['Taxa_%']:.1f}%</b> de atendimento global.</li>
+                    <li><b>Volume de Atrasos:</b> Em <b>{pior_semana_sla['Mes']}</b>, a equipe enfrentou a maior dificuldade logística, com <b>{pior_semana_sla['Fora do Prazo (%)']:.1f}%</b> das entregas estourando a meta de tempo (SLA).</li>
+                    <li><b>Status Atual:</b> A última linha de leitura ({ent_hist['Mês'].iloc[-1]}) aponta um fechamento de volume de <b>{ent_hist['Taxa_%'].iloc[-1]:.1f}%</b>, sendo que as entregas efetuadas no prazo (SLA) representam <b>{sla_hist['No Prazo (%)'].iloc[-1]:.1f}%</b>.</li>
+                </ul>
+            </div>
+        </div>
+        """
         st.markdown(html_inteligencia, unsafe_allow_html=True)
 
     except Exception as e: st.warning(f"Erro ao gerar a aba de Histórico. Detalhe: {e}")
