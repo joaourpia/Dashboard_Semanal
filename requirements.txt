@@ -1,4 +1,7 @@
 streamlit
 plotly
 pandas
+numpy
 openpyxl
+reportlab
+kaleido==0.2.1

@@ -1,0 +1,19 @@
+﻿Funcao;Solicitado;Entregue;Escala;Trabalhou;Folga;Atestado;Outra justificativa;Falta;Absenteismo_%;Cobertura_%;Em_posto_%;Saldo;Alerta
+Garçom;1271;1061,0;1258,0;894,0;133,0;31,0;3,0;197,0;15,659777424483307;83,47757671125098;70,33831628638868;-210,0;
+Aux. Serviços Gerais / Limpeza;424;324,0;451,0;266,0;54,0;3,0;1,0;127,0;28,159645232815965;76,41509433962264;62,735849056603776;-100,0;Entrega abaixo do solicitado
+Atendente de Parque;387;377,0;468,0;299,0;57,0;20,0;1,0;91,0;19,444444444444446;97,41602067183463;77,2609819121447;-10,0;
+Recepcionista de Parques;365;321,0;361,0;271,0;43,0;7,0;0,0;40,0;11,080332409972298;87,94520547945206;74,24657534246575;-44,0;
+Auxiliar de Cozinha;279;301,0;312,0;259,0;40,0;2,0;0,0;11,0;3,5256410256410255;107,88530465949822;92,831541218638;22,0;
+Monitor de Lazer e Recreação;202;122,0;125,0;100,0;22,0;0,0;0,0;3,0;2,4;60,396039603960396;49,504950495049506;-80,0;Entrega abaixo do solicitado
+Atendente de Hotelaria;133;237,0;258,0;175,0;55,0;7,0;0,0;21,0;8,13953488372093;178,1954887218045;131,57894736842107;104,0;STH registra menos diárias do que o ponto comprova
+Camareira;120;333,0;406,0;249,0;79,0;3,0;2,0;73,0;17,980295566502463;277,5;207,50000000000003;213,0;STH registra menos diárias do que o ponto comprova
+Concierge;31;31,0;31,0;24,0;7,0;0,0;0,0;0,0;0,0;100,0;77,41935483870968;0,0;
+Auxiliar de Lavanderia;28;243,0;264,0;185,0;57,0;0,0;1,0;21,0;7,954545454545454;867,8571428571429;660,7142857142857;215,0;STH registra menos diárias do que o ponto comprova
+Atendente de Portaria;24;29,0;30,0;14,0;14,0;1,0;0,0;1,0;3,3333333333333335;120,83333333333333;58,333333333333336;5,0;
+Guia de Férias;14;23,0;23,0;17,0;6,0;0,0;0,0;0,0;0,0;164,28571428571428;121,42857142857142;9,0;STH registra menos diárias do que o ponto comprova
+Vendedor Interno;14;80,0;81,0;68,0;12,0;0,0;0,0;1,0;1,2345679012345678;571,4285714285714;485,71428571428567;66,0;STH registra menos diárias do que o ponto comprova
+Roupeiro;6;91,0;91,0;67,0;24,0;0,0;0,0;0,0;0,0;1516,6666666666665;1116,6666666666665;85,0;STH registra menos diárias do que o ponto comprova
+Operador de Lava-Jato;4;11,0;11,0;6,0;5,0;0,0;0,0;0,0;0,0;275,0;150,0;7,0;STH registra menos diárias do que o ponto comprova
+Assistente Administrativo;0;;;;;;;;;;;;Fora do escopo: 1 pessoa(s) no ponto sem vaga no STH
+Coordenador;0;;;;;;;;;;;;Fora do escopo: 1 pessoa(s) no ponto sem vaga no STH
+Não informado;0;;;;;;;;;;;;Fora do escopo: 1 pessoa(s) no ponto sem vaga no STH
