@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Disparador de Pesquisa — WhatsApp | Mendes RH</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f5f7;color:#0b0b0b;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:14px;}
+.wrap{max-width:1180px;margin:0 auto;padding:20px 18px 60px 18px;}
+.hero{background:linear-gradient(125deg,#0d366b,#1c5cab 52%,#2a78d6);color:#fff;
+  border-radius:18px;padding:22px 26px;margin-bottom:16px;}
+.hero h1{margin:0;font-size:1.45rem;font-weight:770;letter-spacing:-.02em;}
+.hero p{margin:6px 0 0 0;opacity:.82;font-size:.9rem;line-height:1.5;}
+.card{background:#fff;border:1px solid rgba(11,11,11,.08);border-radius:16px;
+  padding:18px 20px;margin-bottom:14px;
+  box-shadow:0 1px 2px rgba(11,11,11,.04),0 10px 30px -18px rgba(11,11,11,.2);}
+.card h2{margin:0 0 4px 0;font-size:1rem;font-weight:730;}
+.card .d{color:#52514e;font-size:.83rem;margin-bottom:12px;line-height:1.5;}
+label{display:block;font-size:.76rem;font-weight:700;letter-spacing:.04em;
+  text-transform:uppercase;color:#898781;margin:10px 0 4px 0;}
+input[type=text],textarea,select{width:100%;padding:9px 11px;border-radius:9px;
+  border:1px solid #d9d8d2;font:inherit;background:#fff;color:#0b0b0b;}
+textarea{min-height:110px;resize:vertical;line-height:1.5;}
+input:focus,textarea:focus,select:focus{outline:2px solid #2a78d6;outline-offset:-1px;border-color:#2a78d6;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+button{font:inherit;font-weight:650;border-radius:10px;padding:9px 16px;cursor:pointer;
+  border:1px solid rgba(11,11,11,.1);background:#fff;color:#52514e;transition:.15s;}
+button:hover{border-color:#2a78d6;color:#2a78d6;}
+button.p{background:#2a78d6;border-color:#2a78d6;color:#fff;}
+button.p:hover{background:#1c5cab;border-color:#1c5cab;color:#fff;}
+button.g{background:#1baf7a;border-color:#1baf7a;color:#fff;}
+button.g:hover{background:#159066;border-color:#159066;color:#fff;}
+button:disabled{opacity:.45;cursor:not-allowed;}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px;}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 4px 0;}
+.kpi{background:#f7f8fa;border:1px solid rgba(11,11,11,.06);border-radius:12px;padding:11px 14px;}
+.kpi .l{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#898781;}
+.kpi .v{font-size:1.5rem;font-weight:780;line-height:1.2;margin-top:1px;}
+.prog{height:8px;background:#eceae4;border-radius:99px;overflow:hidden;margin-top:12px;}
+.prog i{display:block;height:100%;background:#1baf7a;width:0;transition:width .3s;}
+table{width:100%;border-collapse:collapse;font-size:.86rem;}
+th{position:sticky;top:0;background:#2a78d6;color:#fff;text-align:left;padding:8px 10px;
+  font-weight:700;font-size:.76rem;letter-spacing:.03em;text-transform:uppercase;z-index:2;}
+td{padding:7px 10px;border-bottom:1px solid #f0efec;vertical-align:middle;}
+tr.done td{background:#f4fbf7;color:#52514e;}
+tr.err td{background:#fdf2f2;}
+tr.atual td{background:#eef5fe;box-shadow:inset 3px 0 0 #2a78d6;}
+.tw{max-height:460px;overflow:auto;border:1px solid rgba(11,11,11,.08);border-radius:12px;margin-top:12px;}
+.tag{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 9px;border-radius:99px;}
+.t-ok{background:#e7f6e7;color:#0a6b0a;} .t-pend{background:#f1f2f4;color:#52514e;}
+.t-err{background:#fbe9e9;color:#a02020;} .t-a{background:#eaf2fd;color:#1c5cab;}
+.t-d{background:#fdf1dc;color:#8a5a00;}
+.hint{font-size:.79rem;color:#898781;margin-top:8px;line-height:1.55;}
+.aviso{border-left:4px solid #fab219;background:#fffdf7;border-radius:0 10px 10px 0;
+  padding:11px 15px;font-size:.85rem;line-height:1.6;margin-top:12px;}
+kbd{background:#f1f2f4;border:1px solid #d9d8d2;border-bottom-width:2px;border-radius:5px;
+  padding:1px 6px;font-family:inherit;font-size:.8rem;font-weight:700;}
+.foco{border:2px solid #2a78d6;border-radius:14px;padding:16px 18px;background:#fbfcfe;margin-top:6px;}
+.foco .nome{font-size:1.15rem;font-weight:750;}
+.foco .fone{color:#52514e;font-size:.9rem;margin-top:2px;}
+.foco .msg{background:#fff;border:1px solid #e6e5df;border-radius:10px;padding:11px 13px;
+  margin-top:11px;white-space:pre-wrap;font-size:.86rem;line-height:1.55;max-height:150px;overflow:auto;}
+.modos{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px;}
+.modo{display:flex;gap:9px;align-items:flex-start;border:1px solid #d9d8d2;border-radius:12px;
+  padding:11px 13px;cursor:pointer;background:#fff;text-transform:none;letter-spacing:0;
+  font-size:.84rem;font-weight:400;color:#0b0b0b;margin:0;}
+.modo:has(input:checked){border-color:#2a78d6;background:#f7fafe;box-shadow:inset 0 0 0 1px #2a78d6;}
+.modo input{margin-top:3px;flex:0 0 auto;}
+.modo i{color:#52514e;font-style:normal;font-size:.79rem;line-height:1.5;display:block;margin-top:3px;}
+.t-dv{background:#fdf1dc;color:#8a5a00;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <h1>Disparador de Pesquisa — WhatsApp</h1>
+  <p>Carregue a lista de temporários, confira a mensagem e dispare um a um sem
+     digitar nada. Cada clique abre o WhatsApp já com o texto pronto — você só
+     aperta Enter para enviar.</p>
+</div>
+
+<!-- ---------------------------------------------------------------- 1 -->
+<div class="card">
+  <h2>1. Links das pesquisas</h2>
+  <div class="d">Cole os links que o script do Google gerou.</div>
+  <div class="grid2">
+    <div>
+      <label>Pesquisa — cumpriu a temporada</label>
+      <input type="text" id="linkAtivo" placeholder="https://forms.gle/...">
+    </div>
+    <div>
+      <label>Pesquisa — saiu antes do fim</label>
+      <input type="text" id="linkDeslig" placeholder="https://forms.gle/...">
+    </div>
+  </div>
+  <div class="aviso">
+    Não cole aqui — e não envie por WhatsApp — o link do cadastro de retirada dos
+    ingressos. Ele aparece sozinho na tela final de quem termina a pesquisa. Se
+    circular solto, gente que não respondeu se cadastra e o número de ingressos
+    deixa de bater com o número de respostas.
+  </div>
+</div>
+
+<!-- ---------------------------------------------------------------- 2 -->
+<div class="card">
+  <h2>2. Lista de pessoas</h2>
+  <div class="d">
+    Uma pessoa por linha, no formato <b>nome ; telefone ; grupo</b>.
+    O grupo aceita <b>cumpriu</b> ou <b>saiu</b> — se ficar em branco, entra como
+    cumpriu. Também valem <i>saiu antes</i>, <i>desligado</i>, <i>demitido</i> e
+    <i>pediu</i> para o grupo de saída.
+    Você pode colar direto do Excel (colunas separadas por ponto e vírgula ou tabulação).
+  </div>
+  <textarea id="lista" placeholder="Maria da Silva; 64992345678; cumpriu
+João Pereira; 64 99876-5432; saiu
+Ana Souza	64993334444	cumpriu"></textarea>
+  <div class="bar">
+    <button class="p" onclick="carregar()">Carregar lista</button>
+    <button onclick="document.getElementById('arq').click()">Importar CSV</button>
+    <input type="file" id="arq" accept=".csv,.txt" style="display:none" onchange="importar(this)">
+    <button onclick="exemplo()">Ver exemplo</button>
+  </div>
+  <div class="hint">
+    Telefones sem o código do país recebem <b>55</b> automaticamente. Números com
+    9 dígitos e DDD são mantidos como estão; pontuação é removida.
+  </div>
+</div>
+
+<!-- ---------------------------------------------------------------- 3 -->
+<div class="card">
+  <h2>3. Mensagem</h2>
+  <div class="d">
+    Use <b>{nome}</b> para o primeiro nome e <b>{link}</b> para o link da pesquisa
+    correspondente ao grupo da pessoa.
+  </div>
+  <div class="grid2">
+    <div>
+      <label>Para quem cumpriu a temporada</label>
+      <textarea id="msgAtivo">Oi {nome}, tudo bem? Aqui é da Mendes RH.
+
+Você foi até o fim da temporada de julho no Rio Quente e queremos saber sua opinião sincera sobre como foi.
+
+A pesquisa é ANÔNIMA e leva 5 minutos. Ninguém consegue saber quem respondeu o quê.
+
+QUEM RESPONDER GANHA UM PAR DE INGRESSOS DO HOT PARK. Não é sorteio: é para todo mundo que concluir a pesquisa. No fim aparece um cadastro rápido (nome completo, CPF e e-mail) só para emitir os ingressos no seu nome.
+
+{link}
+
+Obrigado de verdade pela sua ajuda.</textarea>
+    </div>
+    <div>
+      <label>Para quem saiu antes do fim</label>
+      <textarea id="msgDeslig">Oi {nome}, tudo bem? Aqui é da Mendes RH.
+
+Você começou com a gente na temporada de julho e acabou saindo antes do fim. Sem cobrança nenhuma, seja qual for o motivo: queremos entender o que aconteceu para melhorar de verdade.
+
+A pesquisa é ANÔNIMA e leva 3 minutos.
+
+QUEM RESPONDER GANHA UM PAR DE INGRESSOS DO HOT PARK. Não é sorteio: é para todo mundo que concluir a pesquisa. No fim aparece um cadastro rápido (nome completo, CPF e e-mail) só para emitir os ingressos no seu nome.
+
+{link}
+
+Obrigado pelo tempo que você ficou com a gente.</textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ---------------------------------------------------------------- 4 -->
+<div class="card">
+  <h2>4. Disparo</h2>
+  <div class="d">
+    Clique em <b>Abrir WhatsApp</b> (ou aperte <kbd>Enter</kbd>): a conversa abre já
+    com o texto pronto. Você só aperta Enter lá para enviar e volta para cá — o
+    próximo já está na fila.
+  </div>
+
+  <label>Como abrir a conversa</label>
+  <div class="modos">
+    <label class="modo"><input type="radio" name="modo" value="app" checked>
+      <span><b>Aplicativo do WhatsApp</b><br>
+      <i>Não abre aba nenhuma no navegador. Na primeira vez o Chrome pergunta se
+      pode abrir o WhatsApp — marque <b>Sempre permitir</b> e ele nunca mais
+      pergunta.</i></span></label>
+    <label class="modo"><input type="radio" name="modo" value="web">
+      <span><b>WhatsApp Web, sempre na mesma aba</b><br>
+      <i>Não acumula abas: reaproveita a mesma janela a cada envio. Use se você não
+      tem o aplicativo instalado no computador.</i></span></label>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="l">Total</div><div class="v" id="kTotal">0</div></div>
+    <div class="kpi"><div class="l">Enviados</div><div class="v" id="kEnv">0</div></div>
+    <div class="kpi"><div class="l">Pendentes</div><div class="v" id="kPend">0</div></div>
+    <div class="kpi"><div class="l">Com problema</div><div class="v" id="kErr">0</div></div>
+  </div>
+  <div class="prog"><i id="barra"></i></div>
+
+  <div id="foco" class="foco" style="display:none">
+    <div class="nome" id="fNome">—</div>
+    <div class="fone" id="fFone">—</div>
+    <div class="msg" id="fMsg"></div>
+    <div class="bar">
+      <button class="g" id="btnAbrir" onclick="abrir()">Abrir WhatsApp &nbsp;<kbd>Enter</kbd></button>
+      <button onclick="copiar()">Copiar mensagem</button>
+      <button onclick="marcar('enviado')">Já enviei — próximo</button>
+      <button onclick="marcar('pular')">Pular</button>
+      <button onclick="marcar('erro')">Número inválido</button>
+    </div>
+  </div>
+
+  <div class="aviso" id="avisoPausa" style="display:none">
+    <b>Hora de pausar.</b> Você já disparou <span id="qtdLote">40</span> mensagens
+    seguidas. Espere uns 15 minutos antes de continuar: rajada longa para números
+    que não têm o seu salvo é o padrão que o WhatsApp usa para bloquear conta.
+    <div class="bar"><button onclick="zerarLote()">Continuar</button></div>
+  </div>
+
+  <div class="aviso" id="avisoTab">
+    No modo <b>WhatsApp Web</b>, na primeira vez o navegador pode bloquear a
+    abertura da aba. Clique no ícone de bloqueio na barra de endereço e permita
+    pop-ups para esta página.
+  </div>
+
+  <div class="bar">
+    <button onclick="exportar()">Baixar controle de envios (CSV)</button>
+    <button onclick="reiniciar()">Reiniciar fila</button>
+  </div>
+  <div class="hint">
+    As marcações ficam só nesta aba. Se fechar o navegador, baixe o controle antes
+    para não perder o progresso.
+  </div>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:34px">#</th><th>Nome</th><th>WhatsApp</th>
+      <th>Grupo</th><th>Situação</th><th style="width:96px"></th></tr></thead>
+      <tbody id="corpo"></tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+
+<script>
+var pessoas = [], atual = -1;
+var lote = 0, LOTE_MAX = 40;      // pausa sugerida a cada 40 disparos seguidos
+
+function normalizarFone(bruto){
+  var d = String(bruto || '').replace(/\D/g, '');
+  if (!d) return '';
+  if (d.length >= 12 && d.slice(0,2) === '55') return d;      // já tem país
+  if (d.length === 10 || d.length === 11) return '55' + d;     // DDD + número
+  if (d.length === 8 || d.length === 9) return '';             // sem DDD
+  if (d.length > 13) return d.slice(0, 13);
+  return '55' + d;
+}
+function primeiroNome(n){
+  var p = String(n || '').trim().split(/\s+/)[0] || '';
+  return p.charAt(0).toUpperCase() + p.slice(1).toLowerCase();
+}
+function fmtFone(d){
+  if (!d) return '—';
+  var s = d.replace(/^55/, '');
+  return '+55 ' + s.slice(0,2) + ' ' + s.slice(2, s.length-4) + '-' + s.slice(-4);
+}
+
+function carregar(){
+  var linhas = document.getElementById('lista').value.split(/\r?\n/);
+  pessoas = [];
+  linhas.forEach(function(l){
+    if (!l.trim()) return;
+    var c = l.split(/[;\t]|,(?=\s*\+?\d)/).map(function(x){ return x.trim(); });
+    if (/^nome/i.test(c[0])) return;                     // pula cabeçalho
+    var nome = c[0] || '', fone = normalizarFone(c[1] || '');
+    var g = (c[2] || '').toLowerCase();
+    var grupo = (g.indexOf('sai') === 0 || g.indexOf('saí') === 0 ||
+                 g.indexOf('desl') === 0 || g.indexOf('demit') === 0 ||
+                 g.indexOf('pediu') === 0 || g.indexOf('antes') === 0)
+                ? 'saiu' : 'cumpriu';
+    // celular no Brasil tem 9 dígitos após o DDD e começa com 9.
+    // 8 dígitos costuma ser número antigo, sem o 9 na frente — vale conferir.
+    var nac = fone.replace(/^55/, '');
+    var duvidoso = !!fone && (nac.length !== 11 || nac.charAt(2) !== '9');
+    pessoas.push({ nome: nome, fone: fone, grupo: grupo, duvidoso: duvidoso,
+                   estado: fone ? 'pendente' : 'erro' });
+  });
+  atual = -1;
+  proximo();
+  render();
+}
+
+function exemplo(){
+  document.getElementById('lista').value =
+    'Maria da Silva; 64992345678; cumpriu\n' +
+    'João Pereira; 64 99876-5432; saiu\n' +
+    'Ana Souza; (64) 99333-4444; cumpriu';
+}
+
+function importar(inp){
+  var f = inp.files[0]; if (!f) return;
+  var r = new FileReader();
+  r.onload = function(e){
+    document.getElementById('lista').value = e.target.result;
+    carregar();
+  };
+  r.readAsText(f, 'UTF-8');
+}
+
+function montarMsg(p){
+  var link = p.grupo === 'saiu'
+    ? document.getElementById('linkDeslig').value.trim()
+    : document.getElementById('linkAtivo').value.trim();
+  var tpl = p.grupo === 'saiu'
+    ? document.getElementById('msgDeslig').value
+    : document.getElementById('msgAtivo').value;
+  return tpl.replace(/\{nome\}/g, primeiroNome(p.nome))
+            .replace(/\{link\}/g, link || '[cole o link no campo 1]');
+}
+
+function proximo(){
+  for (var i = atual + 1; i < pessoas.length; i++){
+    if (pessoas[i].estado === 'pendente'){ atual = i; mostrar(); return; }
+  }
+  for (var j = 0; j < pessoas.length; j++){
+    if (pessoas[j].estado === 'pendente'){ atual = j; mostrar(); return; }
+  }
+  atual = -1; mostrar();
+}
+
+function mostrar(){
+  var box = document.getElementById('foco');
+  if (atual < 0 || !pessoas[atual]){ box.style.display = 'none'; render(); return; }
+  var p = pessoas[atual];
+  box.style.display = 'block';
+  document.getElementById('fNome').textContent = p.nome || '(sem nome)';
+  document.getElementById('fFone').textContent =
+    fmtFone(p.fone) + ' · ' +
+    (p.grupo === 'saiu' ? 'saiu antes do fim' : 'cumpriu a temporada');
+  document.getElementById('fMsg').textContent = montarMsg(p);
+  render();
+}
+
+function modoAtual(){
+  var r = document.querySelector('input[name=modo]:checked');
+  return r ? r.value : 'app';
+}
+
+function abrir(){
+  if (atual < 0) return;
+  var p = pessoas[atual];
+  if (!p.fone){ marcar('erro'); return; }
+  var txt = encodeURIComponent(montarMsg(p));
+
+  if (modoAtual() === 'app'){
+    // Protocolo do aplicativo: o sistema abre o WhatsApp instalado.
+    // Não abre aba, não passa pela tela "app ou navegador".
+    window.location.href = 'whatsapp://send?phone=' + p.fone + '&text=' + txt;
+  } else {
+    // Janela nomeada: todo envio reaproveita a MESMA aba do WhatsApp Web.
+    window.open('https://web.whatsapp.com/send?phone=' + p.fone + '&text=' + txt,
+                'mendes_whatsapp');
+  }
+
+  p.estado = 'enviado';
+  lote++;
+  proximo();
+  if (lote >= LOTE_MAX) mostrarPausa();
+}
+
+function copiar(){
+  if (atual < 0) return;
+  var t = montarMsg(pessoas[atual]);
+  if (navigator.clipboard) navigator.clipboard.writeText(t);
+  else {
+    var a = document.createElement('textarea');
+    a.value = t; document.body.appendChild(a); a.select();
+    document.execCommand('copy'); document.body.removeChild(a);
+  }
+}
+
+function mostrarPausa(){
+  document.getElementById('qtdLote').textContent = lote;
+  document.getElementById('avisoPausa').style.display = 'block';
+}
+function zerarLote(){
+  lote = 0;
+  document.getElementById('avisoPausa').style.display = 'none';
+}
+
+function marcar(o){
+  if (atual < 0) return;
+  pessoas[atual].estado = (o === 'enviado') ? 'enviado'
+                        : (o === 'erro') ? 'erro' : 'pulado';
+  proximo();
+}
+
+function irPara(i){ atual = i; mostrar(); }
+
+function render(){
+  var tb = document.getElementById('corpo');
+  tb.innerHTML = pessoas.map(function(p, i){
+    var cls = p.estado === 'enviado' ? 'done' : (p.estado === 'erro' ? 'err' : '');
+    if (i === atual) cls += ' atual';
+    var tag = p.estado === 'enviado' ? '<span class="tag t-ok">enviado</span>'
+            : p.estado === 'erro' ? '<span class="tag t-err">número inválido</span>'
+            : p.estado === 'pulado' ? '<span class="tag t-pend">pulado</span>'
+            : '<span class="tag t-pend">pendente</span>';
+    var gt = p.grupo === 'saiu' ? '<span class="tag t-d">saiu antes</span>'
+                                : '<span class="tag t-a">cumpriu</span>';
+    if (p.duvidoso && p.estado !== 'erro')
+      tag = '<span class="tag t-dv">conferir nº</span> ' + tag;
+    return '<tr class="' + cls + '"><td>' + (i+1) + '</td><td>' +
+           (p.nome || '—') + '</td><td>' + fmtFone(p.fone) + '</td><td>' + gt +
+           '</td><td>' + tag + '</td><td><button onclick="irPara(' + i +
+           ')">abrir</button></td></tr>';
+  }).join('');
+
+  var env = pessoas.filter(function(p){ return p.estado === 'enviado'; }).length;
+  var err = pessoas.filter(function(p){ return p.estado === 'erro'; }).length;
+  var pen = pessoas.filter(function(p){ return p.estado === 'pendente'; }).length;
+  document.getElementById('kTotal').textContent = pessoas.length;
+  document.getElementById('kEnv').textContent = env;
+  document.getElementById('kPend').textContent = pen;
+  document.getElementById('kErr').textContent = err;
+  document.getElementById('barra').style.width =
+    (pessoas.length ? (env / pessoas.length * 100) : 0) + '%';
+}
+
+function exportar(){
+  var linhas = [['Nome','WhatsApp','Grupo','Situacao'].join(';')].concat(
+    pessoas.map(function(p){
+      return [p.nome, p.fone, p.grupo, p.estado].join(';');
+    }));
+  var blob = new Blob(['﻿' + linhas.join('\n')], {type:'text/csv;charset=utf-8'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'controle_envios_pesquisa.csv';
+  a.click();
+}
+
+function reiniciar(){
+  pessoas.forEach(function(p){ p.estado = p.fone ? 'pendente' : 'erro'; });
+  atual = -1; proximo();
+}
+
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Enter' && document.activeElement.tagName !== 'TEXTAREA'
+      && document.activeElement.tagName !== 'INPUT'){
+    e.preventDefault(); abrir();
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prévia — aba Pesquisa | Mendes RH x Aviva</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f5f7;color:#0b0b0b;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:14px;}
+.wrap{max-width:1500px;margin:0 auto;padding:18px 22px 70px 22px;}
+.card{background:#fff;border-radius:18px;border:1px solid rgba(11,11,11,.08);
+  box-shadow:0 1px 2px rgba(11,11,11,.04),0 10px 30px -14px rgba(11,11,11,.16);
+  padding:16px 20px 18px 20px;margin-bottom:16px;}
+.card h2{margin:0 0 2px 0;font-size:1.02rem;font-weight:740;letter-spacing:-.01em;}
+.card .sub{font-size:.82rem;color:#52514e;margin-bottom:14px;line-height:1.5;}
+.head{display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.head h1{margin:0;font-size:1.32rem;font-weight:760;letter-spacing:-.025em;line-height:1.25;}
+.head .s{font-size:.83rem;color:#52514e;margin-top:2px;}
+.logo{width:190px;height:56px;border:1px dashed #c3c2b7;border-radius:10px;display:flex;
+  align-items:center;justify-content:center;color:#898781;font-size:.72rem;flex:0 0 auto;}
+.pills{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:16px;}
+.pill{border-radius:999px;padding:9px 18px;font-size:.9rem;font-weight:650;
+  border:1px solid rgba(11,11,11,.08);background:#fff;color:#52514e;}
+.pill.on{background:#2a78d6;border-color:#2a78d6;color:#fff;}
+.filtros{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.filtros label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;color:#898781;margin-bottom:5px;}
+.sel{border:1px solid #d9d8d2;border-radius:9px;padding:9px 12px;background:#fff;
+  color:#0b0b0b;font-size:.88rem;display:flex;justify-content:space-between;}
+.sel span:last-child{color:#898781;}
+
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.tile{background:#f7f8fa;border:1px solid rgba(11,11,11,.06);border-radius:14px;padding:13px 16px;}
+.tile .l{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#898781;}
+.tile .v{font-size:1.95rem;font-weight:780;line-height:1.15;margin-top:2px;letter-spacing:-.02em;}
+.tile .d{font-size:.75rem;color:#52514e;margin-top:3px;line-height:1.45;}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+.bars{margin-top:2px;}
+.row{display:grid;grid-template-columns:190px 1fr 64px;align-items:center;gap:10px;
+  margin-bottom:7px;font-size:.82rem;}
+.row .n{color:#0b0b0b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.track{background:#f1f2f4;border-radius:5px;height:17px;overflow:hidden;}
+.fill{height:100%;border-radius:5px;}
+.row .p{text-align:right;font-variant-numeric:tabular-nums;font-weight:660;font-size:.8rem;}
+
+.stack{display:flex;height:40px;border-radius:9px;overflow:hidden;margin:6px 0 8px 0;}
+.stack div{display:flex;align-items:center;justify-content:center;color:#fff;
+  font-size:.8rem;font-weight:700;}
+.leg{display:flex;gap:18px;flex-wrap:wrap;font-size:.78rem;color:#52514e;}
+.leg i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;
+  vertical-align:-1px;}
+
+.par{display:grid;grid-template-columns:210px 1fr;gap:12px;align-items:center;
+  margin-bottom:11px;font-size:.82rem;}
+.par .dupla{display:grid;gap:4px;}
+.par .lin{display:grid;grid-template-columns:1fr 52px;gap:9px;align-items:center;}
+
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:.83rem;margin-top:4px;}
+th{background:#2a78d6;color:#fff;text-align:right;padding:8px 11px;font-weight:700;
+  font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;}
+th:first-child{text-align:left;border-radius:9px 0 0 0;}
+th:last-child{border-radius:0 9px 0 0;}
+td{padding:7px 11px;border-bottom:1px solid #f0efec;text-align:right;
+  font-variant-numeric:tabular-nums;}
+td:first-child{text-align:left;font-weight:600;}
+td.q{color:#fff;font-weight:700;}
+
+.txt{font-size:.9rem;line-height:1.62;color:#0b0b0b;}
+.txt p{margin:0 0 11px 0;}
+.txt b{font-weight:720;}
+.cit{border-left:3px solid #c3c2b7;padding:2px 0 2px 13px;margin:10px 0;color:#52514e;
+  font-style:italic;font-size:.85rem;line-height:1.55;}
+.nota{border-left:4px solid #fab219;background:#fffdf7;border-radius:0 10px 10px 0;
+  padding:11px 15px;font-size:.83rem;line-height:1.6;color:#52514e;}
+.aviso{border-left:4px solid #2a78d6;background:#f7fafe;border-radius:0 10px 10px 0;
+  padding:11px 15px;font-size:.83rem;line-height:1.6;color:#52514e;margin-top:12px;}
+.mock{background:#0d366b;color:#fff;border-radius:14px;padding:14px 20px;margin-bottom:16px;
+  font-size:.86rem;line-height:1.6;}
+.mock b{font-weight:740;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="mock">
+  <b>Prévia estática.</b> Esta página é uma simulação da aba <b>Pesquisa</b> como ela ficaria dentro
+  do dashboard, com os números reais das 114 respostas. Serve para você aprovar a estrutura antes
+  de eu programar. No Streamlit os gráficos são Plotly, os filtros funcionam e tudo entra no
+  PDF/HTML pelo mesmo caminho das outras abas.
+</div>
+
+<div class="card head">
+  <div>
+    <h1>Entrega de Temporários — Aviva / Rio Quente Resorts</h1>
+    <div class="s">Pesquisa de experiência · Temporada de julho de 2026 · 114 respostas</div>
+  </div>
+  <div class="logo">logo Mendes RH</div>
+</div>
+
+<div class="pills">
+  <div class="pill">Visão Geral</div>
+  <div class="pill">Análise SLA</div>
+  <div class="pill">Diárias</div>
+  <div class="pill">Histórico Mensal</div>
+  <div class="pill">Temporada Julho</div>
+  <div class="pill on">Pesquisa</div>
+</div>
+
+<div class="card">
+  <div class="filtros">
+    <div><label>Grupo</label><div class="sel"><span>Todos</span><span>▾</span></div></div>
+    <div><label>Função</label><div class="sel"><span>Todas</span><span>▾</span></div></div>
+    <div><label>Local de trabalho</label><div class="sel"><span>Todos</span><span>▾</span></div></div>
+  </div>
+</div>
+
+<!-- 1 ------------------------------------------------------------------ -->
+<div class="card">
+  <h2>Participação e vínculo</h2>
+  <div class="sub">178 pessoas contatadas por WhatsApp entre 6 e 10 de agosto. Meta do plano: 60% no
+    grupo que cumpriu e 35% no grupo que saiu antes.</div>
+  <div class="tiles">
+    <div class="tile"><div class="l">Respostas</div><div class="v">114</div>
+      <div class="d">104 cumpriu · 10 saiu antes</div></div>
+    <div class="tile"><div class="l">Taxa de resposta</div><div class="v" style="color:#0ca30c">64,0%</div>
+      <div class="d">69,3% e 35,7% por grupo — as duas metas batidas</div></div>
+    <div class="tile"><div class="l">eNPS</div><div class="v" style="color:#0ca30c">67,3</div>
+      <div class="d">75 promotores · 24 neutros · 5 detratores</div></div>
+    <div class="tile"><div class="l">Voltariam</div><div class="v" style="color:#0ca30c">99,0%</div>
+      <div class="d">83,7% com certeza · 15,4% talvez</div></div>
+  </div>
+</div>
+
+<!-- 2 ------------------------------------------------------------------ -->
+<div class="card">
+  <h2>Quem respondeu</h2>
+  <div class="sub">Distribuição da amostra. Serve para checar se a pesquisa representa a operação
+    antes de qualquer leitura.</div>
+  <div class="g2">
+    <div>
+      <div class="sub" style="margin-bottom:8px;font-weight:700;color:#0b0b0b">Por função</div>
+      <div class="bars">
+        <div class="row"><div class="n">Garçom</div><div class="track"><div class="fill" style="width:100%;background:#2a78d6"></div></div><div class="p">27</div></div>
+        <div class="row"><div class="n">Atendente de Parque</div><div class="track"><div class="fill" style="width:59%;background:#2a78d6"></div></div><div class="p">16</div></div>
+        <div class="row"><div class="n">Recepcionista de Parques</div><div class="track"><div class="fill" style="width:33%;background:#2a78d6"></div></div><div class="p">9</div></div>
+        <div class="row"><div class="n">Outra</div><div class="track"><div class="fill" style="width:33%;background:#2a78d6"></div></div><div class="p">9</div></div>
+        <div class="row"><div class="n">Atendente de Hotelaria</div><div class="track"><div class="fill" style="width:30%;background:#2a78d6"></div></div><div class="p">8</div></div>
+        <div class="row"><div class="n">Aux. Serviços Gerais</div><div class="track"><div class="fill" style="width:30%;background:#2a78d6"></div></div><div class="p">8</div></div>
+        <div class="row"><div class="n">Camareira</div><div class="track"><div class="fill" style="width:26%;background:#2a78d6"></div></div><div class="p">7</div></div>
+        <div class="row"><div class="n">Aux. de Cozinha</div><div class="track"><div class="fill" style="width:19%;background:#2a78d6"></div></div><div class="p">5</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="sub" style="margin-bottom:8px;font-weight:700;color:#0b0b0b">Por local de trabalho</div>
+      <div class="bars">
+        <div class="row"><div class="n">Hot Park</div><div class="track"><div class="fill" style="width:100%;background:#4a3aa7"></div></div><div class="p">22</div></div>
+        <div class="row"><div class="n">Pier Point</div><div class="track"><div class="fill" style="width:86%;background:#4a3aa7"></div></div><div class="p">19</div></div>
+        <div class="row"><div class="n">Hotéis / Incasa</div><div class="track"><div class="fill" style="width:64%;background:#4a3aa7"></div></div><div class="p">14</div></div>
+        <div class="row"><div class="n">Bares e restaurantes Praia</div><div class="track"><div class="fill" style="width:64%;background:#4a3aa7"></div></div><div class="p">14</div></div>
+        <div class="row"><div class="n">Recepção Parque</div><div class="track"><div class="fill" style="width:55%;background:#4a3aa7"></div></div><div class="p">12</div></div>
+        <div class="row"><div class="n">Outro</div><div class="track"><div class="fill" style="width:45%;background:#4a3aa7"></div></div><div class="p">10</div></div>
+        <div class="row"><div class="n">Lavanderia</div><div class="track"><div class="fill" style="width:23%;background:#4a3aa7"></div></div><div class="p">5</div></div>
+      </div>
+      <div class="aviso" style="margin-top:16px">89,4% moram na região e 89,4% dependem do
+        transporte fretado. Os dois números explicam boa parte do resto da aba.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 3 ------------------------------------------------------------------ -->
+<div class="card">
+  <h2>eNPS — o quanto indicariam a Mendes RH</h2>
+  <div class="sub">Promotores (9-10) menos detratores (0-6). Acima de 50 é considerado excelente em
+    qualquer referência de mercado.</div>
+  <div class="g2">
+    <div>
+      <div class="stack">
+        <div style="width:72.1%;background:#0ca30c">72,1% promotores</div>
+        <div style="width:23.1%;background:#fab219;color:#0b0b0b">23,1%</div>
+        <div style="width:4.8%;background:#d03b3b">4,8%</div>
+      </div>
+      <div class="leg">
+        <span><i style="background:#0ca30c"></i>Promotores · 75</span>
+        <span><i style="background:#fab219"></i>Neutros · 24</span>
+        <span><i style="background:#d03b3b"></i>Detratores · 5</span>
+      </div>
+      <div class="aviso" style="margin-top:16px">
+        Quem <b>saiu antes do fim</b> pontuou <b>80</b> — acima de quem cumpriu a temporada.
+        Oito promotores, nenhum detrator em 10 respostas. Quem saiu não responsabiliza a Mendes RH
+        pela saída.
+      </div>
+    </div>
+    <div>
+      <div class="sub" style="margin-bottom:8px;font-weight:700;color:#0b0b0b">eNPS por função (n ≥ 5)</div>
+      <div class="bars">
+        <div class="row"><div class="n">Garçom · n 27</div><div class="track"><div class="fill" style="width:78%;background:#0ca30c"></div></div><div class="p">77,8</div></div>
+        <div class="row"><div class="n">Recepcionista · n 9</div><div class="track"><div class="fill" style="width:78%;background:#0ca30c"></div></div><div class="p">77,8</div></div>
+        <div class="row"><div class="n">Atend. de Parque · n 16</div><div class="track"><div class="fill" style="width:75%;background:#0ca30c"></div></div><div class="p">75,0</div></div>
+        <div class="row"><div class="n">Atend. Hotelaria · n 8</div><div class="track"><div class="fill" style="width:63%;background:#0ca30c"></div></div><div class="p">62,5</div></div>
+        <div class="row"><div class="n">Aux. Serv. Gerais · n 8</div><div class="track"><div class="fill" style="width:63%;background:#0ca30c"></div></div><div class="p">62,5</div></div>
+        <div class="row"><div class="n">Aux. de Cozinha · n 5</div><div class="track"><div class="fill" style="width:60%;background:#fab219"></div></div><div class="p">60,0</div></div>
+        <div class="row"><div class="n">Outra · n 9</div><div class="track"><div class="fill" style="width:56%;background:#fab219"></div></div><div class="p">55,6</div></div>
+        <div class="row"><div class="n">Camareira · n 7</div><div class="track"><div class="fill" style="width:29%;background:#d03b3b"></div></div><div class="p">28,6</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4 ------------------------------------------------------------------ -->
+<div class="card">
+  <h2>Por que se falta</h2>
+  <div class="sub">Calculado apenas sobre quem declarou ao menos uma ausência — 48 das 104 pessoas.
+    Cada pessoa podia marcar até 3 causas.</div>
+  <div class="g2">
+    <div class="bars">
+      <div class="row"><div class="n">Problema de saúde</div><div class="track"><div class="fill" style="width:100%;background:#eb6834"></div></div><div class="p">47,9%</div></div>
+      <div class="row"><div class="n">Transporte — não cheguei</div><div class="track"><div class="fill" style="width:65%;background:#eb6834"></div></div><div class="p">31,2%</div></div>
+      <div class="row"><div class="n">Cansaço físico acumulado</div><div class="track"><div class="fill" style="width:57%;background:#eb6834"></div></div><div class="p">27,1%</div></div>
+      <div class="row"><div class="n">Problema em casa / filhos</div><div class="track"><div class="fill" style="width:35%;background:#eb6834"></div></div><div class="p">16,7%</div></div>
+      <div class="row"><div class="n">Não sei dizer</div><div class="track"><div class="fill" style="width:35%;background:#c3c2b7"></div></div><div class="p">16,7%</div></div>
+      <div class="row"><div class="n">Trabalho pesado p/ o valor</div><div class="track"><div class="fill" style="width:13%;background:#eb6834"></div></div><div class="p">6,2%</div></div>
+      <div class="row"><div class="n">Domingo ou feriado</div><div class="track"><div class="fill" style="width:9%;background:#eb6834"></div></div><div class="p">4,2%</div></div>
+      <div class="row"><div class="n">Desânimo com o trabalho</div><div class="track"><div class="fill" style="width:9%;background:#eb6834"></div></div><div class="p">4,2%</div></div>
+      <div class="row"><div class="n">Bico no mesmo dia</div><div class="track"><div class="fill" style="width:9%;background:#eb6834"></div></div><div class="p">4,2%</div></div>
+    </div>
+    <div>
+      <div class="txt">
+        <p><b>Saúde, transporte e cansaço concentram a explicação.</b> Desânimo, bico e trabalho
+        pesado demais para o valor pago — as três causas que a operação costuma presumir — somam
+        14,6% das citações.</p>
+        <p>Transporte é a única causa relevante que a Mendes RH e a Aviva controlam sozinhas: rota,
+        horário, capacidade e estado dos veículos. Em uma população onde 89,4% dependem apenas do
+        fretado, quem perde o ônibus não tem plano B.</p>
+      </div>
+      <div class="cit">Seria bom demais ter um ônibus exclusivo para os recepcionistas, pois muitas
+        das vezes chegamos tarde em casa.</div>
+      <div class="cit">Mais controle no transporte da empresa. Após um dia cansativo muitas das vezes
+        lidamos com funcionários fazendo baderna no ônibus.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 5 ------------------------------------------------------------------ -->
+<div class="card">
+  <h2>O que separa quem falta de quem não falta</h2>
+  <div class="sub">Cruzamentos que não descrevem opinião — separam grupos com comportamento
+    diferente. É a parte da pesquisa que vira plano de ação.</div>
+
+  <div class="sub" style="font-weight:700;color:#0b0b0b;margin:6px 0 10px 0">
+    “Você se sentiu à vontade para falar quando algo estava errado?”</div>
+  <div class="par"><div class="n">Sim · n 69</div><div class="dupla">
+    <div class="lin"><div class="track"><div class="fill" style="width:36%;background:#eb6834"></div></div><div class="p">36%</div></div>
+    <div class="lin"><div class="track"><div class="fill" style="width:16%;background:#4a3aa7"></div></div><div class="p">16%</div></div></div></div>
+  <div class="par"><div class="n">Mais ou menos · n 25</div><div class="dupla">
+    <div class="lin"><div class="track"><div class="fill" style="width:64%;background:#eb6834"></div></div><div class="p">64%</div></div>
+    <div class="lin"><div class="track"><div class="fill" style="width:60%;background:#4a3aa7"></div></div><div class="p">60%</div></div></div></div>
+  <div class="par"><div class="n">Não · n 10</div><div class="dupla">
+    <div class="lin"><div class="track"><div class="fill" style="width:70%;background:#eb6834"></div></div><div class="p">70%</div></div>
+    <div class="lin"><div class="track"><div class="fill" style="width:40%;background:#4a3aa7"></div></div><div class="p">40%</div></div></div></div>
+  <div class="leg" style="margin:4px 0 20px 222px">
+    <span><i style="background:#eb6834"></i>Faltou ao menos 1 dia</span>
+    <span><i style="background:#4a3aa7"></i>Pensou em sair antes do fim</span>
+  </div>
+
+  <div class="sub" style="font-weight:700;color:#0b0b0b;margin:6px 0 10px 0">
+    “Você recebeu tudo certo e no prazo?”</div>
+  <div class="par"><div class="n">Sim, sempre · n 73</div><div class="dupla">
+    <div class="lin"><div class="track"><div class="fill" style="width:40%;background:#eb6834"></div></div><div class="p">40%</div></div></div></div>
+  <div class="par"><div class="n">Teve atraso ou erro · n 31</div><div class="dupla">
+    <div class="lin"><div class="track"><div class="fill" style="width:61%;background:#eb6834"></div></div><div class="p">61%</div></div></div></div>
+
+  <div class="nota" style="margin-top:14px">
+    <b>29,8% tiveram ao menos um erro de pagamento e faltaram 21 pontos mais.</b> Ninguém marcou
+    “teve problema mais de uma vez”, o que indica falha pontual e não sistêmica. É a correção mais
+    barata do relatório: depende só de processo interno.
+  </div>
+</div>
+
+<!-- 6 ------------------------------------------------------------------ -->
+<div class="card">
+  <h2>A janela da saída</h2>
+  <div class="sub">Quando a pessoa decidiu sair, contra quanto tempo ficou de fato. Grupo que saiu
+    antes do fim — 10 respostas, leitura indicativa.</div>
+  <div class="g2">
+    <div class="bars">
+      <div class="sub" style="font-weight:700;color:#0b0b0b;margin-bottom:8px">Quando decidiu sair</div>
+      <div class="row"><div class="n">Já nos primeiros dias</div><div class="track"><div class="fill" style="width:100%;background:#d03b3b"></div></div><div class="p">5</div></div>
+      <div class="row"><div class="n">Na primeira semana</div><div class="track"><div class="fill" style="width:60%;background:#ec835a"></div></div><div class="p">3</div></div>
+      <div class="row"><div class="n">Perto do fim</div><div class="track"><div class="fill" style="width:20%;background:#fab219"></div></div><div class="p">1</div></div>
+      <div class="row"><div class="n">Foi desligado</div><div class="track"><div class="fill" style="width:20%;background:#c3c2b7"></div></div><div class="p">1</div></div>
+      <div class="sub" style="font-weight:700;color:#0b0b0b;margin:16px 0 8px 0">Tempo até sair</div>
+      <div class="row"><div class="n">Menos de 7 dias</div><div class="track"><div class="fill" style="width:100%;background:#2a78d6"></div></div><div class="p">6</div></div>
+      <div class="row"><div class="n">De 7 a 15 dias</div><div class="track"><div class="fill" style="width:67%;background:#2a78d6"></div></div><div class="p">4</div></div>
+    </div>
+    <div>
+      <div class="txt">
+        <p><b>8 de 10 decidiram sair na primeira semana.</b> E 7 de 10 avisaram com antecedência —
+        a operação teve o aviso, mas a decisão já estava tomada quando ele chegou.</p>
+        <p>Na pergunta sobre o que teria feito ficar, <b>“alguém que me ouvisse quando o problema
+        começou”</b> aparece em 3 das 9 respostas, empatado com a soma de salário, escala e
+        transporte. Duas pessoas marcaram “nada — eu sairia de qualquer forma”, o que dimensiona a
+        parcela inevitável em torno de 20%.</p>
+        <p>7 das 10 saídas foram pedido de demissão. Apenas 1 foi desligamento, por faltas.</p>
+      </div>
+      <div class="nota">
+        <b>Nada acontece hoje dentro dessa janela.</b> Uma conversa de cinco minutos no 3º e no 7º
+        dia é a ação de maior retorno e custo zero desta pesquisa.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 7 ------------------------------------------------------------------ -->
+<div class="card">
+  <h2>Matriz por função</h2>
+  <div class="sub">Mesmo formato da matriz da aba Temporada. Funções com menos de 5 respostas são
+    suprimidas automaticamente — o recorte identificaria quem respondeu.</div>
+  <table>
+    <thead><tr><th>Função</th><th>n</th><th>eNPS</th><th>Faltou</th><th>Pensou em sair</th><th>Voltaria</th></tr></thead>
+    <tbody>
+      <tr><td>Garçom</td><td>27</td><td class="q" style="background:#0ca30c">77,8</td><td class="q" style="background:#ec835a">56%</td><td class="q" style="background:#fab219;color:#0b0b0b">33%</td><td>81%</td></tr>
+      <tr><td>Atendente de Parque</td><td>16</td><td class="q" style="background:#0ca30c">75,0</td><td class="q" style="background:#fab219;color:#0b0b0b">50%</td><td class="q" style="background:#ec835a">38%</td><td>75%</td></tr>
+      <tr><td>Recepcionista de Parques</td><td>9</td><td class="q" style="background:#0ca30c">77,8</td><td class="q" style="background:#fab219;color:#0b0b0b">44%</td><td class="q" style="background:#0ca30c">22%</td><td>100%</td></tr>
+      <tr><td>Outra</td><td>9</td><td class="q" style="background:#fab219;color:#0b0b0b">55,6</td><td class="q" style="background:#fab219;color:#0b0b0b">44%</td><td class="q" style="background:#0ca30c">22%</td><td>100%</td></tr>
+      <tr><td>Atendente de Hotelaria</td><td>8</td><td class="q" style="background:#0ca30c">62,5</td><td class="q" style="background:#0ca30c">25%</td><td class="q" style="background:#0ca30c">12%</td><td>75%</td></tr>
+      <tr><td>Aux. Serviços Gerais / Limpeza</td><td>8</td><td class="q" style="background:#0ca30c">62,5</td><td class="q" style="background:#fab219;color:#0b0b0b">50%</td><td class="q" style="background:#0ca30c">12%</td><td>88%</td></tr>
+      <tr><td>Camareira</td><td>7</td><td class="q" style="background:#d03b3b">28,6</td><td class="q" style="background:#d03b3b">71%</td><td class="q" style="background:#ec835a">43%</td><td>86%</td></tr>
+      <tr><td>Auxiliar de Cozinha</td><td>5</td><td class="q" style="background:#fab219;color:#0b0b0b">60,0</td><td class="q" style="background:#fab219;color:#0b0b0b">40%</td><td class="q" style="background:#0ca30c">20%</td><td>80%</td></tr>
+    </tbody>
+  </table>
+  <div class="nota" style="margin-top:14px">
+    <b>Camareira é a única linha com os três indicadores ruins ao mesmo tempo.</b> São 7 respostas —
+    não sustenta conclusão, sustenta investigação. Garçom vai no sentido oposto: maior volume de
+    falta e, ainda assim, o melhor eNPS da tabela.
+  </div>
+</div>
+
+<!-- 8 ------------------------------------------------------------------ -->
+<div class="card">
+  <h2>O que escreveram por conta própria</h2>
+  <div class="sub">139 comentários livres, classificados por leitura manual.</div>
+  <div class="g2">
+    <div class="bars">
+      <div class="row"><div class="n">Elogio à equipe Mendes RH</div><div class="track"><div class="fill" style="width:100%;background:#1baf7a"></div></div><div class="p">alto</div></div>
+      <div class="row"><div class="n">Transporte</div><div class="track"><div class="fill" style="width:82%;background:#eb6834"></div></div><div class="p">alto</div></div>
+      <div class="row"><div class="n">Alimentação</div><div class="track"><div class="fill" style="width:52%;background:#eb6834"></div></div><div class="p">médio</div></div>
+      <div class="row"><div class="n">Tratamento dos efetivos</div><div class="track"><div class="fill" style="width:50%;background:#eb6834"></div></div><div class="p">médio</div></div>
+      <div class="row"><div class="n">Rotação de posto</div><div class="track"><div class="fill" style="width:42%;background:#eb6834"></div></div><div class="p">médio</div></div>
+      <div class="row"><div class="n">Remuneração e bônus</div><div class="track"><div class="fill" style="width:40%;background:#eb6834"></div></div><div class="p">médio</div></div>
+      <div class="row"><div class="n">Escala e folgas</div><div class="track"><div class="fill" style="width:38%;background:#eb6834"></div></div><div class="p">médio</div></div>
+      <div class="row"><div class="n">Ergonomia (cadeira)</div><div class="track"><div class="fill" style="width:18%;background:#c3c2b7"></div></div><div class="p">baixo</div></div>
+    </div>
+    <div>
+      <div class="cit">Foi uma das melhores empresas que já trabalhei, sou muito grato pela oportunidade.</div>
+      <div class="cit">Gostaria que o pessoal do RH Mendes apoiasse mais os colaboradores da temporada,
+        desse mais suporte após a contratação.</div>
+      <div class="cit">Mudaria a forma que alguns efetivos tratam os temporários, e os seguranças
+        também. Fora isso foi tudo muito bom, voltaria a trabalhar de novo sem problemas.</div>
+      <div class="cit">Graças à oportunidade de vocês fui efetivado dia 4 pela Aviva, muito obrigado.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 9 ------------------------------------------------------------------ -->
+<div class="card">
+  <h2>Leitura da temporada</h2>
+  <div class="txt">
+    <p>A pesquisa desta temporada reuniu <b>114 respostas em 178 convites</b>, contra 76 respostas na
+    rodada anterior. O ganho de 50% veio do desenho: recompensa garantida em vez de sorteio,
+    anonimato verificável e disparo individual.</p>
+    <p>O resultado central é que <b>o absenteísmo de julho não é um problema de engajamento</b>.
+    Entre quem faltou, saúde, transporte e cansaço acumulado respondem por 79% das causas citadas,
+    enquanto desânimo e trabalho paralelo somam 8,4%. Em paralelo, 86,5% classificaram a experiência
+    com a equipe da Mendes RH como ótima e o eNPS ficou em 67,3.</p>
+    <p>Dois cortes explicam quem falta e quem sai. <b>Quem não se sente à vontade para falar falta
+    70%, contra 36% de quem se sente</b>; e quem percebe o pagamento como injusto tem três vezes mais
+    intenção de sair. Nenhum dos dois exige investimento — exigem presença.</p>
+    <p>A perda acontece cedo: <b>8 das 10 saídas foram decididas na primeira semana</b>, e 6 se
+    concretizaram antes do sétimo dia. É a janela onde não existe hoje nenhuma ação programada, e é
+    onde a próxima temporada tem mais a ganhar.</p>
+  </div>
+</div>
+
+<!-- 10 ----------------------------------------------------------------- -->
+<div class="card">
+  <h2>Ficha técnica</h2>
+  <div class="nota">
+    Coleta de 6 a 10 de agosto de 2026 · 178 convites por WhatsApp · 114 respostas · dois
+    questionários anônimos, com o cadastro de contato em formulário separado ·
+    <b>Limitações:</b> 85% das respostas vêm de quem cumpriu a temporada, então os indicadores de
+    satisfação devem ser lidos como teto; o grupo que saiu antes tem 10 respostas e serve para
+    identificar padrão, não para percentual conclusivo; 7 pessoas receberam o questionário do grupo
+    errado e se autodeclararam na primeira pergunta.
+  </div>
+</div>
+
+</div>
+</body>
+</html>

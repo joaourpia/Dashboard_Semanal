@@ -99,20 +99,22 @@ def _limpar(t):
 def _html_para_flowables(bruto, estilos):
     """Converte os blocos de análise (HTML simples) em parágrafos do PDF."""
     saida = []
-    for bloco in re.split(r'(?=<div class="note)', bruto):
+    for bloco in re.split(r'(?=<div class=["\']note)', bruto):
         if not bloco.strip():
             continue
-        cab = re.search(r'<span class="hd">(.*?)</span>', bloco, re.S)
+        cab = re.search(r'<span class=["\']hd["\']>(.*?)</span>', bloco, re.S)
         if cab:
             saida.append(Paragraph(_limpar(cab.group(1)), estilos["sub"]))
+            bloco = bloco.replace(cab.group(0), "")
         itens = re.findall(r"<li>(.*?)</li>", bloco, re.S)
         if itens:
             for it in itens:
-                saida.append(Paragraph(f"• {_limpar(it)}", estilos["corpo"]))
-        elif not cab:
-            txt = _limpar(bloco)
-            if txt:
-                saida.append(Paragraph(txt, estilos["corpo"]))
+                saida.append(Paragraph(f"\u2022 {_limpar(it)}", estilos["corpo"]))
+        else:
+            for par in re.split(r"</p>", bloco):
+                txt = _limpar(par)
+                if txt:
+                    saida.append(Paragraph(txt, estilos["corpo"]))
         saida.append(Spacer(1, 3 * mm))
     return saida
 
@@ -294,6 +296,8 @@ def gerar_pdf(secoes, titulo="Relatório de Gestão de Temporários",
                     partes.append(im)
                 except Exception as e:
                     partes.append(Paragraph(f"[gráfico não renderizado: {e}]", est["desc"]))
+                for extra in b.get("extras", []):
+                    partes += _html_para_flowables(extra["html"], est)
                 partes.append(Spacer(1, 4 * mm))
                 hist.append(KeepTogether(partes))
             elif tipo in ("texto", "nota"):
@@ -361,6 +365,8 @@ def _blocos_simples(b, est, larg=None):
             saida.append(im)
         except Exception as e:
             saida.append(Paragraph(f"[gráfico não renderizado: {e}]", est["desc"]))
+        for extra in b.get("extras", []):
+            saida += _html_para_flowables(extra["html"], est)
         saida.append(Spacer(1, 3 * mm))
     elif tipo in ("texto", "nota"):
         if b.get("titulo"):
@@ -528,7 +534,7 @@ def serializar(secoes):
     def bloco(b):
         if b.get("so_tela") or b.get("t") in ("custom", "html"):
             return None
-        novo = {k: v for k, v in b.items() if k not in ("fig", "df", "fn", "extras")}
+        novo = {k: v for k, v in b.items() if k not in ("fig", "df", "fn")}
         if b.get("t") == "fig":
             novo["fig_json"] = b["fig"].to_json()
         elif b.get("t") == "tabela":

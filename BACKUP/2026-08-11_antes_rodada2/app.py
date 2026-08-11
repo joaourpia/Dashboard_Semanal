@@ -48,7 +48,7 @@ base_dados = Path(__file__).resolve().parent / "dados"
 # Alternativa sem mexer no codigo: renomear dados/temporada_julho para
 # dados/_temporada_julho.
 MOSTRAR_TEMPORADA = "auto"
-ABA_TEMPORADA = "Temporada Jul/26"
+ABA_TEMPORADA = "Temporada Julho"
 
 _base_temp = base_dados / "temporada_julho" / "ABSENTEISMO_DIA_FUNCAO.csv"
 MOSTRAR_TEMPORADA = (_base_temp.exists() if MOSTRAR_TEMPORADA == "auto"
@@ -56,20 +56,12 @@ MOSTRAR_TEMPORADA = (_base_temp.exists() if MOSTRAR_TEMPORADA == "auto"
 
 # A aba da pesquisa aparece enquanto existir a base exportada do Google Forms
 # em dados/pesquisa/RESPOSTAS_PESQUISA.xlsx. Mesma logica da aba da temporada.
-# A rodada 2 (salario, condicoes e efetivacao) e opcional: aparece como visao
-# extra dentro da mesma aba quando RESPOSTAS_PESQUISA_2.xlsx existe.
 MOSTRAR_PESQUISA = "auto"
-ABA_PESQUISA = "Pesquisa Jul/26"
+ABA_PESQUISA = "Pesquisa"
 
 _base_pesq = base_dados / "pesquisa" / "RESPOSTAS_PESQUISA.xlsx"
-_base_pesq2 = base_dados / "pesquisa" / "RESPOSTAS_PESQUISA_2.xlsx"
 MOSTRAR_PESQUISA = (_base_pesq.exists() if MOSTRAR_PESQUISA == "auto"
                     else bool(MOSTRAR_PESQUISA))
-MOSTRAR_PESQUISA_R2 = MOSTRAR_PESQUISA and _base_pesq2.exists()
-
-SEC_PESQ_R1 = "Pesquisa · experiência"
-SEC_PESQ_R2 = "Pesquisa · salário e efetivação"
-SEC_PESQ_CONS = "Pesquisa · consolidado"
 
 PASTAS_RESERVADAS = {"solicitacoes", "temporada_julho", "pesquisa"}
 
@@ -88,39 +80,6 @@ def safe_read_csv(caminho):
     return None
 
 
-# --------------------------------------------------------------- periodos
-# CONVENCAO DE PASTAS
-# -------------------
-# Cada semana de dados fica em  dados/AAAA-MM-Sn (dd a dd)/  - por exemplo
-# "2026-08-S1 (28 a 03)". O prefixo AAAA-MM garante ordenacao cronologica
-# correta virando o ano, e permite agrupar as semanas por mes sem depender de
-# nenhum cadastro externo: o nome da pasta e o indice.
-#
-# Pastas fora dessa convencao continuam funcionando - aparecem como periodo
-# avulso, sem mes. Pastas em PASTAS_RESERVADAS nunca entram no filtro: sao as
-# bases das abas sazonais (temporada, pesquisa), que tem ciclo proprio e por
-# isso NAO poluem nem sao poluidas pelos meses correntes.
-import re
-
-RE_PERIODO = re.compile(r"^(\d{4})-(\d{2})(?:-S(\d+))?")
-
-MESES_PT = ["", "janeiro", "fevereiro", "março", "abril", "maio", "junho",
-            "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"]
-
-TUDO = "Ano inteiro (todas as semanas)"
-RAIZ = "Dados Atuais (Arquivos soltos na Raiz)"
-
-
-def _chave_mes(pasta):
-    """Devolve (ano, mes) da pasta, ou None se ela nao segue a convencao."""
-    m = RE_PERIODO.match(pasta)
-    return (int(m.group(1)), int(m.group(2))) if m else None
-
-
-def _rotulo_mes(ano, mes):
-    return f"{MESES_PT[mes].capitalize()}/{ano} — mês fechado"
-
-
 def obter_periodos():
     if not base_dados.exists():
         return []
@@ -132,50 +91,13 @@ def obter_periodos():
     return sorted(pastas, reverse=True)
 
 
-def montar_opcoes(periodos):
-    """Monta a lista do seletor: ano > meses > semanas, do mais novo ao mais
-    antigo, e devolve tambem o de-para de cada opcao para as pastas que ela
-    cobre."""
-    reais = [p for p in periodos if p != "."]
-    if not reais:
-        return ([RAIZ], {RAIZ: ["."]}) if "." in periodos else ([], {})
-
-    # nao use expressao solta aqui: a "magic" do Streamlit envolve qualquer
-    # statement de expressao em st.write(), inclusive dentro de funcoes, e o
-    # None do append apareceria impresso no topo da pagina.
-    por_mes = {}
-    avulsas = []
-    for p in reais:
-        k = _chave_mes(p)
-        if k:
-            por_mes.setdefault(k, []).append(p)
-        else:
-            avulsas.append(p)
-
-    opcoes, mapa = [TUDO], {TUDO: reais}
-    for k in sorted(por_mes, reverse=True):
-        semanas = sorted(por_mes[k], reverse=True)
-        if len(semanas) > 1:                       # mes com mais de uma semana
-            rot = _rotulo_mes(*k)
-            opcoes.append(rot)
-            mapa[rot] = semanas
-        for s in semanas:
-            opcoes.append(s)
-            mapa[s] = [s]
-    for a in sorted(avulsas, reverse=True):
-        opcoes.append(a)
-        mapa[a] = [a]
-    if "." in periodos:
-        opcoes.append(RAIZ)
-        mapa[RAIZ] = ["."]
-    return opcoes, mapa
-
-
 periodos_disponiveis = obter_periodos()
-lista_opcoes, MAPA_PERIODO = montar_opcoes(periodos_disponiveis)
-if not lista_opcoes:
+if not periodos_disponiveis:
     lista_opcoes = ["Nenhuma pasta de dados encontrada"]
-    MAPA_PERIODO = {}
+else:
+    lista_opcoes = ["Acumulado (Todas as Semanas)"] + [p for p in periodos_disponiveis if p != "."]
+    if "." in periodos_disponiveis and len(periodos_disponiveis) == 1:
+        lista_opcoes = ["Dados Atuais (Arquivos soltos na Raiz)"]
 
 # ------------------------------------------------------------------ cabecalho
 _logo = ui.logo_b64(Path(__file__).resolve().parent / "images" / "Logo_Parceria.png")
@@ -196,7 +118,14 @@ with st.container(border=True):
 
 
 def obter_caminhos_alvo():
-    return MAPA_PERIODO.get(periodo_selecionado, [])
+    if periodo_selecionado == "Nenhuma pasta de dados encontrada":
+        return []
+    if periodo_selecionado == "Acumulado (Todas as Semanas)":
+        reais = [p for p in periodos_disponiveis if p != "."]
+        return reais if reais else ["."]
+    if periodo_selecionado == "Dados Atuais (Arquivos soltos na Raiz)":
+        return ["."]
+    return [periodo_selecionado]
 
 
 # ------------------------------------------------------------------- navegacao
@@ -271,12 +200,10 @@ def load_analise_pedido_agregado(alvos):
 
 
 def _rotulo_periodo():
-    if periodo_selecionado == TUDO:
+    if periodo_selecionado.startswith("Acumulado"):
         return "Acumulado do contrato"
     if periodo_selecionado.startswith("Dados Atuais"):
         return "Período corrente"
-    if periodo_selecionado.endswith("mês fechado"):
-        return periodo_selecionado.replace(" — mês fechado", " (mês fechado)")
     return periodo_selecionado
 
 
@@ -920,12 +847,7 @@ SECOES_DISPONIVEIS = ["Visão Geral", "Análise SLA", "Diárias", "Histórico Me
 if MOSTRAR_TEMPORADA:
     SECOES_DISPONIVEIS.append(ABA_TEMPORADA)
 if MOSTRAR_PESQUISA:
-    # a aba Pesquisa vira mais de uma secao no relatorio: cada rodada em sua
-    # propria pagina, na ordem em que se apresenta na reuniao
-    if MOSTRAR_PESQUISA_R2:
-        SECOES_DISPONIVEIS += [SEC_PESQ_CONS, SEC_PESQ_R1, SEC_PESQ_R2]
-    else:
-        SECOES_DISPONIVEIS.append(ABA_PESQUISA)
+    SECOES_DISPONIVEIS.append(ABA_PESQUISA)
 
 
 def construir_secao(nome, alvos):
@@ -940,15 +862,9 @@ def construir_secao(nome, alvos):
     if nome == ABA_TEMPORADA:
         from aba_temporada import construir_temporada
         return construir_temporada()
-    if nome in (ABA_PESQUISA, SEC_PESQ_R1):
+    if nome == ABA_PESQUISA:
         from aba_pesquisa import construir_pesquisa
         return construir_pesquisa()
-    if nome == SEC_PESQ_R2:
-        from aba_pesquisa import construir_pesquisa_r2
-        return construir_pesquisa_r2()
-    if nome == SEC_PESQ_CONS:
-        from aba_pesquisa import construir_pesquisa_consolidado
-        return construir_pesquisa_consolidado()
     return {"titulo": nome, "sub": "", "blocos": []}
 
 

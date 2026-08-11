@@ -1,0 +1,35 @@
+MODELO DE PASTA SEMANAL
+=======================
+
+Esta pasta nao aparece no dashboard: o nome comeca com "_", e o app ignora
+qualquer pasta assim. Ela existe so para ser copiada.
+
+COMO USAR
+---------
+1. Copie esta pasta inteira.
+2. Renomeie a copia no formato  AAAA-MM-Sn (dd a dd)
+   Exemplo para agosto:  2026-08-S1 (01 a 10)
+3. Abra os quatro CSVs e troque os numeros pelos reais.
+4. Recarregue o dashboard. A semana aparece sozinha no filtro.
+
+OS DOIS TIPOS DE ARQUIVO  -- e a unica coisa que da errado se confundir
+-----------------------------------------------------------------------
+SLA.csv e ANALISE_PEDIDO.csv
+  Sao do PERIODO, e so dele. O dashboard SOMA esses numeros entre as pastas
+  selecionadas. Se voce colocar aqui o acumulado do ano, o total do ano conta
+  tudo duas vezes.
+
+HISTORICO_SLA.csv e HISTORICO_ENTREGA.csv
+  Sao ACUMULADOS: uma linha por semana, desde o comeco do contrato. O
+  dashboard NAO soma esses: ele escolhe, entre as pastas selecionadas, o
+  arquivo com mais linhas. Por isso o historico da pasta mais recente precisa
+  conter todas as semanas anteriores mais a nova.
+
+FORMATO
+-------
+Separador ";"  ·  decimal com virgula  ·  taxa em fracao (0,95 = 95%)
+Codificacao latin1 (o Excel em portugues salva assim por padrao). UTF-8
+tambem funciona, desde que salvo SEM BOM.
+
+A coluna "Mes" e so um rotulo de leitura humana; o dashboard nao usa ela para
+calcular nada, mas mantenha-a coerente para facilitar a conferencia.
