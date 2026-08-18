@@ -132,7 +132,7 @@ f.push(new Paragraph({ spacing: { after: 100 },
 f.push(new Paragraph({ spacing: { after: 360 },
   children: [new TextRun({ text: "Temporada de julho de 2026 · duas rodadas de pesquisa · agosto de 2026", size: 25, color: CINZA, font: "Calibri" })] }));
 f.push(P(`${m.total_respostas} respostas: ${m.r1_n} sobre a experiência da temporada e ${m.r2_n} sobre ` +
-  `salário, condições de trabalho e efetivação. Coleta entre 6 e 10 de agosto.`, { color: CINZA }));
+  `salário, condições de trabalho e efetivação. Coleta ${m.r1_janela}.`, { color: CINZA }));
 f.push(QUEBRA());
 
 // ============================================================ CARTA
@@ -168,7 +168,7 @@ f.push(P(`A primeira rodada perguntou como foi a temporada, por que as pessoas f
   `algumas saíram antes do fim. Responderam ${m.r1_n} de ${m.r1_convites} convidados, ` +
   `${pc(m.r1_taxa)}. A segunda foi desenhada para medir o que a primeira só tinha levantado em ` +
   `campo aberto, e foi enviada apenas para quem já havia respondido: ${m.r2_n} respostas em ` +
-  `${m.r2_convites} convites, ${pc(m.r2_taxa)}, em um único dia.`));
+  `${m.r2_convites} convites, ${pc(m.r2_taxa)}.`));
 f.push(P("Sete coisas resumem o resto do documento."));
 
 // para citar dentro de uma frase, uso so o nucleo do rotulo
@@ -618,7 +618,7 @@ f.push(tabela(["Tema", "Rodada 1", "Rodada 2", "Resultado"],
 
 f.push(H2("11.1 Como eu leio tudo isso"));
 f.push(P(`As duas rodadas somaram ${m.total_respostas} respostas em cinco dias. A segunda teve ` +
-  `${pc(m.r2_taxa)} de retorno em um único dia, enviada só para quem já tinha respondido a ` +
+  `${pc(m.r2_taxa)} de retorno, enviada só para quem já tinha respondido a ` +
   `primeira. Gente cansada de pesquisa não responde a segunda em um dia. Elas responderam porque ` +
   `acreditam que muda alguma coisa, e isso nos obriga a mostrar que mudou.`));
 f.push(RICH([{ t: "A hipótese do salário caiu. ", b: true },
@@ -697,7 +697,7 @@ f.push(LIR([{ t: "Tudo é autodeclarado. ", b: true },
 f.push(H2("13.2 Ficha técnica"));
 f.push(tabela(["Item", "Rodada 1", "Rodada 2"],
   [["Sobre o quê", "Experiência, faltas, saída, vínculo", "Salário, condições, respeito, efetivação"],
-   ["Coleta", "6 a 10 de agosto de 2026", "10 de agosto de 2026"],
+   ["Coleta", `${m.r1_janela} de 2026`, `${m.r2_janela} de 2026`],
    ["Convites", String(m.r1_convites), String(m.r2_convites)],
    ["Respostas", String(m.r1_n), String(m.r2_n)],
    ["Taxa", pc(m.r1_taxa), pc(m.r2_taxa)],

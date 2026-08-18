@@ -122,6 +122,8 @@ def main():
         "r2_taxa": r2["taxa"],
         "r2_cumpriu_pct": pct(int(d2.grupo.eq(G_CUMPRIU).sum()), len(d2)),
         "total_respostas": rs["n_total"] + r2["n"],
+        "r1_janela": p.janela_coleta(),
+        "r2_janela": p.janela_coleta(p.ARQUIVO_R2),
     }
 
     # ------------------------------------------------------------ perfil

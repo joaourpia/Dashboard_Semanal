@@ -48,10 +48,14 @@ from pesquisa_dados import (G_CUMPRIU, G_SAIU, MIN_RECORTE,
                             contagem, contagem_multipla, enps)
 
 TITULO = "Pesquisa de Experiência do Temporário"
-SUBTITULO = "Temporada de julho de 2026 · coleta de 6 a 10 de agosto"
-
 TITULO_R2 = "Pesquisa de Salário, Condições e Efetivação"
-SUBTITULO_R2 = "Temporada de julho de 2026 · coleta em 10 de agosto"
+
+# a janela de coleta sai do Timestamp do Forms, entao acompanha novas levas de
+# resposta sem ninguem precisar editar texto
+_J1 = pd_src.janela_coleta()
+_J2 = pd_src.janela_coleta(pd_src.ARQUIVO_R2)
+SUBTITULO = "Temporada de julho de 2026 · coleta %s" % (_J1 or "de agosto de 2026")
+SUBTITULO_R2 = "Temporada de julho de 2026 · coleta %s" % (_J2 or "de agosto de 2026")
 
 TITULO_CONS = "Pesquisa · visão consolidada"
 SUBTITULO_CONS = "As duas rodadas lidas em conjunto"
@@ -556,6 +560,10 @@ def _plano(base, d2=None):
         t_resp = (f"Na rodada 2, só {_p(r2['respeito_sempre'])} se sentiram sempre respeitados e "
                   f"{_p(r2['respeito_falhou'])} responderam “poucas vezes”. ")
 
+    pct_mora, pct_fret = _perfil_pcts(base)
+    t_fret = (f"{_p(pct_fret)} dependem só do fretado e não têm plano B."
+              if pct_fret is not None else "Quase todos dependem só do fretado.")
+
     t_diaria = ""
     if d2 is not None and not d2.empty:
         s, tot = contagem_multipla(d2.alavanca_lista)
@@ -588,12 +596,26 @@ def _plano(base, d2=None):
     <li><b>Piloto de bônus por assiduidade e por conclusão de contrato</b> em uma função.
         {t_diaria}Meço o efeito contra o histórico de julho.</li>
     <li><b>Auditoria do transporte fretado</b>: rota da recepção, horários, estado dos veículos e
-        conduta a bordo. 90,0% dependem só do fretado e não têm plano B.</li>
+        conduta a bordo. {t_fret}</li>
     <li><b>Trilha de efetivação.</b> Ao fim de cada temporada indicamos quem se destacou e vocês
         avaliam antes de abrir a vaga para fora.</li>
   </ul></div>
 </div>
 """
+
+
+def _perfil_pcts(base):
+    """Percentual de quem mora na regiao e de quem so tem o fretado.
+
+    Ficavam escritos a mao no texto e envelheciam a cada nova leva de
+    respostas. Agora saem da base.
+    """
+    n = len(base)
+    if not n:
+        return None, None
+    mora = base.moradia.astype(str).str.startswith("Moro em").sum() / n * 100
+    fret = base.transporte.astype(str).str.contains("fretado").sum() / n * 100
+    return round(mora, 1), round(fret, 1)
 
 
 def _preparar_r1():
@@ -670,6 +692,7 @@ def construir_pesquisa():
         ]})
 
     # -------------------------------------------------------- 2 quem respondeu
+    pct_mora, pct_fret = _perfil_pcts(base)
     f_fun, f_loc = _fig_participacao(base)
     sec["blocos"].append({"t": "cards", "itens": [
         [{"t": "fig", "titulo": "Quem respondeu, por função", "kicker": "amostra",
@@ -677,8 +700,8 @@ def construir_pesquisa():
                   "representa a operação antes de tirar qualquer conclusão dela.",
           "fig": f_fun}],
         [{"t": "fig", "titulo": "Por local de trabalho", "kicker": "amostra",
-          "desc": "89,2% moram na região e 90,0% dependem só do transporte fretado. Esses dois "
-                  "números explicam boa parte do que vem depois nesta aba.",
+          "desc": f"{_p(pct_mora)} moram na região e {_p(pct_fret)} dependem só do transporte "
+                  f"fretado. Esses dois números explicam boa parte do que vem depois nesta aba.",
           "fig": f_loc}],
     ]})
 
@@ -793,7 +816,7 @@ def construir_pesquisa():
     # ------------------------------------------------------------- 10 ficha
     sec["blocos"].append({"t": "nota", "estilo": "", "html":
         f"<span class='hd'>Ficha técnica</span>"
-        f"Coleta de 6 a 10 de agosto de 2026 · {rs['convites']} convites por WhatsApp · "
+        f"Coleta {_J1} de 2026 · {rs['convites']} convites por WhatsApp · "
         f"{rs['n_total']} respostas · dois questionários anônimos, com o cadastro de contato em "
         f"formulário separado. <b>Classificação:</b> o grupo veio da declaração de cada pessoa e "
         f"não da nossa lista de envio. {rs['reclassificados']} receberam o questionário de quem "
@@ -932,13 +955,13 @@ def construir_pesquisa_r2():
     # ---------------------------------------------------------------- 1 hero
     sec["blocos"].append({
         "t": "hero", "titulo": TITULO_R2,
-        "sub": f"{SUBTITULO_R2} · disparo só para quem respondeu a rodada 1",
+        "sub": f"{SUBTITULO_R2} · envio só para quem respondeu a rodada 1",
         "chip": f"{r2['n']} respostas",
         "tiles": [
             {"lb": "Respostas", "vl": str(r2["n"]),
              "sb": (f"{_p(r2['taxa'])} de {r2['convites']} convites"
                     if r2["taxa"] else "coleta em um único dia"),
-             "badge": "1 dia de coleta"},
+             "badge": "coleta %s" % (_J2 or "")},
             {"lb": "Nota do salário", "vl": _n(r2["media_salario"], 2),
              "sb": f"índice {_n(r2['salario']['enps'])} · {r2['salario']['detratores']} abaixo de 7"},
             {"lb": "Nota das condições", "vl": _n(r2["media_condicoes"], 2),
@@ -1134,7 +1157,7 @@ def construir_pesquisa_r2():
     # --------------------------------------------------------------- 10 ficha
     sec["blocos"].append({"t": "nota", "estilo": "", "html":
         f"<span class='hd'>Ficha técnica</span>"
-        f"Coleta em 10 de agosto de 2026 · envio por WhatsApp somente para quem respondeu a "
+        f"Coleta {_J2} de 2026 · envio por WhatsApp somente para quem respondeu a "
         f"rodada 1 · {r2['n']} respostas em {r2['convites']} convites ({_p(r2['taxa'])}) · "
         f"questionário anônimo, com o cadastro do sorteio em formulário separado. "
         f"<b>Incentivo:</b> sorteio de 10 prêmios de R$ 70 via PIX, pagos no dia de uso do "
@@ -1201,6 +1224,7 @@ def construir_pesquisa_consolidado():
 
     # --------------------------------------------------- 3 temas que se repetem
     s_me, t_me = contagem_multipla(d2.melhorar_lista)
+    pct_mora, pct_fret = _perfil_pcts(base)
     faltou = base[base.faltou]
     s_ca, t_ca = contagem_multipla(faltou.causa_falta_lista)
     linhas = []
@@ -1220,7 +1244,7 @@ def construir_pesquisa_consolidado():
          f"{trat_r2}% pedem melhora · só {_p(r2['respeito_sempre'])} sempre respeitados",
          "CONFIRMADO", CRIT)
     _lin("Transporte",
-         f"{transp_r1}% de quem faltou citou · 90,0% dependem do fretado",
+         f"{transp_r1}% de quem faltou citou · {_p(pct_fret)} dependem do fretado",
          f"{transp_r2}% pedem melhora",
          "CONFIRMADO", SERIOUS)
     _lin("Escala e folgas",
@@ -1283,8 +1307,8 @@ demonstraram que ficam até o fim. É um funil de recrutamento pronto, testado e
     # --------------------------------------------------------------- 6 ficha
     sec["blocos"].append({"t": "nota", "estilo": "", "html":
         f"<span class='hd'>Ficha técnica</span>"
-        f"Rodada 1: coleta de 6 a 10 de agosto, {rs['n_total']} respostas em {rs['convites']} "
-        f"convites ({_p(rs['taxa_total'])}), dois questionários. Rodada 2: coleta em 10 de agosto, "
+        f"Rodada 1: coleta {_J1}, {rs['n_total']} respostas em {rs['convites']} "
+        f"convites ({_p(rs['taxa_total'])}), dois questionários. Rodada 2: coleta {_J2}, "
         f"{r2['n']} respostas em {r2['convites']} convites ({_p(r2['taxa'])}), questionário único "
         f"enviado só para quem respondeu a rodada 1. Ambas anônimas, com dados de contato em "
         f"formulário separado. <b>Limitações:</b> os dois públicos se sobrepõem, então não são "

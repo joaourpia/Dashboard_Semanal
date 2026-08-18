@@ -1,225 +1,227 @@
 {
  "metodo": {
   "r1_convites": 178,
-  "r1_n": 120,
-  "r1_taxa": 67.4,
-  "r1_cumpriu": 102,
-  "r1_saiu": 18,
-  "r1_taxa_cumpriu": 73.3,
-  "r1_taxa_saiu": 35.7,
+  "r1_n": 125,
+  "r1_taxa": 70.2,
+  "r1_cumpriu": 105,
+  "r1_saiu": 20,
+  "r1_taxa_cumpriu": 75.3,
+  "r1_taxa_saiu": 42.9,
   "r1_reclassificados": 8,
-  "r1_form_longo": 110,
-  "r1_form_saida": 10,
-  "r2_convites": 120,
-  "r2_n": 79,
-  "r2_taxa": 65.8,
-  "r2_cumpriu_pct": 94.9,
-  "total_respostas": 199
+  "r1_form_longo": 113,
+  "r1_form_saida": 12,
+  "r2_convites": 125,
+  "r2_n": 93,
+  "r2_taxa": 74.4,
+  "r2_cumpriu_pct": 93.5,
+  "total_respostas": 218,
+  "r1_janela": "de 7 a 13 de agosto",
+  "r2_janela": "de 10 a 17 de agosto"
  },
  "perfil": {
   "funcao": [
    {
     "rotulo": "Garçom",
-    "n": 35,
-    "pct": 29.2
+    "n": 36,
+    "pct": 28.8
    },
    {
     "rotulo": "Atendente de Parque",
     "n": 16,
-    "pct": 13.3
-   },
-   {
-    "rotulo": "Auxiliar de Serviços Gerais / Limpeza",
-    "n": 11,
-    "pct": 9.2
+    "pct": 12.8
    },
    {
     "rotulo": "Outra",
-    "n": 11,
-    "pct": 9.2
+    "n": 13,
+    "pct": 10.4
+   },
+   {
+    "rotulo": "Auxiliar de Serviços Gerais / Limpeza",
+    "n": 12,
+    "pct": 9.6
    },
    {
     "rotulo": "Recepcionista de Parques",
-    "n": 9,
-    "pct": 7.5
+    "n": 10,
+    "pct": 8.0
    },
    {
     "rotulo": "Atendente de Hotelaria",
     "n": 8,
-    "pct": 6.7
+    "pct": 6.4
    },
    {
     "rotulo": "Camareira",
     "n": 8,
-    "pct": 6.7
+    "pct": 6.4
    },
    {
     "rotulo": "Auxiliar de Cozinha",
     "n": 5,
-    "pct": 4.2
+    "pct": 4.0
    },
    {
     "rotulo": "Roupeiro",
     "n": 4,
-    "pct": 3.3
+    "pct": 3.2
    },
    {
     "rotulo": "Auxiliar de Lavanderia",
     "n": 4,
-    "pct": 3.3
+    "pct": 3.2
    },
    {
     "rotulo": "Monitor de Lazer e Recreação",
     "n": 3,
-    "pct": 2.5
+    "pct": 2.4
    },
    {
     "rotulo": "Vendedor Interno",
     "n": 3,
-    "pct": 2.5
+    "pct": 2.4
    }
   ],
   "local": [
    {
     "rotulo": "Hot Park",
-    "n": 26,
-    "pct": 21.7
+    "n": 27,
+    "pct": 21.6
    },
    {
     "rotulo": "Pier Point",
     "n": 22,
-    "pct": 18.3
+    "pct": 17.6
    },
    {
     "rotulo": "Bares e restaurantes Praia",
-    "n": 17,
-    "pct": 14.2
+    "n": 18,
+    "pct": 14.4
    },
    {
     "rotulo": "Hotéis/Incasa (governança / camararia)",
     "n": 16,
-    "pct": 13.3
+    "pct": 12.8
    },
    {
     "rotulo": "Recepção Parque",
-    "n": 12,
-    "pct": 10.0
+    "n": 13,
+    "pct": 10.4
    },
    {
     "rotulo": "Outro",
-    "n": 10,
-    "pct": 8.3
+    "n": 12,
+    "pct": 9.6
    },
    {
     "rotulo": "Lavanderia",
     "n": 5,
-    "pct": 4.2
+    "pct": 4.0
    },
    {
     "rotulo": "Parque das Fontes",
     "n": 5,
-    "pct": 4.2
+    "pct": 4.0
    },
    {
     "rotulo": "Loja / vendas",
     "n": 4,
-    "pct": 3.3
+    "pct": 3.2
    },
    {
     "rotulo": "portaria",
     "n": 3,
-    "pct": 2.5
+    "pct": 2.4
    }
   ],
   "moradia": [
    {
     "rotulo": "Moro em Rio Quente, Caldas Novas ou Morrinhos",
-    "n": 107,
-    "pct": 89.2
+    "n": 112,
+    "pct": 89.6
    },
    {
     "rotulo": "Venho de outra cidade todo dia",
     "n": 13,
-    "pct": 10.8
+    "pct": 10.4
    }
   ],
   "transporte": [
    {
     "rotulo": "Transporte fretado da empresa",
-    "n": 108,
-    "pct": 90.0
+    "n": 113,
+    "pct": 90.4
    },
    {
     "rotulo": "Por conta própria (moto ou carro)",
     "n": 5,
-    "pct": 4.2
+    "pct": 4.0
    },
    {
     "rotulo": "Transporte público",
     "n": 4,
-    "pct": 3.3
+    "pct": 3.2
    },
    {
     "rotulo": "A pé ou de bicicleta",
     "n": 3,
-    "pct": 2.5
+    "pct": 2.4
    }
   ]
  },
  "vinculo": {
   "total": {
-   "enps": 66.7,
-   "promotores": 86,
+   "enps": 64.8,
+   "promotores": 89,
    "neutros": 28,
-   "detratores": 6,
-   "n": 120,
-   "media": 9.07
+   "detratores": 8,
+   "n": 125,
+   "media": 9.02
   },
   "cumpriu": {
-   "enps": 67.6,
-   "promotores": 74,
+   "enps": 64.8,
+   "promotores": 75,
    "neutros": 23,
-   "detratores": 5,
-   "n": 102,
-   "media": 9.11
+   "detratores": 7,
+   "n": 105,
+   "media": 9.03
   },
   "saiu": {
-   "enps": 61.1,
-   "promotores": 12,
+   "enps": 65.0,
+   "promotores": 14,
    "neutros": 5,
    "detratores": 1,
-   "n": 18,
-   "media": 8.89
+   "n": 20,
+   "media": 9.0
   },
   "voltaria": [
    {
     "rotulo": "Sim",
-    "n": 96,
-    "pct": 80.0
+    "n": 101,
+    "pct": 80.8
    },
    {
     "rotulo": "Talvez",
     "n": 20,
-    "pct": 16.7
+    "pct": 16.0
    },
    {
     "rotulo": "Não",
     "n": 4,
-    "pct": 3.3
+    "pct": 3.2
    }
   ],
-  "voltaria_sim": 80.0,
-  "voltaria_sim_talvez": 96.7,
+  "voltaria_sim": 80.8,
+  "voltaria_sim_talvez": 96.8,
   "experiencia": [
    {
     "rotulo": "Ótima — fui bem recebido, as informações foram claras e tive apoio",
-    "n": 95,
-    "pct": 86.4
+    "n": 98,
+    "pct": 86.7
    },
    {
     "rotulo": "Boa, mas distante — o processo foi correto, mas depois da contratação me senti sozinho",
     "n": 11,
-    "pct": 10.0
+    "pct": 9.7
    },
    {
     "rotulo": "Confusa — as informações mudavam ou não batiam com o combinado",
@@ -235,18 +237,18 @@
   "chance_efetivacao": [
    {
     "rotulo": "Sim, dependia de mim",
-    "n": 87,
-    "pct": 79.1
+    "n": 90,
+    "pct": 79.6
    },
    {
     "rotulo": "Tive dúvidas",
     "n": 14,
-    "pct": 12.7
+    "pct": 12.4
    },
    {
     "rotulo": "Não tinha interesse em ser efetivado",
     "n": 6,
-    "pct": 5.5
+    "pct": 5.3
    },
    {
     "rotulo": "Não acreditei nessa possibilidade",
@@ -257,29 +259,29 @@
   "vaga_fixa": [
    {
     "rotulo": "Sim, na hora",
-    "n": 86,
-    "pct": 78.2
+    "n": 89,
+    "pct": 78.8
    },
    {
     "rotulo": "Sim, se melhorasse alguma coisa",
     "n": 12,
-    "pct": 10.9
+    "pct": 10.6
    },
    {
     "rotulo": "Não",
     "n": 12,
-    "pct": 10.9
+    "pct": 10.6
    }
   ],
   "por_funcao": [
    {
     "funcao": "Garçom",
-    "n": 35,
-    "indice": 77.1,
-    "media": 9.4,
-    "faltou": 51.0,
+    "n": 36,
+    "indice": 77.8,
+    "media": 9.42,
+    "faltou": 53.0,
     "pensou_sair": 32.0,
-    "voltaria": 77.0
+    "voltaria": 78.0
    },
    {
     "funcao": "Atendente de Parque",
@@ -291,29 +293,29 @@
     "voltaria": 75.0
    },
    {
-    "funcao": "Auxiliar de Serviços Gerais / Limpeza",
-    "n": 11,
-    "indice": 63.6,
-    "media": 9.0,
-    "faltou": 55.0,
-    "pensou_sair": 12.0,
-    "voltaria": 73.0
+    "funcao": "Outra",
+    "n": 13,
+    "indice": 23.1,
+    "media": 8.15,
+    "faltou": 54.0,
+    "pensou_sair": 23.0,
+    "voltaria": 92.0
    },
    {
-    "funcao": "Outra",
-    "n": 11,
-    "indice": 45.5,
-    "media": 8.82,
-    "faltou": 45.0,
-    "pensou_sair": 27.0,
-    "voltaria": 91.0
+    "funcao": "Auxiliar de Serviços Gerais / Limpeza",
+    "n": 12,
+    "indice": 66.7,
+    "media": 9.08,
+    "faltou": 58.0,
+    "pensou_sair": 11.0,
+    "voltaria": 75.0
    },
    {
     "funcao": "Recepcionista de Parques",
-    "n": 9,
-    "indice": 77.8,
-    "media": 9.44,
-    "faltou": 44.0,
+    "n": 10,
+    "indice": 80.0,
+    "media": 9.5,
+    "faltou": 40.0,
     "pensou_sair": 22.0,
     "voltaria": 100.0
    },
@@ -347,168 +349,168 @@
   ]
  },
  "absenteismo": {
-  "faltou_cumpriu": 43.1,
-  "faltou_saiu": 55.6,
-  "n_faltou": 54,
+  "faltou_cumpriu": 44.8,
+  "faltou_saiu": 55.0,
+  "n_faltou": 58,
   "causas": [
    {
     "rotulo": "Problema de saúde",
-    "n": 26,
-    "pct": 48.1
+    "n": 27,
+    "pct": 46.6
    },
    {
     "rotulo": "Cansaço físico acumulado",
-    "n": 16,
-    "pct": 29.6
+    "n": 18,
+    "pct": 31.0
    },
    {
     "rotulo": "Transporte — não consegui chegar",
-    "n": 16,
-    "pct": 29.6
+    "n": 17,
+    "pct": 29.3
    },
    {
     "rotulo": "Problema em casa ou com filhos",
     "n": 10,
-    "pct": 18.5
+    "pct": 17.2
    },
    {
     "rotulo": "Não sei dizer",
-    "n": 8,
-    "pct": 14.8
+    "n": 9,
+    "pct": 15.5
    },
    {
     "rotulo": "Escala em domingo ou feriado",
     "n": 3,
-    "pct": 5.6
+    "pct": 5.2
    },
    {
     "rotulo": "Desânimo com o trabalho",
     "n": 3,
-    "pct": 5.6
+    "pct": 5.2
    },
    {
     "rotulo": "Trabalho pesado demais para o valor pago",
     "n": 3,
-    "pct": 5.6
+    "pct": 5.2
    },
    {
     "rotulo": "Outro trabalho ou bico no mesmo dia",
     "n": 3,
-    "pct": 5.6
+    "pct": 5.2
    }
   ],
-  "citacoes": 88,
-  "top3_share": 66.0,
-  "desengajamento": 10.2,
+  "citacoes": 93,
+  "top3_share": 67.0,
+  "desengajamento": 9.7,
   "faixas": [
    {
     "rotulo": "Não faltei nenhum dia",
-    "n": 63,
-    "pct": 52.5
+    "n": 64,
+    "pct": 51.2
    },
    {
     "rotulo": "Faltei 1 dia",
-    "n": 27,
-    "pct": 22.5
+    "n": 30,
+    "pct": 24.0
    },
    {
     "rotulo": "Faltei 2 ou 3 dias",
-    "n": 19,
-    "pct": 15.8
+    "n": 20,
+    "pct": 16.0
    },
    {
     "rotulo": "Faltei mais de 3 dias",
     "n": 8,
-    "pct": 6.7
+    "pct": 6.4
    },
    {
     "rotulo": "Prefiro não dizer",
     "n": 3,
-    "pct": 2.5
+    "pct": 2.4
    }
   ],
   "alavancas": [
    {
     "rotulo": "Outro",
-    "n": 46,
-    "pct": 46.5
+    "n": 47,
+    "pct": 46.1
    },
    {
     "rotulo": "Mais folgas",
-    "n": 31,
-    "pct": 31.3
+    "n": 32,
+    "pct": 31.4
    },
    {
     "rotulo": "Pagamento maior",
     "n": 18,
-    "pct": 18.2
+    "pct": 17.6
    },
    {
     "rotulo": "Bônus por assiduidade",
     "n": 15,
-    "pct": 15.2
+    "pct": 14.7
    },
    {
     "rotulo": "Escala mais previsível",
-    "n": 12,
-    "pct": 12.1
+    "n": 13,
+    "pct": 12.7
    },
    {
     "rotulo": "Reconhecimento da liderança",
     "n": 7,
-    "pct": 7.1
+    "pct": 6.9
    },
    {
     "rotulo": "Alimentação melhor",
     "n": 6,
-    "pct": 6.1
+    "pct": 5.9
    },
    {
     "rotulo": "Transporte garantido",
     "n": 6,
-    "pct": 6.1
+    "pct": 5.9
    }
   ],
   "pesou": [
    {
     "rotulo": "Nada pesou de forma relevante",
-    "n": 43,
-    "pct": 39.8
+    "n": 44,
+    "pct": 39.6
+   },
+   {
+    "rotulo": "Calor e sol",
+    "n": 34,
+    "pct": 30.6
    },
    {
     "rotulo": "Ficar muito tempo em pé",
     "n": 33,
-    "pct": 30.6
-   },
-   {
-    "rotulo": "Calor e sol",
-    "n": 32,
-    "pct": 29.6
+    "pct": 29.7
    },
    {
     "rotulo": "Ritmo e volume de trabalho",
     "n": 17,
-    "pct": 15.7
+    "pct": 15.3
    },
    {
     "rotulo": "Escala (dias e horários)",
     "n": 13,
-    "pct": 12.0
+    "pct": 11.7
    },
    {
     "rotulo": "Poucas folgas",
     "n": 11,
-    "pct": 10.2
+    "pct": 9.9
    },
    {
     "rotulo": "Tratamento de colegas ou da liderança",
     "n": 8,
-    "pct": 7.4
+    "pct": 7.2
    },
    {
     "rotulo": "Alimentação",
     "n": 6,
-    "pct": 5.6
+    "pct": 5.4
    }
   ]
  },
@@ -516,8 +518,8 @@
   "voz": [
    {
     "nivel": "Sim",
-    "n": 75,
-    "faltou": 36.0
+    "n": 78,
+    "faltou": 38.0
    },
    {
     "nivel": "Mais ou menos",
@@ -533,8 +535,8 @@
   "pagamento": [
    {
     "nivel": "Sim, sempre",
-    "n": 76,
-    "faltou": 38.0
+    "n": 79,
+    "faltou": 41.0
    },
    {
     "nivel": "Teve atraso ou erro uma vez",
@@ -545,42 +547,42 @@
   "voz_dist": [
    {
     "rotulo": "Sim",
-    "n": 75,
-    "pct": 68.2
+    "n": 78,
+    "pct": 69.0
    },
    {
     "rotulo": "Mais ou menos",
     "n": 25,
-    "pct": 22.7
+    "pct": 22.1
    },
    {
     "rotulo": "Não",
     "n": 10,
-    "pct": 9.1
+    "pct": 8.8
    }
   ],
   "pgp_dist": [
    {
     "rotulo": "Sim, sempre",
-    "n": 76,
-    "pct": 69.1
+    "n": 79,
+    "pct": 69.9
    },
    {
     "rotulo": "Teve atraso ou erro uma vez",
     "n": 34,
-    "pct": 30.9
+    "pct": 30.1
    }
   ],
   "pgj_dist": [
    {
     "rotulo": "Sim, foi justo pelo trabalho que fiz",
-    "n": 87,
-    "pct": 79.1
+    "n": 89,
+    "pct": 78.8
    },
    {
     "rotulo": "É pouco perto do que a gente faz",
-    "n": 20,
-    "pct": 18.2
+    "n": 21,
+    "pct": 18.6
    },
    {
     "rotulo": "É pouco e existe coisa melhor na região",
@@ -591,30 +593,30 @@
   "claro": [
    {
     "rotulo": "Sim, totalmente",
-    "n": 86,
-    "pct": 78.2
+    "n": 88,
+    "pct": 77.9
    },
    {
     "rotulo": "Mais ou menos",
-    "n": 17,
-    "pct": 15.5
+    "n": 18,
+    "pct": 15.9
    },
    {
     "rotulo": "Não — fui aprendendo sozinho na prática",
     "n": 7,
-    "pct": 6.4
+    "pct": 6.2
    }
   ],
   "kit": [
    {
     "rotulo": "Sim, tudo certo",
-    "n": 102,
-    "pct": 92.7
+    "n": 104,
+    "pct": 92.0
    },
    {
     "rotulo": "Faltou alguma coisa",
-    "n": 7,
-    "pct": 6.4
+    "n": 8,
+    "pct": 7.1
    },
    {
     "rotulo": "Não, demorou dias para chegar",
@@ -625,13 +627,13 @@
   "escala": [
    {
     "rotulo": "Sim, foi a mesma",
-    "n": 94,
-    "pct": 85.5
+    "n": 97,
+    "pct": 85.8
    },
    {
     "rotulo": "Mudou um pouco",
     "n": 15,
-    "pct": 13.6
+    "pct": 13.3
    },
    {
     "rotulo": "Mudou bastante",
@@ -642,8 +644,8 @@
   "voz_intencao": [
    {
     "nivel": "Sim",
-    "n": 75,
-    "pensou": 16.0
+    "n": 78,
+    "pensou": 15.0
    },
    {
     "nivel": "Mais ou menos",
@@ -660,249 +662,264 @@
  "escalas": [
   {
    "pergunta": "Recepção no primeiro dia",
-   "n": 110,
-   "media": 4.61,
-   "nota5": 78.2,
-   "nota12": 3.6,
+   "n": 113,
+   "media": 4.58,
+   "nota5": 77.0,
+   "nota12": 4.4,
    "n_nota1": 4
   },
   {
    "pergunta": "Alimentação durante o trabalho",
-   "n": 110,
-   "media": 4.31,
-   "nota5": 60.9,
-   "nota12": 5.5,
-   "n_nota1": 0
+   "n": 113,
+   "media": 4.27,
+   "nota5": 60.2,
+   "nota12": 7.1,
+   "n_nota1": 1
   },
   {
    "pergunta": "Tratamento dos efetivos aos temporários",
-   "n": 110,
-   "media": 4.27,
-   "nota5": 60.9,
-   "nota12": 7.3,
-   "n_nota1": 6
+   "n": 113,
+   "media": 4.24,
+   "nota5": 60.2,
+   "nota12": 8.0,
+   "n_nota1": 7
   }
  ],
  "saida": {
-  "n": 18,
-  "n_form_saida": 10,
+  "n": 20,
+  "n_form_saida": 12,
   "pensou_sair": [
    {
     "rotulo": "Não, nunca pensei",
-    "n": 79,
-    "pct": 71.8
+    "n": 82,
+    "pct": 72.6
    },
    {
     "rotulo": "Pensei uma vez",
     "n": 17,
-    "pct": 15.5
+    "pct": 15.0
    },
    {
     "rotulo": "Pensei várias vezes",
     "n": 14,
-    "pct": 12.7
+    "pct": 12.4
    }
   ],
   "segurou": [
    {
-    "rotulo": "Gostei do trabalho",
-    "n": 50,
-    "pct": 45.9
+    "rotulo": "Precisava do dinheiro",
+    "n": 52,
+    "pct": 46.4
    },
    {
-    "rotulo": "Precisava do dinheiro",
+    "rotulo": "Gostei do trabalho",
     "n": 50,
-    "pct": 45.9
+    "pct": 44.6
    },
    {
     "rotulo": "Compromisso pessoal — eu assumi e fui até o fim",
     "n": 30,
-    "pct": 27.5
+    "pct": 26.8
    },
    {
     "rotulo": "Chance de efetivação",
-    "n": 28,
-    "pct": 25.7
+    "n": 29,
+    "pct": 25.9
    },
    {
     "rotulo": "Bom relacionamento com a equipe",
     "n": 25,
-    "pct": 22.9
+    "pct": 22.3
    },
    {
     "rotulo": "A escala deu certo para mim",
     "n": 12,
-    "pct": 11.0
+    "pct": 10.7
    },
    {
     "rotulo": "Boa liderança no posto",
     "n": 6,
-    "pct": 5.5
+    "pct": 5.4
    },
    {
     "rotulo": "Não tinha outra opção de trabalho",
     "n": 3,
-    "pct": 2.8
+    "pct": 2.7
    }
   ],
   "decisao": [
    {
     "rotulo": "Eu pedi para sair (saída voluntária)",
-    "n": 7,
-    "pct": 70.0
+    "n": 9,
+    "pct": 75.0
    },
    {
     "rotulo": "Fui desligado pela empresa (saída involuntária)",
     "n": 1,
-    "pct": 10.0
+    "pct": 8.3
    },
    {
     "rotulo": "Combinamos a saída juntos",
     "n": 1,
-    "pct": 10.0
+    "pct": 8.3
    },
    {
     "rotulo": "Prefiro não dizer",
     "n": 1,
-    "pct": 10.0
+    "pct": 8.3
    }
   ],
   "quando": [
    {
     "rotulo": "Já nos primeiros dias",
     "n": 5,
-    "pct": 50.0
+    "pct": 41.7
    },
    {
     "rotulo": "Na primeira semana",
     "n": 3,
-    "pct": 30.0
+    "pct": 25.0
+   },
+   {
+    "rotulo": "Depois de mais ou menos duas semanas",
+    "n": 2,
+    "pct": 16.7
    },
    {
     "rotulo": "Não foi decisão minha — fui desligado",
     "n": 1,
-    "pct": 10.0
+    "pct": 8.3
    },
    {
     "rotulo": "Perto do fim, quando já estava quase acabando",
     "n": 1,
-    "pct": 10.0
+    "pct": 8.3
    }
   ],
   "tempo": [
    {
     "rotulo": "Menos de 7 dias",
-    "n": 6,
-    "pct": 60.0
+    "n": 7,
+    "pct": 58.3
    },
    {
     "rotulo": "De 7 a 15 dias",
-    "n": 4,
-    "pct": 40.0
+    "n": 5,
+    "pct": 41.7
    }
   ],
   "avisou": [
    {
     "rotulo": "Sim, avisei com antecedência",
-    "n": 7,
-    "pct": 70.0
+    "n": 8,
+    "pct": 66.7
    },
    {
     "rotulo": "Não se aplica — fui desligado",
     "n": 1,
-    "pct": 10.0
+    "pct": 8.3
    },
    {
     "rotulo": "Não avisei — só parei de ir",
     "n": 1,
-    "pct": 10.0
+    "pct": 8.3
    },
    {
     "rotulo": "Avisei em cima da hora",
     "n": 1,
-    "pct": 10.0
+    "pct": 8.3
+   },
+   {
+    "rotulo": "Tentei avisar e não consegui falar com ninguém",
+    "n": 1,
+    "pct": 8.3
    }
   ],
   "motivo": [
    {
     "rotulo": "Prefiro não dizer",
     "n": 3,
-    "pct": 30.0
+    "pct": 25.0
    },
    {
     "rotulo": "Problema pessoal ou familiar",
-    "n": 2,
-    "pct": 20.0
+    "n": 3,
+    "pct": 25.0
    },
    {
     "rotulo": "Problema de saúde",
     "n": 2,
-    "pct": 20.0
-   },
-   {
-    "rotulo": "Chefia ou liderança no posto",
-    "n": 1,
-    "pct": 10.0
+    "pct": 16.7
    },
    {
     "rotulo": "Escala e falta de folga",
     "n": 1,
-    "pct": 10.0
+    "pct": 8.3
+   },
+   {
+    "rotulo": "Chefia ou liderança no posto",
+    "n": 1,
+    "pct": 8.3
    },
    {
     "rotulo": "Consegui outro emprego",
     "n": 1,
-    "pct": 10.0
+    "pct": 8.3
+   },
+   {
+    "rotulo": "Transporte ou distância",
+    "n": 1,
+    "pct": 8.3
    }
   ],
   "ficaria": [
    {
     "rotulo": "Alguém que me ouvisse quando o problema começou",
     "n": 3,
-    "pct": 33.3
+    "pct": 30.0
+   },
+   {
+    "rotulo": "Nada — eu sairia de qualquer forma",
+    "n": 3,
+    "pct": 30.0
    },
    {
     "rotulo": "Tratamento melhor da liderança",
     "n": 2,
-    "pct": 22.2
-   },
-   {
-    "rotulo": "Nada — eu sairia de qualquer forma",
-    "n": 2,
-    "pct": 22.2
+    "pct": 20.0
    },
    {
     "rotulo": "Salário maior",
     "n": 1,
-    "pct": 11.1
+    "pct": 10.0
    },
    {
     "rotulo": "Transporte garantido",
     "n": 1,
-    "pct": 11.1
+    "pct": 10.0
    },
    {
     "rotulo": "Escala melhor",
     "n": 1,
-    "pct": 11.1
+    "pct": 10.0
    },
    {
     "rotulo": "Promessa clara de efetivação",
     "n": 1,
-    "pct": 11.1
+    "pct": 10.0
    }
   ],
   "decidiu_cedo": 8
  },
  "salario": {
-  "media": 8.09,
+  "media": 8.04,
   "indice": {
-   "enps": 30.4,
-   "promotores": 39,
-   "neutros": 25,
-   "detratores": 15,
-   "n": 79,
-   "media": 8.09
+   "enps": 29.0,
+   "promotores": 46,
+   "neutros": 28,
+   "detratores": 19,
+   "n": 93,
+   "media": 8.04
   },
   "distribuicao": [
    {
@@ -919,7 +936,7 @@
    },
    {
     "nota": 3,
-    "n": 2
+    "n": 3
    },
    {
     "nota": 4,
@@ -927,7 +944,165 @@
    },
    {
     "nota": 5,
-    "n": 7
+    "n": 9
+   },
+   {
+    "nota": 6,
+    "n": 5
+   },
+   {
+    "nota": 7,
+    "n": 11
+   },
+   {
+    "nota": 8,
+    "n": 17
+   },
+   {
+    "nota": 9,
+    "n": 13
+   },
+   {
+    "nota": 10,
+    "n": 33
+   }
+  ],
+  "expectativa": [
+   {
+    "rotulo": "Foi mais do que eu esperava",
+    "n": 18,
+    "pct": 19.4
+   },
+   {
+    "rotulo": "Foi o que eu esperava",
+    "n": 67,
+    "pct": 72.0
+   },
+   {
+    "rotulo": "Foi menos do que eu esperava",
+    "n": 8,
+    "pct": 8.6
+   }
+  ],
+  "mercado": [
+   {
+    "rotulo": "Melhor",
+    "n": 41,
+    "pct": 44.1
+   },
+   {
+    "rotulo": "Parecido",
+    "n": 31,
+    "pct": 33.3
+   },
+   {
+    "rotulo": "Pior",
+    "n": 2,
+    "pct": 2.2
+   },
+   {
+    "rotulo": "Não sei comparar",
+    "n": 19,
+    "pct": 20.4
+   }
+  ],
+  "expect_atendeu": 91.4,
+  "expect_abaixo": 8.6,
+  "mercado_melhor": 44.1,
+  "mercado_pior": 2.2,
+  "alavancas": [
+   {
+    "rotulo": "Valor maior da diária",
+    "n": 49,
+    "pct": 52.7
+   },
+   {
+    "rotulo": "Bônus por não faltar",
+    "n": 35,
+    "pct": 37.6
+   },
+   {
+    "rotulo": "Bônus por ficar até o fim da temporada",
+    "n": 35,
+    "pct": 37.6
+   },
+   {
+    "rotulo": "Pagamento semanal",
+    "n": 13,
+    "pct": 14.0
+   },
+   {
+    "rotulo": "Ajuda de custo para transporte ou alimentação",
+    "n": 7,
+    "pct": 7.5
+   }
+  ],
+  "alavancas_base": 93,
+  "insatisfeitos": {
+   "n": 19,
+   "alavancas": [
+    {
+     "rotulo": "Valor maior da diária",
+     "n": 13,
+     "pct": 68.4
+    },
+    {
+     "rotulo": "Bônus por não faltar",
+     "n": 6,
+     "pct": 31.6
+    },
+    {
+     "rotulo": "Bônus por ficar até o fim da temporada",
+     "n": 6,
+     "pct": 31.6
+    },
+    {
+     "rotulo": "Pagamento semanal",
+     "n": 2,
+     "pct": 10.5
+    },
+    {
+     "rotulo": "Ajuda de custo para transporte ou alimentação",
+     "n": 1,
+     "pct": 5.3
+    }
+   ]
+  }
+ },
+ "condicoes": {
+  "media": 8.43,
+  "indice": {
+   "enps": 44.1,
+   "promotores": 56,
+   "neutros": 22,
+   "detratores": 15,
+   "n": 93,
+   "media": 8.43
+  },
+  "distribuicao": [
+   {
+    "nota": 0,
+    "n": 0
+   },
+   {
+    "nota": 1,
+    "n": 0
+   },
+   {
+    "nota": 2,
+    "n": 1
+   },
+   {
+    "nota": 3,
+    "n": 3
+   },
+   {
+    "nota": 4,
+    "n": 3
+   },
+   {
+    "nota": 5,
+    "n": 4
    },
    {
     "nota": 6,
@@ -935,411 +1110,258 @@
    },
    {
     "nota": 7,
-    "n": 9
+    "n": 4
    },
    {
     "nota": 8,
-    "n": 16
+    "n": 18
    },
    {
     "nota": 9,
-    "n": 11
+    "n": 15
    },
    {
     "nota": 10,
-    "n": 28
-   }
-  ],
-  "expectativa": [
-   {
-    "rotulo": "Foi mais do que eu esperava",
-    "n": 15,
-    "pct": 19.0
-   },
-   {
-    "rotulo": "Foi o que eu esperava",
-    "n": 57,
-    "pct": 72.2
-   },
-   {
-    "rotulo": "Foi menos do que eu esperava",
-    "n": 7,
-    "pct": 8.9
-   }
-  ],
-  "mercado": [
-   {
-    "rotulo": "Melhor",
-    "n": 36,
-    "pct": 45.6
-   },
-   {
-    "rotulo": "Parecido",
-    "n": 25,
-    "pct": 31.6
-   },
-   {
-    "rotulo": "Pior",
-    "n": 2,
-    "pct": 2.5
-   },
-   {
-    "rotulo": "Não sei comparar",
-    "n": 16,
-    "pct": 20.3
-   }
-  ],
-  "expect_atendeu": 91.1,
-  "expect_abaixo": 8.9,
-  "mercado_melhor": 45.6,
-  "mercado_pior": 2.5,
-  "alavancas": [
-   {
-    "rotulo": "Valor maior da diária",
-    "n": 43,
-    "pct": 54.4
-   },
-   {
-    "rotulo": "Bônus por não faltar",
-    "n": 31,
-    "pct": 39.2
-   },
-   {
-    "rotulo": "Bônus por ficar até o fim da temporada",
-    "n": 31,
-    "pct": 39.2
-   },
-   {
-    "rotulo": "Pagamento semanal",
-    "n": 12,
-    "pct": 15.2
-   },
-   {
-    "rotulo": "Ajuda de custo para transporte ou alimentação",
-    "n": 3,
-    "pct": 3.8
-   }
-  ],
-  "alavancas_base": 79,
-  "insatisfeitos": {
-   "n": 15,
-   "alavancas": [
-    {
-     "rotulo": "Valor maior da diária",
-     "n": 11,
-     "pct": 73.3
-    },
-    {
-     "rotulo": "Bônus por não faltar",
-     "n": 6,
-     "pct": 40.0
-    },
-    {
-     "rotulo": "Bônus por ficar até o fim da temporada",
-     "n": 4,
-     "pct": 26.7
-    },
-    {
-     "rotulo": "Pagamento semanal",
-     "n": 1,
-     "pct": 6.7
-    }
-   ]
-  }
- },
- "condicoes": {
-  "media": 8.54,
-  "indice": {
-   "enps": 48.1,
-   "promotores": 49,
-   "neutros": 19,
-   "detratores": 11,
-   "n": 79,
-   "media": 8.54
-  },
-  "distribuicao": [
-   {
-    "nota": 0,
-    "n": 0
-   },
-   {
-    "nota": 1,
-    "n": 0
-   },
-   {
-    "nota": 2,
-    "n": 0
-   },
-   {
-    "nota": 3,
-    "n": 3
-   },
-   {
-    "nota": 4,
-    "n": 3
-   },
-   {
-    "nota": 5,
-    "n": 3
-   },
-   {
-    "nota": 6,
-    "n": 2
-   },
-   {
-    "nota": 7,
-    "n": 3
-   },
-   {
-    "nota": 8,
-    "n": 16
-   },
-   {
-    "nota": 9,
-    "n": 12
-   },
-   {
-    "nota": 10,
-    "n": 37
+    "n": 41
    }
   ],
   "melhorar": [
    {
     "rotulo": "Alimentação e refeitório",
-    "n": 25,
-    "pct": 31.6
+    "n": 29,
+    "pct": 31.2
    },
    {
     "rotulo": "Local para descanso e cadeiras",
-    "n": 23,
-    "pct": 29.1
+    "n": 28,
+    "pct": 30.1
    },
    {
     "rotulo": "Escala e folgas",
-    "n": 22,
-    "pct": 27.8
+    "n": 25,
+    "pct": 26.9
    },
    {
     "rotulo": "Tratamento pelos funcionários efetivos",
-    "n": 18,
-    "pct": 22.8
+    "n": 21,
+    "pct": 22.6
    },
    {
     "rotulo": "Transporte",
-    "n": 15,
-    "pct": 19.0
-   },
-   {
-    "rotulo": "Nada, estava bom",
-    "n": 15,
-    "pct": 19.0
+    "n": 18,
+    "pct": 19.4
    },
    {
     "rotulo": "Banheiros e vestiários",
-    "n": 15,
-    "pct": 19.0
+    "n": 18,
+    "pct": 19.4
+   },
+   {
+    "rotulo": "Nada, estava bom",
+    "n": 17,
+    "pct": 18.3
    },
    {
     "rotulo": "Uniforme e equipamentos",
-    "n": 9,
-    "pct": 11.4
+    "n": 11,
+    "pct": 11.8
    },
    {
     "rotulo": "Tratamento pela segurança",
     "n": 4,
-    "pct": 5.1
+    "pct": 4.3
    }
   ],
-  "melhorar_base": 79
+  "melhorar_base": 93
  },
  "respeito": {
   "distribuicao": [
    {
     "rotulo": "Sempre",
-    "n": 45,
-    "pct": 57.0
+    "n": 55,
+    "pct": 59.1
    },
    {
     "rotulo": "Na maior parte do tempo",
-    "n": 25,
-    "pct": 31.6
+    "n": 28,
+    "pct": 30.1
    },
    {
     "rotulo": "Poucas vezes",
-    "n": 9,
-    "pct": 11.4
+    "n": 10,
+    "pct": 10.8
    }
   ],
-  "sempre": 57.0,
-  "parcial": 31.6,
-  "falhou": 11.4,
-  "alguma_falha": 43.0,
+  "sempre": 59.1,
+  "parcial": 30.1,
+  "falhou": 10.8,
+  "alguma_falha": 40.9,
   "por_nivel": [
    {
     "nivel": "Sempre",
-    "n": 45,
-    "pct": 57.0,
-    "nota_salario": 8.2,
-    "nota_condicoes": 9.02
+    "n": 55,
+    "pct": 59.1,
+    "nota_salario": 8.25,
+    "nota_condicoes": 8.95
    },
    {
     "nivel": "Na maior parte do tempo",
-    "n": 25,
-    "pct": 31.6,
-    "nota_salario": 8.52,
-    "nota_condicoes": 8.48
+    "n": 28,
+    "pct": 30.1,
+    "nota_salario": 8.36,
+    "nota_condicoes": 8.32
    },
    {
     "nivel": "Poucas vezes",
-    "n": 9,
-    "pct": 11.4,
-    "nota_salario": 6.33,
-    "nota_condicoes": 6.33
+    "n": 10,
+    "pct": 10.8,
+    "nota_salario": 6.0,
+    "nota_condicoes": 5.9
    }
   ],
   "por_funcao": [
    {
     "funcao": "Garçom",
-    "n": 21,
-    "sempre": 9,
+    "n": 22,
+    "sempre": 10,
     "maior_parte": 10,
     "poucas": 2,
     "nunca": 0,
-    "pleno_pct": 43.0,
-    "nota_salario": 8.19,
-    "nota_condicoes": 8.71,
-    "quer_clt": 76.0
+    "pleno_pct": 45.0,
+    "nota_salario": 8.27,
+    "nota_condicoes": 8.77,
+    "quer_clt": 77.0
    },
    {
     "funcao": "Atendente de Parque",
-    "n": 10,
-    "sempre": 9,
-    "maior_parte": 1,
-    "poucas": 0,
-    "nunca": 0,
-    "pleno_pct": 90.0,
-    "nota_salario": 7.6,
-    "nota_condicoes": 8.3,
-    "quer_clt": 100.0
-   },
-   {
-    "funcao": "Auxiliar de Serviços Gerais / Limpeza",
-    "n": 8,
-    "sempre": 4,
-    "maior_parte": 4,
-    "poucas": 0,
-    "nunca": 0,
-    "pleno_pct": 50.0,
-    "nota_salario": 8.5,
-    "nota_condicoes": 9.0,
-    "quer_clt": 62.0
-   },
-   {
-    "funcao": "Camareira",
-    "n": 8,
-    "sempre": 5,
-    "maior_parte": 0,
-    "poucas": 3,
-    "nunca": 0,
-    "pleno_pct": 62.0,
-    "nota_salario": 6.62,
-    "nota_condicoes": 8.12,
-    "quer_clt": 88.0
-   },
-   {
-    "funcao": "Atendente de Hotelaria",
-    "n": 7,
-    "sempre": 4,
-    "maior_parte": 3,
-    "poucas": 0,
-    "nunca": 0,
-    "pleno_pct": 57.0,
-    "nota_salario": 8.14,
-    "nota_condicoes": 8.57,
-    "quer_clt": 71.0
-   },
-   {
-    "funcao": "Outra",
-    "n": 6,
-    "sempre": 3,
-    "maior_parte": 1,
-    "poucas": 2,
-    "nunca": 0,
-    "pleno_pct": 50.0,
-    "nota_salario": 9.0,
-    "nota_condicoes": 8.83,
-    "quer_clt": 100.0
-   },
-   {
-    "funcao": "Recepcionista de Parques",
-    "n": 6,
-    "sempre": 4,
+    "n": 13,
+    "sempre": 11,
     "maior_parte": 2,
     "poucas": 0,
     "nunca": 0,
-    "pleno_pct": 67.0,
-    "nota_salario": 9.0,
-    "nota_condicoes": 8.83,
+    "pleno_pct": 85.0,
+    "nota_salario": 7.69,
+    "nota_condicoes": 8.38,
+    "quer_clt": 85.0
+   },
+   {
+    "funcao": "Atendente de Hotelaria",
+    "n": 10,
+    "sempre": 6,
+    "maior_parte": 4,
+    "poucas": 0,
+    "nunca": 0,
+    "pleno_pct": 60.0,
+    "nota_salario": 7.8,
+    "nota_condicoes": 8.2,
+    "quer_clt": 60.0
+   },
+   {
+    "funcao": "Auxiliar de Serviços Gerais / Limpeza",
+    "n": 9,
+    "sempre": 5,
+    "maior_parte": 4,
+    "poucas": 0,
+    "nunca": 0,
+    "pleno_pct": 56.0,
+    "nota_salario": 8.67,
+    "nota_condicoes": 8.89,
     "quer_clt": 67.0
+   },
+   {
+    "funcao": "Camareira",
+    "n": 9,
+    "sempre": 6,
+    "maior_parte": 0,
+    "poucas": 3,
+    "nunca": 0,
+    "pleno_pct": 67.0,
+    "nota_salario": 7.0,
+    "nota_condicoes": 8.33,
+    "quer_clt": 78.0
+   },
+   {
+    "funcao": "Recepcionista de Parques",
+    "n": 8,
+    "sempre": 5,
+    "maior_parte": 3,
+    "poucas": 0,
+    "nunca": 0,
+    "pleno_pct": 62.0,
+    "nota_salario": 9.12,
+    "nota_condicoes": 8.88,
+    "quer_clt": 75.0
+   },
+   {
+    "funcao": "Outra",
+    "n": 7,
+    "sempre": 3,
+    "maior_parte": 1,
+    "poucas": 3,
+    "nunca": 0,
+    "pleno_pct": 43.0,
+    "nota_salario": 8.14,
+    "nota_condicoes": 7.86,
+    "quer_clt": 100.0
    }
   ],
-  "n_escreveram": 17,
+  "n_escreveram": 19,
   "n_relatos": 11
  },
  "efetivacao": {
   "distribuicao": [
    {
     "rotulo": "Sim, com certeza",
-    "n": 64,
-    "pct": 81.0
+    "n": 71,
+    "pct": 76.3
    },
    {
     "rotulo": "Talvez, depende das condições",
-    "n": 12,
-    "pct": 15.2
+    "n": 17,
+    "pct": 18.3
    },
    {
     "rotulo": "Não",
-    "n": 3,
-    "pct": 3.8
+    "n": 5,
+    "pct": 5.4
    }
   ],
-  "sim": 81.0,
-  "sim_talvez": 96.2,
-  "nao": 3.8,
+  "sim": 76.3,
+  "sim_talvez": 94.6,
+  "nao": 5.4,
   "contra": [
    {
     "rotulo": "Escala e horários",
-    "n": 6,
-    "pct": 40.0
+    "n": 9,
+    "pct": 40.9
    },
    {
     "rotulo": "Já tenho outro trabalho ou estudo",
-    "n": 5,
-    "pct": 33.3
+    "n": 8,
+    "pct": 36.4
    },
    {
     "rotulo": "Salário",
-    "n": 5,
-    "pct": 33.3
+    "n": 7,
+    "pct": 31.8
    },
    {
     "rotulo": "Distância ou transporte",
-    "n": 4,
-    "pct": 26.7
+    "n": 7,
+    "pct": 31.8
    },
    {
     "rotulo": "Prefiro trabalho temporário mesmo",
     "n": 1,
-    "pct": 6.7
+    "pct": 4.5
    }
   ],
-  "contra_base": 15,
-  "n_area": 65
+  "contra_base": 22,
+  "n_area": 75
  },
  "comentarios": {
-  "r2_n": 30,
-  "r1_mudar": 78,
-  "r1_elogio": 65
+  "r2_n": 38,
+  "r1_mudar": 81,
+  "r1_elogio": 67
  }
 }

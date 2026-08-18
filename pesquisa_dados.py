@@ -26,6 +26,7 @@ colunas canonicas (funcao, local, faltas, causa, nps, voltaria). O que existe
 em apenas um dos formularios permanece separado.
 ================================================================================
 """
+import re
 from pathlib import Path
 
 import numpy as np
@@ -115,30 +116,47 @@ OPC_CONTRA = [
     "Prefiro trabalho temporário mesmo",
 ]
 ORDEM_RESPEITO = ["Sempre", "Na maior parte do tempo", "Poucas vezes", "Nunca"]
-
-# O campo de relato e opcional e muita gente preenche para dizer que nao tem
-# nada a relatar. Contar por tamanho de texto infla o numero. Estas expressoes
-# marcam a resposta como "sem ocorrencia"; o resto conta como situacao descrita.
-SEM_OCORRENCIA = (
-    "nada", "nao tenho", "não tenho", "nao teve", "não teve",
-    "nao houve", "não houve", "fui respeitad", "sempre fui respeitad",
-    "nenhuma", "nenhum", "sem ocorrencia", "sem ocorrência", "n/a", "na",
-)
-
-
-def descreveu_situacao(texto):
-    """True quando o relato aberto descreve de fato alguma situacao."""
-    t = str(texto or "").strip().lower()
-    if len(t) < 4:
-        return False
-    for p in SEM_OCORRENCIA:
-        if t.startswith(p):
-            return False
-    return True
 ORDEM_EXPECT = ["Foi mais do que eu esperava", "Foi o que eu esperava",
                 "Foi menos do que eu esperava"]
 ORDEM_MERCADO = ["Melhor", "Parecido", "Pior", "Não sei comparar"]
 ORDEM_CLT = ["Sim, com certeza", "Talvez, depende das condições", "Não"]
+
+# Expressoes que marcam a resposta como "sem ocorrencia".
+SEM_OCORRENCIA = (
+    "nada", "nao", "não", "nenhum", "nenhuma", "n/a", "na",
+    "nao tenho", "não tenho", "nao teve", "não teve",
+    "nao houve", "não houve", "sem ocorrencia", "sem ocorrência",
+    "fui respeitad", "sempre fui respeitad", "tudo certo", "tudo bem",
+)
+
+# a expressao exige que a negativa termine ali ou seja seguida de pontuacao,
+# de "a declarar", "teve", "tenho" e afins. Sem isso, um relato legitimo que
+# comece com "Na cozinha..." ou "Nao me deixaram..." seria descartado por
+# casar com o prefixo "na" ou "nao".
+_RE_SEM_OCORRENCIA = re.compile(
+    r"^(?:%s)(?:\s+(?:a\s+declarar|declarar|teve|tenho|houve|com\s+a\s+empresa|"
+    r"a\s+relatar|de\s+mais|disso|especial))?\s*[.!…]*\s*$"
+    % "|".join(re.escape(x) for x in SEM_OCORRENCIA))
+
+
+def descreveu_situacao(texto):
+    """True quando o relato aberto descreve de fato alguma situacao.
+
+    O campo e opcional e muita gente usa o espaco para dizer que nao tem nada
+    a relatar. Contar por tamanho de texto infla o numero.
+    """
+    t = re.sub(r"\s+", " ", str(texto or "").strip().lower())
+    if len(t) < 4:
+        return False
+    if _RE_SEM_OCORRENCIA.match(t):
+        return False
+    # frases curtas que apenas negam a ocorrencia, ainda que mais longas
+    if re.match(r"^(?:nada|nao|não)\b|^(?:sempre\s+)?fui\s+(?:sempre\s+)?respeitad\w*",
+                t) and len(t) <= 60 and not re.search(
+            r"\b(?:me|nos|ninguém|ninguem|chefe|gritou|xingou)\b"
+            r"|\b(?:efetiv|superv|colega|lideran)\w*", t):
+        return False
+    return True
 
 
 # ------------------------------------------------------------------ leitura
@@ -313,6 +331,42 @@ def taxa(sub, cond):
 
 def _pct(parte, total):
     return round(parte / total * 100, 1) if total else None
+
+
+MESES_PT = ["", "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+            "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"]
+
+
+def janela_coleta(caminho=None, aba=None):
+    """Primeira e ultima data de resposta, em texto.
+
+    Antes a janela ficava escrita a mao no subtitulo da aba e no relatorio, e
+    envelhecia a cada nova leva. Agora sai do proprio Timestamp do Forms.
+    """
+    caminho = Path(caminho) if caminho else ARQUIVO
+    if not caminho.exists():
+        return None
+    try:
+        abas = [aba] if aba else pd.ExcelFile(caminho).sheet_names
+        datas = []
+        for sh in abas:
+            d = pd.read_excel(caminho, sheet_name=sh)
+            if "Timestamp" not in d.columns:
+                continue
+            t = pd.to_datetime(d["Timestamp"], errors="coerce").dropna()
+            if len(t):
+                datas += [t.min(), t.max()]
+        if not datas:
+            return None
+        ini, fim = min(datas), max(datas)
+    except Exception:
+        return None
+    if ini.date() == fim.date():
+        return "%d de %s" % (ini.day, MESES_PT[ini.month])
+    if ini.month == fim.month:
+        return "de %d a %d de %s" % (ini.day, fim.day, MESES_PT[fim.month])
+    return "de %d de %s a %d de %s" % (ini.day, MESES_PT[ini.month],
+                                       fim.day, MESES_PT[fim.month])
 
 
 def resumo(base):
