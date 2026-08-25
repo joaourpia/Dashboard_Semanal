@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sorteio PIX — Pesquisa 2 | Mendes RH</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f5f7;color:#0b0b0b;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:14px;}
+.wrap{max-width:1180px;margin:0 auto;padding:20px 18px 70px 18px;}
+.hero{background:linear-gradient(125deg,#0d366b,#1c5cab 52%,#2a78d6);color:#fff;
+  border-radius:18px;padding:22px 26px;margin-bottom:16px;}
+.hero h1{margin:0;font-size:1.45rem;font-weight:770;letter-spacing:-.02em;}
+.hero p{margin:8px 0 0 0;opacity:.88;font-size:.9rem;line-height:1.6;}
+.card{background:#fff;border:1px solid rgba(11,11,11,.08);border-radius:16px;
+  padding:18px 20px;margin-bottom:14px;
+  box-shadow:0 1px 2px rgba(11,11,11,.04),0 10px 30px -18px rgba(11,11,11,.2);}
+.card h2{margin:0 0 4px 0;font-size:1.02rem;font-weight:730;display:flex;align-items:center;}
+.card .d{color:#52514e;font-size:.85rem;margin-bottom:12px;line-height:1.65;}
+.step{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;
+  border-radius:99px;background:#2a78d6;color:#fff;font-size:.76rem;font-weight:750;margin-right:9px;}
+label{display:block;font-size:.76rem;font-weight:700;letter-spacing:.04em;
+  text-transform:uppercase;color:#898781;margin:10px 0 4px 0;}
+input[type=text],input[type=number],textarea{width:100%;padding:9px 11px;border-radius:9px;
+  border:1px solid #d9d8d2;font:inherit;background:#fff;color:#0b0b0b;}
+textarea{min-height:150px;resize:vertical;line-height:1.5;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;}
+input:focus,textarea:focus{outline:2px solid #2a78d6;outline-offset:-1px;border-color:#2a78d6;}
+button{font:inherit;font-weight:650;border-radius:10px;padding:9px 16px;cursor:pointer;
+  border:1px solid rgba(11,11,11,.1);background:#fff;color:#52514e;transition:.15s;}
+button:hover{border-color:#2a78d6;color:#2a78d6;}
+button.p{background:#2a78d6;border-color:#2a78d6;color:#fff;}
+button.p:hover{background:#1c5cab;border-color:#1c5cab;color:#fff;}
+button.g{background:#1baf7a;border-color:#1baf7a;color:#fff;}
+button.g:hover{background:#159066;border-color:#159066;color:#fff;}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px;}
+.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 4px 0;}
+.kpi{background:#f7f8fa;border:1px solid rgba(11,11,11,.06);border-radius:12px;padding:11px 14px;}
+.kpi .l{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#898781;}
+.kpi .v{font-size:1.5rem;font-weight:780;line-height:1.2;margin-top:1px;font-variant-numeric:tabular-nums;}
+table{width:100%;border-collapse:collapse;font-size:.86rem;font-variant-numeric:tabular-nums;}
+th{position:sticky;top:0;background:#2a78d6;color:#fff;text-align:left;padding:8px 10px;
+  font-weight:700;font-size:.72rem;letter-spacing:.03em;text-transform:uppercase;z-index:2;}
+td{padding:7px 10px;border-bottom:1px solid #f0efec;vertical-align:middle;}
+td.num{font-weight:780;font-size:1rem;color:#1c5cab;}
+tr.win td{background:#f0fbf5;}
+tr.sup td{background:#fffdf5;}
+tr.dup td{background:#f6f6f4;color:#898781;text-decoration:line-through;}
+tr.bad td{background:#fdf2f2;}
+.tw{max-height:520px;overflow:auto;border:1px solid rgba(11,11,11,.08);border-radius:12px;margin-top:12px;}
+.tag{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 9px;border-radius:99px;}
+.t-ok{background:#e7f6e7;color:#0a6b0a;} .t-sup{background:#fdf1dc;color:#8a5a00;}
+.t-dup{background:#f1f2f4;color:#52514e;} .t-bad{background:#fbe9e9;color:#a02020;}
+.hint{font-size:.79rem;color:#898781;margin-top:8px;line-height:1.65;}
+.aviso{border-left:4px solid #fab219;background:#fffdf7;border-radius:0 10px 10px 0;
+  padding:12px 15px;font-size:.86rem;line-height:1.7;margin-top:12px;}
+.aviso.info{border-left-color:#2a78d6;background:#f7fafe;}
+.aviso.ok{border-left-color:#1baf7a;background:#f4fbf7;}
+.aviso b.hd{display:block;margin-bottom:3px;}
+code,.mono{font-family:ui-monospace,Menlo,Consolas,monospace;}
+code{background:#eef1f5;padding:1px 6px;border-radius:5px;font-size:.88em;}
+.hash{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.8rem;word-break:break-all;
+  background:#f7f8fa;border:1px solid #eceae4;border-radius:9px;padding:9px 11px;margin-top:6px;}
+h3{font-size:.92rem;font-weight:730;margin:20px 0 6px 0;}
+.win-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px;}
+.win-item{border:1px solid #cfe9db;background:#f4fbf7;border-radius:12px;padding:12px 14px;
+  display:flex;gap:13px;align-items:flex-start;}
+.win-item .bola{flex:0 0 auto;width:44px;height:44px;border-radius:99px;background:#1baf7a;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.05rem;}
+.win-item.s{border-color:#f0dcae;background:#fffdf5;}
+.win-item.s .bola{background:#c88a1a;}
+.win-item .pos{font-size:.66rem;font-weight:750;letter-spacing:.06em;text-transform:uppercase;color:#0a6b0a;}
+.win-item.s .pos{color:#8a5a00;}
+.win-item .nm{font-weight:730;font-size:.95rem;margin-top:1px;}
+.win-item .dt{font-size:.79rem;color:#52514e;margin-top:3px;font-family:ui-monospace,Menlo,Consolas,monospace;}
+.grade{display:inline-block;background:#0d366b;color:#fff;border-radius:12px;padding:14px 18px;
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:1.15rem;letter-spacing:.28em;line-height:1.75;margin-top:6px;}
+.leitura{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px;}
+.leitura .bloco{border:1px solid #e0e5ea;border-radius:12px;padding:11px 13px;background:#fbfcfe;}
+.leitura .tt{font-size:.72rem;font-weight:750;letter-spacing:.05em;text-transform:uppercase;color:#1c5cab;}
+.leitura .vv{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9rem;margin-top:5px;line-height:1.85;}
+@media print{
+  body{background:#fff}
+  .noprint{display:none!important}
+  .card{box-shadow:none;break-inside:avoid}
+  .hero{background:#0d366b!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media (max-width:820px){ .grid2,.leitura,.win-list{grid-template-columns:1fr} .grid5{grid-template-columns:repeat(3,1fr)} .kpis{grid-template-columns:1fr 1fr} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <h1>Sorteio dos prêmios em PIX</h1>
+  <p>Cada inscrito recebe um número. A Loteria Federal aponta os números sorteados.
+     É o mesmo princípio da rifa de esquina, só que o número que decide vem de fora e
+     é público, então ninguém precisa acreditar na minha palavra.</p>
+</div>
+
+<!-- ------------------------------------------------------------------ 1 -->
+<div class="card noprint">
+  <h2><span class="step">1</span>Cole a lista de inscritos</h2>
+  <div class="d">
+    No Google Forms do sorteio: aba Respostas, ícone verde do Sheets, depois Arquivo &gt;
+    Fazer download &gt; CSV. Abra o arquivo e cole tudo aqui, com a linha de cabeçalho.
+  </div>
+  <textarea id="dados" placeholder="Cole aqui o conteúdo do CSV, ou uma pessoa por linha no formato:
+nome ; telefone ; cpf ; chave pix"></textarea>
+  <div class="bar">
+    <button class="p" onclick="carregar()">Carregar e numerar</button>
+    <button onclick="document.getElementById('arq').click()">Importar arquivo CSV</button>
+    <input type="file" id="arq" accept=".csv,.txt,.tsv" style="display:none" onchange="importar(this)">
+    <button onclick="exemplo()">Ver exemplo</button>
+  </div>
+  <div class="hint">
+    Reconheço as colunas pelo cabeçalho (nome, telefone, CPF, PIX) em qualquer ordem, com
+    separador ponto e vírgula, vírgula ou tabulação. Nada sai do seu computador: a página
+    funciona até sem internet.
+  </div>
+</div>
+
+<!-- ------------------------------------------------------------------ 2 -->
+<div class="card" id="cardLista" style="display:none">
+  <h2><span class="step">2</span>Cada pessoa recebe um número</h2>
+  <div class="d">
+    Numerei na ordem em que as pessoas se inscreveram. Antes, tirei CPF repetido (vale a
+    primeira inscrição) e separei CPF que não passa na validação dos dígitos.
+  </div>
+  <div class="kpis">
+    <div class="kpi"><div class="l">Linhas lidas</div><div class="v" id="kLidas">0</div></div>
+    <div class="kpi"><div class="l">Concorrendo</div><div class="v" id="kHab">0</div></div>
+    <div class="kpi"><div class="l">CPF repetido</div><div class="v" id="kDup">0</div></div>
+    <div class="kpi"><div class="l">CPF inválido</div><div class="v" id="kBad">0</div></div>
+  </div>
+  <div class="aviso info" id="avisoConf"></div>
+
+  <div class="aviso" style="border-left-color:#d03b3b;background:#fdf5f5">
+    <b class="hd">Publique a lista numerada no grupo ANTES de olhar a loteria</b>
+    Esse é o passo que torna o sorteio confiável. Cada pessoa precisa saber o número dela
+    antes de existir resultado. Use o botão abaixo para copiar a lista pronta para o WhatsApp.
+  </div>
+  <div class="bar noprint">
+    <button class="p" onclick="copiarNumerada()">Copiar lista numerada para o WhatsApp</button>
+    <button onclick="baixarNumerada()">Baixar lista numerada (CSV)</button>
+  </div>
+
+  <h3>Impressão digital da lista</h3>
+  <div class="d" style="margin-bottom:0">
+    Código que resume a lista numerada. Publique junto. Se alguém incluir, tirar ou trocar
+    um nome depois, o código muda e dá para provar.
+  </div>
+  <div class="hash" id="hashLista">—</div>
+
+  <div class="tw noprint">
+    <table>
+      <thead><tr><th style="width:56px">Nº</th><th>Nome</th><th>CPF</th><th>WhatsApp</th>
+      <th>Chave PIX</th><th style="width:130px">Situação</th></tr></thead>
+      <tbody id="corpoLista"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ------------------------------------------------------------------ 3 -->
+<div class="card noprint" id="cardSemente" style="display:none">
+  <h2><span class="step">3</span>Digite o resultado da Loteria Federal</h2>
+  <div class="d">
+    Escolha uma extração com data <b>posterior</b> ao momento em que você publicou a lista
+    numerada. A Loteria Federal sorteia às quartas e aos sábados, por volta das 19h. Depois
+    que sair, copie os cinco prêmios de
+    <a href="https://loterias.caixa.gov.br/Paginas/Loteria-Federal.aspx" target="_blank" rel="noopener">loterias.caixa.gov.br</a>.
+  </div>
+  <div class="grid2">
+    <div>
+      <label>Data da extração</label>
+      <input type="text" id="dataExt" placeholder="20/08/2026">
+    </div>
+    <div>
+      <label>Número da extração (opcional)</label>
+      <input type="text" id="numExt" placeholder="05912">
+    </div>
+  </div>
+  <label>Os cinco prêmios, na ordem (5 dígitos cada)</label>
+  <div class="grid5">
+    <input type="text" id="p1" maxlength="5" placeholder="1º prêmio" inputmode="numeric" oninput="previa()">
+    <input type="text" id="p2" maxlength="5" placeholder="2º prêmio" inputmode="numeric" oninput="previa()">
+    <input type="text" id="p3" maxlength="5" placeholder="3º prêmio" inputmode="numeric" oninput="previa()">
+    <input type="text" id="p4" maxlength="5" placeholder="4º prêmio" inputmode="numeric" oninput="previa()">
+    <input type="text" id="p5" maxlength="5" placeholder="5º prêmio" inputmode="numeric" oninput="previa()">
+  </div>
+
+  <div id="boxPrevia" style="display:none">
+    <h3>De onde saem os números sorteados</h3>
+    <div class="d">
+      Cinco prêmios não bastam para dez ganhadores, então leio a mesma tabela de três
+      maneiras. Escreva os cinco prêmios um embaixo do outro e você tem uma grade de 5 por 5:
+    </div>
+    <div class="grade" id="gradeVis"></div>
+    <div class="leitura">
+      <div class="bloco"><div class="tt">Leitura A · as linhas</div>
+        <div class="vv" id="leiA"></div></div>
+      <div class="bloco"><div class="tt">Leitura B · linhas de trás para frente</div>
+        <div class="vv" id="leiB"></div></div>
+      <div class="bloco"><div class="tt">Leitura C · as colunas, de cima para baixo</div>
+        <div class="vv" id="leiC"></div></div>
+    </div>
+    <div class="aviso info">
+      <b class="hd">Como cada um desses vira um número da lista</b>
+      São 15 números de cinco dígitos, e sua lista tem <b id="nPart">0</b> pessoas. Divido cada
+      um por <b id="nPart2">0</b> e fico com o resto da divisão. Resto zero vale o último número
+      da lista. Se o número já tiver sido sorteado, ando para o seguinte até achar um livre.
+      Dá para conferir tudo com a calculadora do celular.
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top:12px">
+    <div>
+      <label>Quantos ganhadores</label>
+      <input type="number" id="qtd" value="10" min="1" max="15">
+    </div>
+    <div>
+      <label>Quantos suplentes</label>
+      <input type="number" id="qtdSup" value="3" min="0" max="14">
+    </div>
+  </div>
+  <div class="bar">
+    <button class="g" id="btnSortear" onclick="sortear()">Ver os sorteados</button>
+    <button onclick="limparSorteio()">Limpar resultado</button>
+  </div>
+  <div class="aviso">
+    <b class="hd">Para que servem os suplentes</b>
+    Chave PIX errada, pessoa que não responde, desistência. Chame na ordem e registre o
+    motivo da troca na ata. Ganhadores e suplentes juntos não podem passar de 15, que é o
+    total de números que os cinco prêmios geram.
+  </div>
+</div>
+
+<!-- ------------------------------------------------------------------ 4 -->
+<div class="card" id="cardResultado" style="display:none">
+  <h2><span class="step">4</span>Resultado</h2>
+  <div class="d" id="descResultado"></div>
+  <div class="win-list" id="ganhadores"></div>
+
+  <h3 id="tSup" style="display:none">Suplentes, na ordem de chamada</h3>
+  <div class="win-list" id="suplentes"></div>
+
+  <h3>A conta, número por número</h3>
+  <div class="d">
+    Esta é a tabela para colar no grupo se alguém questionar. Cada linha mostra de onde veio
+    o número e como ele virou a posição da lista.
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:56px">Ordem</th><th style="width:150px">Leitura</th>
+      <th>Conta</th><th style="width:70px">Nº</th><th>Ganhador</th></tr></thead>
+      <tbody id="corpoConta"></tbody>
+    </table>
+  </div>
+
+  <div class="bar noprint">
+    <button class="p" onclick="baixarPagamento()">Baixar lista de pagamento (CSV)</button>
+    <button onclick="baixarAta()">Baixar ata do sorteio (TXT)</button>
+    <button onclick="copiarResultado()">Copiar resultado para o WhatsApp</button>
+    <button onclick="window.print()">Imprimir ou salvar em PDF</button>
+  </div>
+</div>
+
+<!-- ------------------------------------------------------------------ 5 -->
+<div class="card noprint">
+  <h2>Por que a Loteria Federal</h2>
+  <div class="d" style="margin-bottom:0">
+    Um site que sorteia na hora produz um resultado que só quem clicou viu. Se alguém
+    questionar, você não tem o que mostrar. A Loteria Federal resolve isso por três motivos:
+    o número vem de fora e ninguém da empresa controla, ele é público e sai no rádio, na TV e
+    no site da Caixa, e ele só existe depois de você já ter fechado e publicado a lista
+    numerada. Qualquer participante refaz a conta com uma calculadora.
+    <br><br>
+    É o mesmo método que as promoções autorizadas pelo Ministério da Fazenda usam há décadas,
+    justamente porque dispensa confiança em quem organiza.
+  </div>
+</div>
+
+</div>
+
+<script>
+var lidas = [], concorrendo = [], contas = [], resultado = null;
+
+/* ---------------------------------------------------------------- leitura */
+function soDigitos(s){ return String(s||'').replace(/\D/g,''); }
+
+function cpfValido(cpf){
+  var c = soDigitos(cpf);
+  if (c.length !== 11) return false;
+  if (/^(\d)\1{10}$/.test(c)) return false;
+  for (var t = 9; t < 11; t++){
+    var soma = 0;
+    for (var i = 0; i < t; i++) soma += parseInt(c[i],10) * ((t + 1) - i);
+    if (((soma * 10) % 11 % 10) !== parseInt(c[t],10)) return false;
+  }
+  return true;
+}
+function fmtCpf(c){
+  var d = soDigitos(c);
+  return d.length === 11 ? d.slice(0,3)+'.'+d.slice(3,6)+'.'+d.slice(6,9)+'-'+d.slice(9) : (c||'');
+}
+function fmtFone(f){
+  var d = soDigitos(f).replace(/^55/,'');
+  if (d.length < 10) return f || '';
+  return '('+d.slice(0,2)+') '+d.slice(2,d.length-4)+'-'+d.slice(-4);
+}
+function quebraLinha(linha, sep){
+  var out = [], atual = '', dentro = false;
+  for (var i = 0; i < linha.length; i++){
+    var ch = linha[i];
+    if (ch === '"'){
+      if (dentro && linha[i+1] === '"'){ atual += '"'; i++; } else dentro = !dentro;
+    } else if (ch === sep && !dentro){ out.push(atual); atual = ''; }
+    else atual += ch;
+  }
+  out.push(atual);
+  return out.map(function(x){ return x.trim().replace(/^"|"$/g,'').trim(); });
+}
+function detectaSep(l){
+  var melhor = ';', max = -1;
+  [';','\t',','].forEach(function(s){
+    var n = quebraLinha(l, s).length; if (n > max){ max = n; melhor = s; } });
+  return melhor;
+}
+function mapaColunas(cab){
+  var m = { nome:-1, fone:-1, cpf:-1, pix:-1 };
+  cab.forEach(function(c,i){
+    var t = c.toLowerCase();
+    if (m.nome < 0 && /nome/.test(t)) m.nome = i;
+    else if (m.fone < 0 && /(telefone|whats|celular|fone)/.test(t)) m.fone = i;
+    else if (m.cpf < 0 && /cpf/.test(t)) m.cpf = i;
+    else if (m.pix < 0 && /(pix|chave)/.test(t)) m.pix = i;
+  });
+  return m;
+}
+
+function carregar(){
+  var txt = document.getElementById('dados').value.replace(/\r/g,'').trim();
+  if (!txt){ alert('Cole a lista de inscritos primeiro.'); return; }
+  var linhas = txt.split('\n').filter(function(l){ return l.trim(); });
+  var sep = detectaSep(linhas[0]);
+  var m = mapaColunas(quebraLinha(linhas[0], sep));
+  var temCab = (m.nome >= 0 || m.cpf >= 0);
+  if (!temCab) m = { nome:0, fone:1, cpf:2, pix:3 };
+
+  lidas = [];
+  linhas.slice(temCab ? 1 : 0).forEach(function(l){
+    var c = quebraLinha(l, sep);
+    if (!c.join('').trim()) return;
+    var reg = {
+      nome:(m.nome>=0?c[m.nome]:'')||'', fone:(m.fone>=0?c[m.fone]:'')||'',
+      cpf: soDigitos(m.cpf>=0?c[m.cpf]:''), pix:(m.pix>=0?c[m.pix]:'')||''
+    };
+    if (!reg.cpf){
+      for (var i=0;i<c.length;i++){
+        if (soDigitos(c[i]).length===11 && cpfValido(c[i])){ reg.cpf = soDigitos(c[i]); break; }
+      }
+    }
+    lidas.push(reg);
+  });
+
+  var vistos = {};
+  concorrendo = [];
+  lidas.forEach(function(r){
+    r.situacao = 'ok'; r.numero = null;
+    if (!cpfValido(r.cpf)){ r.situacao = 'cpf'; return; }
+    if (vistos[r.cpf]){ r.situacao = 'dup'; return; }
+    vistos[r.cpf] = true;
+    r.numero = concorrendo.length + 1;
+    concorrendo.push(r);
+  });
+
+  renderLista(); previa();
+  document.getElementById('cardLista').style.display = 'block';
+  document.getElementById('cardSemente').style.display = concorrendo.length ? 'block' : 'none';
+  limparSorteio();
+}
+
+function importar(inp){
+  var f = inp.files[0]; if (!f) return;
+  var r = new FileReader();
+  r.onload = function(e){ document.getElementById('dados').value = e.target.result; carregar(); };
+  r.readAsText(f, 'UTF-8');
+}
+function exemplo(){
+  document.getElementById('dados').value =
+    'Nome completo;Telefone / WhatsApp (com DDD);CPF (só números);Chave PIX para receber o prêmio\n' +
+    'Maria da Silva Souza;64992345678;52998224725;52998224725\n' +
+    'João Pereira Lima;64998765432;78778932807;joao.lima@email.com\n' +
+    'Ana Cláudia Souza;64993334444;11144477735;64993334444\n' +
+    'Carlos Eduardo Dias;64991112222;39053344705;carlos@email.com\n' +
+    'Fernanda Alves Rocha;64994445555;79217421812;fernanda@email.com\n' +
+    'Rafael Monteiro Cruz;64995556666;28625587887;28625587887\n' +
+    'Juliana Prado Neves;64996667777;09679290832;juliana@email.com\n' +
+    'Pedro Henrique Luz;64997778888;71428793860;71428793860\n' +
+    'Beatriz Campos Melo;64998889999;10033907579;bia@email.com\n' +
+    'Tiago Ferraz Nunes;64999990000;45317828791;tiago@email.com\n' +
+    'Larissa Duarte Pinho;64991230000;52998224725;larissa@email.com\n' +
+    'Fulano CPF Errado;64990000000;11111111111;fulano@email.com';
+  carregar();
+}
+
+/* ------------------------------------------------------------------ hash */
+function textoLista(){
+  return concorrendo.map(function(r){
+    return r.numero + '|' + r.cpf + '|' + r.nome.trim().toUpperCase(); }).join('\n');
+}
+async function calcHash(){
+  var el = document.getElementById('hashLista');
+  var t = textoLista();
+  if (window.crypto && crypto.subtle){
+    try {
+      var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
+      var hex = Array.from(new Uint8Array(buf)).map(function(b){
+        return b.toString(16).padStart(2,'0'); }).join('');
+      el.textContent = 'SHA-256: ' + hex; el.dataset.hash = hex; return;
+    } catch(e){}
+  }
+  var h = hash32(t);
+  el.textContent = 'Resumo: ' + h + '  (SHA-256 indisponível neste navegador)';
+  el.dataset.hash = h;
+}
+function hash32(str){
+  var h = 1779033703 ^ str.length;
+  for (var i=0;i<str.length;i++){ h = Math.imul(h ^ str.charCodeAt(i), 3432918353); h = h<<13 | h>>>19; }
+  h = Math.imul(h ^ (h>>>16), 2246822507); h = Math.imul(h ^ (h>>>13), 3266489909);
+  return ((h ^= h>>>16) >>> 0).toString(16).padStart(8,'0');
+}
+
+/* -------------------------------------------------- as tres leituras */
+function premiosDigitados(){
+  return ['p1','p2','p3','p4','p5'].map(function(id){
+    return soDigitos(document.getElementById(id).value); });
+}
+function completos(pr){ return pr.every(function(x){ return x.length === 5; }); }
+
+function leituras(pr){
+  var A = pr.map(function(p){ return { rot:'linha', txt:p }; });
+  var B = pr.map(function(p){ return { rot:'invertida', txt:p.split('').reverse().join('') }; });
+  var C = [];
+  for (var c=0;c<5;c++){
+    var s = ''; for (var l=0;l<5;l++) s += pr[l][c];
+    C.push({ rot:'coluna', txt:s });
+  }
+  return { A:A, B:B, C:C };
+}
+
+function previa(){
+  var pr = premiosDigitados();
+  var box = document.getElementById('boxPrevia');
+  if (!completos(pr) || !concorrendo.length){ box.style.display = 'none'; return; }
+  box.style.display = 'block';
+  document.getElementById('gradeVis').innerHTML =
+    pr.map(function(p){ return p.split('').join(' '); }).join('<br>');
+  var L = leituras(pr);
+  document.getElementById('leiA').innerHTML = L.A.map(function(x,i){ return (i+1)+'º &nbsp; '+x.txt; }).join('<br>');
+  document.getElementById('leiB').innerHTML = L.B.map(function(x,i){ return (i+1)+'º &nbsp; '+x.txt; }).join('<br>');
+  document.getElementById('leiC').innerHTML = L.C.map(function(x,i){ return 'col '+(i+1)+' &nbsp; '+x.txt; }).join('<br>');
+  document.getElementById('nPart').textContent = concorrendo.length;
+  document.getElementById('nPart2').textContent = concorrendo.length;
+}
+
+/* ---------------------------------------------------------------- sorteio */
+function sortear(){
+  var pr = premiosDigitados();
+  if (!completos(pr)){ alert('Digite os cinco prêmios da Loteria Federal, com 5 dígitos cada.'); return; }
+  var data = document.getElementById('dataExt').value.trim();
+  if (!data){ alert('Informe a data da extração da Loteria Federal.'); return; }
+
+  var qtd = Math.max(1, parseInt(document.getElementById('qtd').value,10)||10);
+  var sup = Math.max(0, parseInt(document.getElementById('qtdSup').value,10)||0);
+  var N = concorrendo.length;
+  if (qtd > N){ alert('Você pediu '+qtd+' ganhadores, mas só há '+N+' concorrendo.'); return; }
+  if (qtd + sup > 15){ alert('Ganhadores mais suplentes não podem passar de 15.'); return; }
+  if (qtd + sup > N){ alert('Ganhadores mais suplentes ('+(qtd+sup)+') passam do total de concorrentes ('+N+').'); return; }
+
+  var L = leituras(pr);
+  var pool = L.A.concat(L.B).concat(L.C);
+  var usados = {}; contas = [];
+  for (var i=0; i<pool.length && contas.length < qtd+sup; i++){
+    var valor = parseInt(pool[i].txt, 10);
+    var resto = valor % N;
+    var n = resto === 0 ? N : resto;
+    var andou = 0;
+    while (usados[n]){ n = (n % N) + 1; andou++; }
+    usados[n] = true;
+    contas.push({ idx:contas.length+1, leitura:pool[i].rot, ordemLeitura:(i%5)+1,
+                  txt:pool[i].txt, valor:valor, resto:resto, numero:n, andou:andou,
+                  pessoa: concorrendo[n-1] });
+  }
+
+  resultado = { data:data, num:document.getElementById('numExt').value.trim(),
+                premios:pr, N:N, qtd:qtd, sup:sup,
+                hash:document.getElementById('hashLista').dataset.hash||'',
+                quando:new Date().toLocaleString('pt-BR') };
+  renderResultado();
+  document.getElementById('cardResultado').style.display = 'block';
+  document.getElementById('cardResultado').scrollIntoView({behavior:'smooth', block:'start'});
+}
+function limparSorteio(){
+  contas = []; resultado = null;
+  document.getElementById('cardResultado').style.display = 'none';
+}
+
+/* ---------------------------------------------------------------- render */
+function renderLista(){
+  document.getElementById('corpoLista').innerHTML = lidas.map(function(r){
+    var cls = r.situacao==='dup' ? 'dup' : (r.situacao==='cpf' ? 'bad' : '');
+    var tag = r.situacao==='dup' ? '<span class="tag t-dup">CPF repetido</span>'
+            : r.situacao==='cpf' ? '<span class="tag t-bad">CPF inválido</span>'
+            : '<span class="tag t-ok">concorrendo</span>';
+    return '<tr class="'+cls+'"><td class="num">'+(r.numero||'—')+'</td><td>'+(r.nome||'—')+
+      '</td><td>'+fmtCpf(r.cpf)+'</td><td>'+fmtFone(r.fone)+'</td><td>'+(r.pix||'—')+
+      '</td><td>'+tag+'</td></tr>';
+  }).join('');
+
+  var dup = lidas.filter(function(r){return r.situacao==='dup';}).length;
+  var bad = lidas.filter(function(r){return r.situacao==='cpf';}).length;
+  document.getElementById('kLidas').textContent = lidas.length;
+  document.getElementById('kHab').textContent = concorrendo.length;
+  document.getElementById('kDup').textContent = dup;
+  document.getElementById('kBad').textContent = bad;
+
+  var av = [];
+  if (dup) av.push('<b>'+dup+' inscrição'+(dup>1?'ões':'')+' com CPF repetido</b> ficou de fora. Vale a primeira que entrou.');
+  if (bad) av.push('<b>'+bad+' com CPF que não passa na validação.</b> Confirme com a pessoa antes de excluir: pode ser erro de digitação, e nesse caso ela tem direito de concorrer.');
+  if (!dup && !bad) av.push('Nenhum CPF repetido e nenhum inválido. Lista limpa.');
+  av.push('Os números vão de <b>1</b> a <b>'+concorrendo.length+'</b>.');
+  document.getElementById('avisoConf').innerHTML = av.join('<br>');
+  calcHash();
+}
+
+function cartao(c, i, tipo){
+  var r = c.pessoa;
+  return '<div class="win-item'+(tipo==='sup'?' s':'')+'">'+
+    '<div class="bola">'+c.numero+'</div><div>'+
+    '<div class="pos">'+(tipo==='sup'?'Suplente '+i:'Ganhador '+i)+'</div>'+
+    '<div class="nm">'+(r.nome||'—')+'</div>'+
+    '<div class="dt">'+fmtCpf(r.cpf)+'  ·  '+fmtFone(r.fone)+'</div>'+
+    '<div class="dt">PIX: '+(r.pix||'—')+'</div></div></div>';
+}
+
+function renderResultado(){
+  var R = resultado;
+  var gan = contas.slice(0, R.qtd), sup = contas.slice(R.qtd);
+  document.getElementById('descResultado').innerHTML =
+    '<b>'+R.qtd+' ganhadores</b> entre '+R.N+' concorrentes, pela extração da Loteria Federal de <b>'+
+    R.data+'</b>'+(R.num?' (nº '+R.num+')':'')+'. Apurado em '+R.quando+'.';
+  document.getElementById('ganhadores').innerHTML = gan.map(function(c,i){ return cartao(c,i+1,'gan'); }).join('');
+  document.getElementById('tSup').style.display = sup.length ? 'block' : 'none';
+  document.getElementById('suplentes').innerHTML = sup.map(function(c,i){ return cartao(c,i+1,'sup'); }).join('');
+
+  document.getElementById('corpoConta').innerHTML = contas.map(function(c,i){
+    var cls = i < R.qtd ? 'win' : 'sup';
+    var nomeLeitura = c.leitura==='linha' ? (c.ordemLeitura+'º prêmio')
+                    : c.leitura==='invertida' ? (c.ordemLeitura+'º invertido')
+                    : ('coluna '+c.ordemLeitura);
+    var conta = c.txt+' ÷ '+R.N+' → resto '+c.resto+(c.resto===0?' (vale '+R.N+')':'');
+    if (c.andou) conta += ' · nº já sorteado, andou '+c.andou;
+    return '<tr class="'+cls+'"><td>'+(i+1)+'</td><td>'+nomeLeitura+'</td><td class="mono">'+
+      conta+'</td><td class="num">'+c.numero+'</td><td>'+(c.pessoa.nome||'—')+
+      (i < R.qtd ? '' : ' <span class="tag t-sup">suplente</span>')+'</td></tr>';
+  }).join('');
+}
+
+/* ------------------------------------------------------------ exportacoes */
+function baixa(nome, texto, tipo){
+  var blob = new Blob(['﻿'+texto], {type:(tipo||'text/plain')+';charset=utf-8'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = nome; a.click();
+}
+function copiar(t, msg){
+  if (navigator.clipboard) navigator.clipboard.writeText(t).then(function(){ alert(msg); });
+  else {
+    var a = document.createElement('textarea');
+    a.value = t; document.body.appendChild(a); a.select();
+    document.execCommand('copy'); document.body.removeChild(a); alert(msg);
+  }
+}
+
+function textoNumerada(){
+  var L = ['*SORTEIO DOS PRÊMIOS EM PIX*','Lista numerada. Confira o seu número.',''];
+  concorrendo.forEach(function(r){
+    L.push(String(r.numero).padStart(3,' ')+' - '+r.nome+'  ('+fmtCpf(r.cpf).slice(0,7)+'...)');
+  });
+  L.push('');
+  L.push('Total: '+concorrendo.length+' pessoas concorrendo.');
+  L.push('Código da lista: '+(document.getElementById('hashLista').dataset.hash||'-'));
+  L.push('');
+  L.push('O sorteio usa a Loteria Federal. Assim que sair a extração, publico aqui os cinco prêmios e a conta de cada ganhador.');
+  return L.join('\n');
+}
+function copiarNumerada(){ copiar(textoNumerada(), 'Lista copiada. Cole no grupo do WhatsApp antes do sorteio.'); }
+function baixarNumerada(){
+  var L = ['Numero;Nome;CPF;WhatsApp;Chave PIX'];
+  concorrendo.forEach(function(r){ L.push([r.numero,r.nome,r.cpf,soDigitos(r.fone),r.pix].join(';')); });
+  baixa('lista_numerada_sorteio.csv', L.join('\n'), 'text/csv');
+}
+
+function copiarResultado(){
+  if (!resultado) return;
+  var R = resultado;
+  var L = ['*RESULTADO DO SORTEIO*','Loteria Federal de '+R.data+(R.num?' (nº '+R.num+')':''),
+           'Prêmios: '+R.premios.join('  '),''];
+  L.push('*Ganhadores:*');
+  contas.slice(0,R.qtd).forEach(function(c,i){
+    L.push((i+1)+'. nº '+c.numero+' - '+c.pessoa.nome);
+  });
+  if (R.sup){
+    L.push(''); L.push('*Suplentes:*');
+    contas.slice(R.qtd).forEach(function(c,i){ L.push((i+1)+'. nº '+c.numero+' - '+c.pessoa.nome); });
+  }
+  L.push(''); L.push('*Como conferir:* escreva os cinco prêmios um embaixo do outro.');
+  L.push('Leia as linhas, depois as linhas de trás para frente, depois as colunas de cima para baixo.');
+  L.push('Divida cada número por '+R.N+' e pegue o resto. Resto zero vale o número '+R.N+'.');
+  L.push('Se o número já saiu, vale o seguinte.');
+  L.push(''); L.push('Código da lista publicada antes: '+(R.hash||'-'));
+  copiar(L.join('\n'), 'Resultado copiado. Cole no grupo do WhatsApp.');
+}
+
+function baixarPagamento(){
+  if (!resultado) return;
+  var R = resultado;
+  var L = ['Posicao;Numero;Nome;CPF;WhatsApp;Chave PIX;Valor;Situacao'];
+  contas.forEach(function(c,i){
+    L.push([i+1, c.numero, c.pessoa.nome, c.pessoa.cpf, soDigitos(c.pessoa.fone), c.pessoa.pix,
+      (i<R.qtd?'R$ 70,00':''), (i<R.qtd?'ganhador':'suplente')].join(';'));
+  });
+  baixa('pagamento_sorteio_pix.csv', L.join('\n'), 'text/csv');
+}
+
+function baixarAta(){
+  if (!resultado) return;
+  var R = resultado, L = [];
+  L.push('ATA DO SORTEIO DE PREMIOS EM PIX');
+  L.push('Pesquisa 2 da temporada de julho de 2026 - Mendes RH');
+  L.push(''.padEnd(74,'='));
+  L.push('');
+  L.push('1. OBJETO');
+  L.push('   '+R.qtd+' premios de R$ 70,00, pagos via PIX, entre quem respondeu a Pesquisa 2');
+  L.push('   e preencheu o formulario de cadastro do sorteio.');
+  L.push('');
+  L.push('2. CONCORRENTES');
+  L.push('   Inscricoes recebidas .....: '+lidas.length);
+  L.push('   CPF repetido (excluido) ..: '+lidas.filter(function(r){return r.situacao==='dup';}).length);
+  L.push('   CPF invalido (excluido) ..: '+lidas.filter(function(r){return r.situacao==='cpf';}).length);
+  L.push('   Concorrendo ..............: '+R.N+'  (numerados de 1 a '+R.N+')');
+  L.push('   Codigo da lista publicada : '+(R.hash||'-'));
+  L.push('');
+  L.push('3. METODO');
+  L.push('   A lista numerada foi publicada no grupo antes da extracao.');
+  L.push('   Fonte do sorteio: Loteria Federal de '+R.data+(R.num?' (extracao n '+R.num+')':''));
+  L.push('   Premios: '+R.premios.join('  '));
+  L.push('');
+  L.push('   Os cinco premios, escritos um embaixo do outro, formam uma grade 5x5.');
+  L.push('   Dela saem 15 numeros de cinco digitos, em tres leituras:');
+  L.push('     A) cada linha como esta;');
+  L.push('     B) cada linha de tras para frente;');
+  L.push('     C) cada coluna, de cima para baixo.');
+  L.push('   Cada numero e dividido por '+R.N+' e vale o resto da divisao.');
+  L.push('   Resto zero vale o numero '+R.N+'. Numero repetido anda para o seguinte.');
+  L.push('');
+  L.push('4. APURACAO');
+  L.push('   '+'ordem  leitura            numero    resto   sorteado  ganhador');
+  contas.forEach(function(c,i){
+    var nl = c.leitura==='linha' ? (c.ordemLeitura+'o premio')
+           : c.leitura==='invertida' ? (c.ordemLeitura+'o invertido') : ('coluna '+c.ordemLeitura);
+    L.push('   '+String(i+1).padStart(4,' ')+'   '+nl.padEnd(17,' ')+' '+
+      c.txt.padStart(7,' ')+'  '+String(c.resto).padStart(6,' ')+'  '+
+      String(c.numero).padStart(8,' ')+'  '+c.pessoa.nome+(i>=R.qtd?'  (suplente)':''));
+  });
+  L.push('');
+  L.push('5. GANHADORES');
+  contas.slice(0,R.qtd).forEach(function(c,i){
+    L.push('   '+String(i+1).padStart(2,'0')+'. numero '+String(c.numero).padStart(3,' ')+
+      '  |  '+c.pessoa.nome+'  |  CPF '+fmtCpf(c.pessoa.cpf)+'  |  PIX '+c.pessoa.pix);
+  });
+  if (R.sup){
+    L.push('');
+    L.push('6. SUPLENTES (na ordem de chamada)');
+    contas.slice(R.qtd).forEach(function(c,i){
+      L.push('   '+String(i+1).padStart(2,'0')+'. numero '+String(c.numero).padStart(3,' ')+
+        '  |  '+c.pessoa.nome+'  |  CPF '+fmtCpf(c.pessoa.cpf)+'  |  PIX '+c.pessoa.pix);
+    });
+  }
+  L.push('');
+  L.push('7. PAGAMENTO');
+  L.push('   R$ 70,00 por ganhador. Total: R$ '+(R.qtd*70).toFixed(2).replace('.',','));
+  L.push('   Conforme o regulamento, o pagamento e feito no dia em que o ganhador');
+  L.push('   utilizar seu ingresso do Hot Park.');
+  L.push('');
+  L.push('8. REGISTRO');
+  L.push('   Apuracao realizada em '+R.quando);
+  L.push('   Responsavel: ______________________________________');
+  L.push('   Testemunha:  ______________________________________');
+  L.push('');
+  L.push(''.padEnd(74,'='));
+  baixa('ata_sorteio_pix.txt', L.join('\n'));
+}
+</script>
+</body>
+</html>
